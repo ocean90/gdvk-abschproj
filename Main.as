@@ -1,0 +1,1 @@
+﻿package  {		import flash.display.MovieClip;		import utils.Buttons;	import utils.UI;		public class Main extends MovieClip {		private var ui:UI;				public function Main() {			ui = new UI();			addChild(ui);		}				public function addButton() {			//addChild(b);		}	}	}
