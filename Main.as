@@ -6,6 +6,9 @@
 	import utils.UI;
 	import utils.DebugGrid;
 
+	/**
+	 * DIFF TEST
+	 */
 	
 	public class Main extends MovieClip {
 		private var ui:UI;
