@@ -31,7 +31,7 @@
 			this.drawWidth = Grid.SPAN_2;
 			this.drawHeight = Grid.SPAN_1;
 			
-			trace('new button: ', this.x, this.y, this.width, this.height);
+			trace('new button with current fix width and height and text!!', this.x, this.y, this.width, this.height);
 			
 			mouseUp(null);
 			
@@ -43,18 +43,22 @@
 			
 			textField = new TextField();
 			textField.mouseEnabled = false;
-			textField.text = 'Hallo\nasdsd';
-			textField.setTextFormat(textFormat);
-			
-			textField.width = Grid.SPAN_2;
-			// hack from http://stackoverflow.com/questions/1568181/flash-vertical-text-alignment-in-middle
-			textField.y = this.height * 0.5 - textField.textHeight * 0.5;
+			setText('Hallo\nasdsd');
 			
 			addChild(textField);
 			
 			
 			this.addEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
 			this.addEventListener(MouseEvent.MOUSE_UP, mouseUp);
+		}
+		
+		public function setText(text:String) {
+			textField.text = text;
+			textField.setTextFormat(textFormat);
+			
+			textField.width = Grid.SPAN_2;
+			// hack from http://stackoverflow.com/questions/1568181/flash-vertical-text-alignment-in-middle
+			textField.y = this.height * 0.5 - textField.textHeight * 0.5;
 		}
 		
 		private function mouseDown(e:Event) {
