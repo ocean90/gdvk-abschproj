@@ -7,8 +7,17 @@
 	import flash.display.Sprite;
 
 	import utils.Colors;
+	import flash.text.StaticText;
+	import flash.text.TextField;
+	import flash.text.TextFieldAutoSize;
+	import utils.Grid;
+	import fl.text.TLFTextField;
+	import flash.text.TextFormat;
 
 	public class BigButton extends Sprite {
+		private var textFormat:TextFormat;
+		private var textField:TextField;
+		
 		private var color:String;
 		private var drawWidth:int;
 		private var drawHeight:int;
@@ -19,12 +28,31 @@
 			this.buttonMode = true;
 			
 			this.color = color;
-			this.drawWidth = 390;
-			this.drawHeight = 180;
+			this.drawWidth = Grid.SPAN_2;
+			this.drawHeight = Grid.SPAN_1;
 			
 			trace('new button: ', this.x, this.y, this.width, this.height);
 			
 			mouseUp(null);
+			
+			textFormat = new TextFormat();
+			textFormat.color = '0xffffff';
+			textFormat.font = 'Myriad Pro';
+			textFormat.size = 30;
+			textFormat.align = TextFieldAutoSize.CENTER;
+			
+			textField = new TextField();
+			textField.mouseEnabled = false;
+			textField.text = 'Hallo\nasdsd';
+			textField.setTextFormat(textFormat);
+			
+			textField.width = Grid.SPAN_2;
+			// hack from http://stackoverflow.com/questions/1568181/flash-vertical-text-alignment-in-middle
+			textField.y = this.height * 0.5 - textField.textHeight * 0.5;
+			
+			addChild(textField);
+			
+			
 			this.addEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
 			this.addEventListener(MouseEvent.MOUSE_UP, mouseUp);
 		}
