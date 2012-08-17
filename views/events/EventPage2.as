@@ -1,14 +1,15 @@
-﻿package views {
-	import flash.display.Sprite;
+﻿package views.events {
+	
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	import flash.text.TextFieldAutoSize;
 	
 	import utils.Grid;
+	import views.View;
 	
-	public class TestPage extends Sprite {
+	public class EventPage2 extends View {
 
-		public function TestPage() {
+		public function EventPage2() {
 			var textFormat:TextFormat = new TextFormat();
 			textFormat.color = '0x000000';
 			textFormat.font = 'Myriad Pro';
@@ -18,6 +19,7 @@
 			textField.mouseEnabled = false;
 			textField.multiline = true;
 			textField.wordWrap = true;
+			textField.backgroundColor = 0x00ff00;
 			textField.background = true;
 			textField.border = true;
 			

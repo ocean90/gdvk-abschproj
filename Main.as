@@ -6,14 +6,15 @@
 	import utils.UI;
 
 	public class Main extends MovieClip {
-		private var ui:UI;
+		
+		public static var UI:utils.UI;
 		
 		public function Main() {
 			trace('Main movie loaded with stage size: ', this.stage.stageWidth, this.stage.stageHeight);
 			addChild(new DebugGrid());
 			
-			ui = new UI();
-			addChild(ui);
+			Main.UI = new utils.UI();
+			addChild(Main.UI);
 		}
 	}
 	

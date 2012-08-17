@@ -1,18 +1,18 @@
 ﻿package utils {
 	import flash.display.MovieClip;
 	import flash.display.DisplayObject;
-	
-	import widgets.BigButton;
-	
-	import views.IndexPage;
-	import views.TestPage;
 	import flash.events.MouseEvent;
 	import flash.events.Event;
-	import com.greensock.TweenLite;
 		
+	import com.greensock.TweenLite;
+	
+	import widgets.BigButton;
+	import views.Views;
+	import views.View;
+	
 	public class UI extends MovieClip {
 
-		var viewStack:Vector.<DisplayObject> = new Vector.<DisplayObject>();
+		var viewStack:Vector.<View> = new Vector.<View>();
 
 		var back:BigButton;
 
@@ -22,45 +22,58 @@
 		public function UI() {
 			back = new BigButton(Grid.COLUMN_1, 0, 'lightgray');
 			back.setText('Back');
-			back.addEventListener(MouseEvent.CLICK, openTestPage);
+			back.addEventListener(MouseEvent.CLICK, onBack);
 			addChild(back);
 			
-			var firstPage:DisplayObject = getIndexPage();
-			
-			viewStack.push(firstPage);
-			addChild(firstPage);
+			pushView(Views.Index);
 		}
 		
-		public function openTestPage(e:Event) {
-			var lastPage:DisplayObject = viewStack.pop();
-			
-			var newPage:DisplayObject;
-			if (lastPage != getIndexPage()) {
-				newPage = getIndexPage();
+		public function onBack(e:Event) {
+			popView();
+		}
+		
+		public function pushView(view:View) {
+			if (viewStack.length == 0) {
+				// first view from bottom -- demo/test case only...
+				
+				viewStack.push(view);
+				view.x = 0;
+				view.y = 1024;
+				view.visible = true;
+				addChild(view);
+				
+				TweenLite.to(view, 0.8, { x: 0, y: 0 });
+				
 			} else {
-				newPage = getTestPage();
+				// all other views
+				
+				var prevPage:View = viewStack[viewStack.length - 1];
+				
+				viewStack.push(view);
+				view.x = 1280;
+				view.visible = true;
+				addChild(view);
+				
+				TweenLite.to(prevPage, 0.8, { x: -1280, visible: false });
+				TweenLite.to(view, 0.8, { x: 0 });
+				
 			}
-			
-			newPage.x = 1280;
-			TweenLite.to(lastPage, 0.8, { x: -1280 });
-			TweenLite.to(newPage, 0.8, { x: 0 });
-			
-			viewStack.push(newPage);
-			addChild(newPage);
 		}
 		
-		public function getIndexPage():DisplayObject {
-			if (indexPage == null) {
-				indexPage = new IndexPage();
+		public function popView() {
+			if (viewStack.length == 1) {
+				return;
 			}
-			return indexPage;
-		}
-		
-		public function getTestPage():DisplayObject {
-			if (testPage == null) {
-				testPage = new TestPage();
-			}
-			return testPage;
+			
+			// remove last and push previous to the front
+			var lastPage:View = viewStack.pop();
+			var prevPage:View = viewStack[viewStack.length - 1];
+			
+			prevPage.x = -1280;
+			prevPage.visible = true;
+			
+			TweenLite.to(lastPage, 0.8, { x: 1280 });
+			TweenLite.to(prevPage, 0.8, { x: 0 });
 		}
 	}
 	
