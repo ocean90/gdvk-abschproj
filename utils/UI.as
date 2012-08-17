@@ -1,25 +1,23 @@
 ﻿package utils {
-		
 	import flash.display.MovieClip;
+	import flash.display.DisplayObject;
 	
-	import utils.Buttons;
-	
+	import views.IndexPage;
+		
 	public class UI extends MovieClip {
 
+		var indexPage:DisplayObject;
+
 		public function UI() {
-			indexPage();
+			addChild(getIndexPage());
 		}
 		
-		public function indexPage() {
-			addChild(new Buttons(446, 231, 'red'));
-			addChild(new Buttons(866, 231, 'blue'));
-			addChild(new Buttons(446, 441, 'yellow'));
-			addChild(new Buttons(866, 441, 'green'));
-			addChild(new Buttons(24, 651, 'purple'));
-			addChild(new Buttons(446, 651, 'brown'));
-			addChild(new Buttons(866, 651));
+		public function getIndexPage():DisplayObject {
+			if (indexPage == null) {
+				indexPage = new IndexPage();
+			}
+			return indexPage;
 		}
-
 	}
 	
 }

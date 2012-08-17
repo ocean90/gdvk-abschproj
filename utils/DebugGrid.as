@@ -3,11 +3,11 @@
 	import flash.display.MovieClip;
 	
 	public class DebugGrid extends Sprite {
-		private var columns:int = 6;
-		private var columnWidth:int = 180;
-		private var columnSpanLeft:int = 25;
-		private var columnSpanRight:int = 25;
-		private var columnPadding:int = 30;
+		private static var columns:int = 6;
+		private static var columnWidth:int = 180;
+		private static var columnSpanLeft:int = 25;
+		private static var columnSpanRight:int = 25;
+		private static var columnPadding:int = 30;
 
 		public function DebugGrid() {
 			trace('Create debug grid!');
