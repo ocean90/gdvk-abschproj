@@ -6,6 +6,9 @@
 	
 	import utils.Grid;
 	import views.View;
+	import flash.events.MouseEvent;
+	import flash.events.Event;
+	import views.Views;
 	
 	public class EventPage1 extends View {
 
@@ -35,8 +38,13 @@
 			textField.height = 800;
 			
 			addChild(textField);
+			
+			addEventListener(MouseEvent.CLICK, onClick);
 		}
 
+		public function onClick(e:Event) {
+			Main.UI.pushView(Views.Test);
+		}
 	}
 	
 }
