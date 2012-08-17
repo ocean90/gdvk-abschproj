@@ -8,6 +8,7 @@
 	import views.TestPage;
 	import flash.events.MouseEvent;
 	import flash.events.Event;
+	import com.greensock.TweenLite;
 		
 	public class UI extends MovieClip {
 
@@ -32,7 +33,6 @@
 		
 		public function openTestPage(e:Event) {
 			var lastPage:DisplayObject = viewStack.pop();
-			removeChild(lastPage);
 			
 			var newPage:DisplayObject;
 			if (lastPage != getIndexPage()) {
@@ -40,6 +40,10 @@
 			} else {
 				newPage = getTestPage();
 			}
+			
+			newPage.x = 1280;
+			TweenLite.to(lastPage, 0.8, { x: -1280 });
+			TweenLite.to(newPage, 0.8, { x: 0 });
 			
 			viewStack.push(newPage);
 			addChild(newPage);
