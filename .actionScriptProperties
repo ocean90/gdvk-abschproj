@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actionScriptProperties analytics="false" mainApplicationPath="Main.as" projectUUID="92ef3fb7-f197-47da-920f-68e557067700" version="10">
-  <compiler additionalCompilerArguments="-locale de_DE" autoRSLOrdering="true" copyDependentFiles="true" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="true" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="" removeUnusedRSL="true" strict="true" targetPlayerVersion="10.2.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true" sourceFolderPath="">
+  <compiler additionalCompilerArguments="-locale de_DE" autoRSLOrdering="true" copyDependentFiles="true" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="true" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="" removeUnusedRSL="true" strict="true" targetPlayerVersion="10.2.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true" sourceFolderPath="src">
     <compilerSourcePath/>
     <libraryPath defaultLinkType="0">
       <libraryPathEntry kind="3" linkType="1" path="${FLASHPRO_APPCONFIG}/ActionScript 3.0/FP10.2/playerglobal.swc" useDefaultLinkType="false"/>
