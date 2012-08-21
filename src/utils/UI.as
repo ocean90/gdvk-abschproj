@@ -1,8 +1,10 @@
 ﻿package utils {
 	import flash.display.MovieClip;
 	import flash.display.DisplayObject;
+	import flash.display.Loader;
 	import flash.events.MouseEvent;
 	import flash.events.Event;
+	import flash.net.URLRequest;
 		
 	import com.greensock.TweenLite;
 	
@@ -10,18 +12,41 @@
 	import widgets.SmallButton;
 	import views.Views;
 	import views.View;
+	import widgets.InverseText;
 	
 	public class UI extends MovieClip {
 
 		var viewStack:Vector.<View> = new Vector.<View>();
 
+		var inverseText1:InverseText;
+		var inverseText2:InverseText;
+		
 		var home:SmallButton;
 		var back:SmallButton;
+		var logout:SmallButton;
 
 		var indexPage:DisplayObject;
 		var testPage:DisplayObject;
 
 		public function UI() {
+			inverseText1 = new InverseText();
+			inverseText1.x = 0;
+			inverseText1.y = 38;
+			inverseText1.textField.x = 25;
+			inverseText1.shapeWidth = 240;
+			inverseText1.shapeHeight = 50;
+			inverseText1.setText('Es wird laut!');
+			addChild(inverseText1);
+			
+			inverseText2 = new InverseText();
+			inverseText2.x = Grid.COLUMN_1 * 2;
+			inverseText2.y = 88;
+			inverseText2.textField.x = 25;
+			inverseText2.shapeWidth = 300;
+			inverseText2.shapeHeight = 50;
+			inverseText2.setText('WELTREKORD');
+			addChild(inverseText2);
+			
 			home = new SmallButton('Hauptmenü', 'lightgray');
 			home.textFormat.color = '0x000000';
 			home.x = Grid.COLUMN_1;
@@ -41,6 +66,28 @@
 			back.addEventListener(MouseEvent.CLICK, onBack);
 			back.update();
 			addChild(back);
+			
+			// Achtung: "SecurityError: Error #2000: Kein aktiver Sicherheitskontext."
+			// bedeutet einfach nur das die URL falsch ist!
+			var loader:Loader = new Loader();
+			loader.load(new URLRequest('../resources/german_32.png'));
+			home.addChild(loader);
+			
+			// Achtung: "SecurityError: Error #2000: Kein aktiver Sicherheitskontext."
+			// bedeutet einfach nur das die URL falsch ist!
+			var loader:Loader = new Loader();
+			loader.load(new URLRequest('../resources/english_32.png'));
+			back.addChild(loader);
+			
+			logout = new SmallButton('Abmelden', 'lightgray');
+			logout.textFormat.color = '0x000000';
+			logout.x = Grid.COLUMN_6;
+			logout.y = Grid.BUTTON_BAR_Y;
+			logout.shapeWidth = Grid.SPAN_1;
+			logout.shapeHeight = Grid.BUTTON_BAR_HEIGHT;
+			logout.addEventListener(MouseEvent.CLICK, onBack);
+			logout.update();
+			addChild(logout);
 			
 			pushView(Views.Index);
 		}
