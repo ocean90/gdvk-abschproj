@@ -38,11 +38,11 @@
 		}
 
 		public function openEvent1(e:Event) {
-			Main.UI.pushView(Views.Event1);
+			Main.CONTENT.pushView(Views.Event1);
 		}
 		
 		public function openEvent2(e:Event) {
-			Main.UI.pushView(Views.Event2);
+			Main.CONTENT.pushView(Views.Event2);
 		}
 	}
 	
