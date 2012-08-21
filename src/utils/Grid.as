@@ -20,6 +20,11 @@
 		public static var SPAN_5:int = columnWidth * 5 + columnPadding * 4;
 		public static var SPAN_6:int = columnWidth * 6 + columnPadding * 5;
 
+		public static var BUTTON_BAR_Y:int = 939;
+		public static var BUTTON_BAR_X:int = COLUMN_1;
+		public static var BUTTON_BAR_WIDTH:int = 1280 - columnSpanLeft - columnSpanRight;
+		public static var BUTTON_BAR_HEIGHT:int = 60;
+		
 		public function Grid() {
 		}
 	}

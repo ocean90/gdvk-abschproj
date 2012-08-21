@@ -7,6 +7,7 @@
 	import com.greensock.TweenLite;
 	
 	import widgets.BigButton;
+	import widgets.SmallButton;
 	import views.Views;
 	import views.View;
 	
@@ -14,18 +15,56 @@
 
 		var viewStack:Vector.<View> = new Vector.<View>();
 
-		var back:BigButton;
+		var home:SmallButton;
+		var back:SmallButton;
 
 		var indexPage:DisplayObject;
 		var testPage:DisplayObject;
 
 		public function UI() {
-			back = new BigButton(Grid.COLUMN_1, 0, 'lightgray');
-			back.setText('Back');
+			home = new SmallButton('Hauptmenü', 'lightgray');
+			home.textFormat.color = '0x000000';
+			home.x = Grid.COLUMN_1;
+			home.y = Grid.BUTTON_BAR_Y;
+			home.shapeWidth = Grid.SPAN_1;
+			home.shapeHeight = Grid.BUTTON_BAR_HEIGHT;
+			home.addEventListener(MouseEvent.CLICK, onHome);
+			home.update();
+			addChild(home);
+			
+			back = new SmallButton('Zurück', 'lightgray');
+			back.textFormat.color = '0x000000';
+			back.x = Grid.COLUMN_2;
+			back.y = Grid.BUTTON_BAR_Y;
+			back.shapeWidth = Grid.SPAN_1;
+			back.shapeHeight = Grid.BUTTON_BAR_HEIGHT;
 			back.addEventListener(MouseEvent.CLICK, onBack);
+			back.update();
 			addChild(back);
+			back.visible = false;
 			
 			pushView(Views.Index);
+		}
+		
+		public function onHome(e:Event) {
+			if (viewStack.length == 1) {
+				return;
+			}
+			
+			// get current view and remove all others
+			var prevView:View = viewStack.pop();
+			while (viewStack.length > 1) {
+				viewStack.pop();
+			}
+			var homeView:View = viewStack[viewStack.length - 1];
+			
+			homeView.x = -1280;
+			homeView.visible = true;
+			
+			TweenLite.to(prevView, 0.8, { x: 1280 });
+			TweenLite.to(homeView, 0.8, { x: 0 });
+			
+			back.visible = false;
 		}
 		
 		public function onBack(e:Event) {
@@ -42,7 +81,7 @@
 				view.visible = true;
 				addChild(view);
 				
-				TweenLite.to(view, 0.8, { x: 0, y: 0 });
+				TweenLite.to(view, 0.8, { delay: 1, x: 0, y: 0 });
 				
 			} else {
 				// all other views
@@ -57,6 +96,7 @@
 				TweenLite.to(prevPage, 0.8, { x: -1280, visible: false });
 				TweenLite.to(view, 0.8, { x: 0 });
 				
+				back.visible = true;
 			}
 		}
 		
@@ -74,6 +114,8 @@
 			
 			TweenLite.to(lastPage, 0.8, { x: 1280 });
 			TweenLite.to(prevPage, 0.8, { x: 0 });
+			
+			back.visible = viewStack.length > 1;
 		}
 	}
 	

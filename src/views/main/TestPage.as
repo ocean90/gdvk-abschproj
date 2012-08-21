@@ -31,7 +31,7 @@
 			textField.x = Grid.COLUMN_1;
 			textField.y = 200;
 			textField.width = Grid.SPAN_6;
-			textField.height = 800;
+			textField.height = 600;
 			
 			addChild(textField);
 		}
