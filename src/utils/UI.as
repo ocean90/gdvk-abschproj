@@ -41,9 +41,20 @@
 			back.addEventListener(MouseEvent.CLICK, onBack);
 			back.update();
 			addChild(back);
-			back.visible = false;
 			
 			pushView(Views.Index);
+		}
+		
+		public function updateButtonBar() {
+			if (viewStack.length > 1) {
+				home.textFormat.color = '0x000000';
+				home.update();
+				back.visible = true;
+			} else {
+				home.textFormat.color = '0x888888';
+				home.update();
+				back.visible = false;
+			}
 		}
 		
 		public function onHome(e:Event) {
@@ -64,7 +75,7 @@
 			TweenLite.to(prevView, 0.8, { x: 1280 });
 			TweenLite.to(homeView, 0.8, { x: 0 });
 			
-			back.visible = false;
+			this.updateButtonBar();
 		}
 		
 		public function onBack(e:Event) {
@@ -95,9 +106,9 @@
 				
 				TweenLite.to(prevPage, 0.8, { x: -1280, visible: false });
 				TweenLite.to(view, 0.8, { x: 0 });
-				
-				back.visible = true;
 			}
+			
+			this.updateButtonBar();
 		}
 		
 		public function popView() {
@@ -115,7 +126,7 @@
 			TweenLite.to(lastPage, 0.8, { x: 1280 });
 			TweenLite.to(prevPage, 0.8, { x: 0 });
 			
-			back.visible = viewStack.length > 1;
+			this.updateButtonBar();
 		}
 	}
 	
