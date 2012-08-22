@@ -113,6 +113,7 @@ package views.events {
 			var textFieldLeft:TextField = new TextField();
 			var textFieldRight:TextField = new TextField();
 			textFieldLeft.multiline = textFieldRight.multiline = true;
+			textFieldLeft.mouseEnabled = textFieldRight.mouseEnabled = false;
 
 			for (var key:String in data){
 				textFieldLeft.appendText(key+":\n");
