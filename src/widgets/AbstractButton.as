@@ -7,13 +7,10 @@
 	import flash.display.Sprite;
 
 	import utils.Colors;
-	import flash.text.StaticText;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
 	import utils.Grid;
-	import fl.text.TLFTextField;
 	import flash.text.TextFormat;
-	import flash.display.Shape;
 
 	public class AbstractButton extends Sprite {
 		public var textFormat:TextFormat;
