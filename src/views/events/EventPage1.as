@@ -62,7 +62,7 @@
 		}
 
 		public function onClick(e:Event) {
-			Main.UI.pushView(Views.Test);
+			Main.CONTENT.pushView(Views.Test);
 		}
 	}
 
