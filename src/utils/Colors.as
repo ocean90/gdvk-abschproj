@@ -4,6 +4,8 @@
 
 	public class Colors {
 		private static var _colors:Object = {
+				'languageButtonActive':   0xdddddd,
+				'languageButtonInactive': 0xbbbbbb,
 			    'lightgray': 0xdddddd,
 				'blue':      0x2D8EAC,
 				'red':       0xDB2D1F,

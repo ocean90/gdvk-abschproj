@@ -1,4 +1,4 @@
-package  {
+﻿package  {
 
 	import flash.display.MovieClip;
 	
@@ -8,6 +8,8 @@ package  {
 	import views.Views;
 
 	public class Main extends MovieClip {
+		
+		public static var LANGUAGE:String = 'DE';
 		
 		public static var HEADER:Header;
 		public static var CONTENT:UI;
