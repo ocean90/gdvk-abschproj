@@ -33,10 +33,16 @@
 			usernameInput.update();
 			
 			keyboard = new VirtualKeyboard();
-			trace(keyboard.width);
-			keyboard.x = Main.STAGE.stageWidth * 0.5 - keyboard.width * 0.5;
+			keyboard.x = Main.STAGE.stageWidth * 0.5 - VirtualKeyboard.KEYBOARD_WIDTH * 0.5;
 			keyboard.y = 620;
 			keyboard.visible = false;
+			
+			usernameInput.addEventListener(MouseEvent.CLICK, function(e:Event) {
+				keyboard.activateFor(usernameInput.textField);
+			});
+			usernameLabel.addEventListener(MouseEvent.CLICK, function(e:Event) {
+				keyboard.activateFor(usernameInput.textField);
+			});
 			
 			addChild(usernameLabel);
 			addChild(usernameInput);
