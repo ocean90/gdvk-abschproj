@@ -93,20 +93,22 @@
 		}
 
 		public function changeLanguage(e:Event) {
-			if (e.currentTarget == de) {
+			if (e.currentTarget == de && Main.LANGUAGE != 'DE') {
 				trace('Switch UI to german');
 				Main.LANGUAGE = 'DE';
 				de.color = 'languageButtonActive';
 				en.color = 'languageButtonInactive';
 				de.update();
 				en.update();
-			} else if (e.currentTarget == en) {
+				Main.CONTENT.updateView();
+			} else if (e.currentTarget == en && Main.LANGUAGE != 'EN') {
 				trace('Switch UI to english');
 				Main.LANGUAGE = 'EN';
 				de.color = 'languageButtonInactive';
 				en.color = 'languageButtonActive';
 				de.update();
 				en.update();
+				Main.CONTENT.updateView();
 			}
 		}
 

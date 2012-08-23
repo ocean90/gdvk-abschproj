@@ -42,6 +42,7 @@
 			if (viewStack.length == 0) {
 				// first view from bottom -- demo/test case only...
 				
+				view.update();
 				viewStack.push(view);
 				view.alpha = 0;
 				view.visible = true;
@@ -54,6 +55,7 @@
 				
 				var prevPage:View = viewStack[viewStack.length - 1];
 				
+				view.update();
 				viewStack.push(view);
 				view.x = 1280;
 				view.visible = true;
@@ -76,12 +78,20 @@
 			var prevPage:View = viewStack[viewStack.length - 1];
 			
 			prevPage.x = -1280;
+			prevPage.update();
 			prevPage.visible = true;
 			
 			TweenLite.to(lastPage, 0.8, { x: 1280 });
 			TweenLite.to(prevPage, 0.8, { x: 0 });
 			
 			Main.FOOTER.updateButtonBar();
+		}
+		
+		public function updateView() {
+			var view:View = viewStack[viewStack.length - 1];
+			view.alpha = 0;
+			view.update();
+			TweenLite.to(view, 2.0, { alpha: 1 });
 		}
 	}
 	

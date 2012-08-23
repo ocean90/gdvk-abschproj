@@ -12,41 +12,66 @@
 
 	public class IndexPage extends View {
 
+		private var checkin:BigButton;
+		private var plan:BigButton;
+		private var timetable:BigButton;
+		private var workshops:BigButton;
+		private var members:BigButton;
+		private var catering:BigButton;
+		private var infrastructure:BigButton;
+		private var help:BigButton;
+
 		public function IndexPage() {
-			var checkin:BigButton = new BigButton(Grid.COLUMN_1, 231, 'yellow');
+			checkin = new BigButton(Grid.COLUMN_1, 231, 'yellow');
 			checkin.shapeWidth = Grid.SPAN_2;
 			checkin.shapeHeight = Grid.SPAN_2;
-			checkin.setText('Check-In');
 			addChild(checkin);
 
-			var plan:BigButton = new BigButton(Grid.COLUMN_3, 231, 'red');
-			plan.setText('Lageplan');
+			plan = new BigButton(Grid.COLUMN_3, 231, 'red');
 			addChild(plan);
 
-			var timetable:BigButton = new BigButton(Grid.COLUMN_5, 231, 'blue');
-			timetable.setText('Zeitplan');
+			timetable = new BigButton(Grid.COLUMN_5, 231, 'blue');
 			addChild(timetable);
 
-			var workshops:BigButton = new BigButton(Grid.COLUMN_3, 441, 'yellow');
-			workshops.setText('Workshops');
+			workshops = new BigButton(Grid.COLUMN_3, 441, 'yellow');
 			workshops.addEventListener(MouseEvent.CLICK, openEvent1);
 			addChild(workshops);
 
-			var members:BigButton = new BigButton(Grid.COLUMN_5, 441, 'green');
-			members.setText('Teilnehmer');
+			members = new BigButton(Grid.COLUMN_5, 441, 'green');
 			addChild(members);
 
-			var catering:BigButton = new BigButton(Grid.COLUMN_1, 651, 'purple')
-			catering.setText('Verpflegung');
+			catering = new BigButton(Grid.COLUMN_1, 651, 'purple')
 			addChild(catering);
 
-			var infrastructure:BigButton = new BigButton(Grid.COLUMN_3, 651, 'brown');
-			infrastructure.setText('Infrastruktur');
+			infrastructure = new BigButton(Grid.COLUMN_3, 651, 'brown');
 			addChild(infrastructure);
 
-			var help:BigButton = new BigButton(Grid.COLUMN_5, 651);
-			help.setText('Vor-Ort-Hilfe');
+			help = new BigButton(Grid.COLUMN_5, 651);
 			addChild(help);
+			
+			update();
+		}
+
+		public override function update() {
+			if (Main.LANGUAGE == 'DE') {
+				checkin.setText('Check-In');
+				plan.setText('Lageplan');
+				timetable.setText('Zeitplan');
+				workshops.setText('Workshops');
+				members.setText('Teilnehmer');
+				catering.setText('Verpflegung');
+				infrastructure.setText('Infrastruktur');
+				help.setText('Vor-Ort-Hilfe');
+			} else if (Main.LANGUAGE == 'EN') {
+				checkin.setText('Check-in');
+				plan.setText('Plan');
+				timetable.setText('Timetable');
+				workshops.setText('Workshops');
+				members.setText('Members');
+				catering.setText('Catering');
+				infrastructure.setText('Infrastructure');
+				help.setText('Local support');
+			}
 		}
 
 		public function openEvent1(e:Event) {
