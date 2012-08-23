@@ -135,12 +135,11 @@
 				// first view from bottom -- demo/test case only...
 
 				viewStack.push(view);
-				view.x = 0;
-				view.y = 1024;
+				view.alpha = 0;
 				view.visible = true;
 				addChild(view);
 
-				TweenLite.to(view, 0.8, { delay: 1, x: 0, y: 0 });
+				TweenLite.to(view, 1.6, { delay: 0.5, alpha: 1 });
 
 			} else {
 				// all other views
