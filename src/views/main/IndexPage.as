@@ -25,31 +25,35 @@
 			checkin = new BigButton(Grid.COLUMN_1, 231, 'yellow');
 			checkin.shapeWidth = Grid.SPAN_2;
 			checkin.shapeHeight = Grid.SPAN_2;
-			addChild(checkin);
+			checkin.addEventListener(MouseEvent.CLICK, function(e:Event) {
+				Main.CONTENT.pushView(Views.CheckIn);
+			});
 
 			plan = new BigButton(Grid.COLUMN_3, 231, 'red');
-			addChild(plan);
 
 			timetable = new BigButton(Grid.COLUMN_5, 231, 'blue');
-			addChild(timetable);
 
 			workshops = new BigButton(Grid.COLUMN_3, 441, 'yellow');
 			workshops.addEventListener(MouseEvent.CLICK, openEvent1);
-			addChild(workshops);
 
 			members = new BigButton(Grid.COLUMN_5, 441, 'green');
-			addChild(members);
 
 			catering = new BigButton(Grid.COLUMN_1, 651, 'purple')
-			addChild(catering);
 
 			infrastructure = new BigButton(Grid.COLUMN_3, 651, 'brown');
-			addChild(infrastructure);
 
 			help = new BigButton(Grid.COLUMN_5, 651);
-			addChild(help);
 			
 			update();
+			
+			addChild(checkin);
+			addChild(plan);
+			addChild(timetable);
+			addChild(workshops);
+			addChild(members);
+			addChild(catering);
+			addChild(infrastructure);
+			addChild(help);
 		}
 
 		public override function update() {
