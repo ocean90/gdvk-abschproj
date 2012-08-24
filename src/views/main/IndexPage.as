@@ -43,9 +43,9 @@
 			infrastructure = new BigButton(Grid.COLUMN_3, 651, 'brown');
 
 			help = new BigButton(Grid.COLUMN_5, 651);
-			
+
 			update();
-			
+
 			addChild(checkin);
 			addChild(plan);
 			addChild(timetable);

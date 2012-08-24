@@ -11,23 +11,21 @@ package views.events {
 	import utils.Grid;
 
 	public class CoverFlow extends Sprite {
-		public var color:String;
-		public var shapeWidth:int;
-		public var shapeHeight:int;
+		public var color:uint;
+		public var shapeWidth:int = 870;
+		public var shapeHeight:int = 600;
 
 		public function CoverFlow(color:String = 'blue') {
-			this.color = color;
-			this.shapeWidth = 870
-			this.shapeHeight = 600
+			this.color = Colors.getColor(color);
 
-			this.paintBox();
+			paintBox();
 
 			this.x = Grid.COLUMN_2 - 25;
 			this.y = Grid.SPAN_1 + 50;
 		}
 
 		public function paintBox() {
-			graphics.beginFill(Colors.getColor(this.color));
+			graphics.beginFill(this.color);
 			graphics.drawRect(0, 0, this.shapeWidth, this.shapeHeight);
 			graphics.endFill();
 		}
@@ -40,7 +38,7 @@ package views.events {
 			addChild(loader);
 
 			var overlay:MovieClip = new MovieClip();
-			overlay.graphics.beginFill(Colors.getColor(this.color));
+			overlay.graphics.beginFill(this.color);
 			overlay.graphics.drawRect(205, 25, this.shapeWidth-205, 140);
 			overlay.graphics.endFill();
 			addChild(overlay);
