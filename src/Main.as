@@ -38,6 +38,8 @@
 			addChild(Main.HEADER);
 			addChild(Main.FOOTER);
 			
+			addChild(Main.KEYBOARD);
+			
 			Main.CONTENT.pushView(Views.Index);
 		}
 	}
