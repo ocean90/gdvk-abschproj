@@ -22,15 +22,17 @@
 			// get current view and remove all others
 			var prevView:View = viewStack.pop();
 			while (viewStack.length > 1) {
-				viewStack.pop();
+				removeChild(viewStack.pop());
 			}
 			var homeView:View = viewStack[viewStack.length - 1];
 			
 			homeView.x = -1280;
-			homeView.visible = true;
+			homeView.alpha = 0.5;
 			
-			TweenLite.to(prevView, 0.8, { x: 1280 });
-			TweenLite.to(homeView, 0.8, { x: 0 });
+			TweenLite.to(prevView, 0.8, { x: 1280, autoAlpha: 0, onComplete: function() {
+				if (contains(prevView)) removeChild(prevView);
+			}});
+			TweenLite.to(homeView, 0.8, { x: 0, autoAlpha: 1 });
 			
 			Main.FOOTER.updateButtonBar();
 		}
@@ -39,32 +41,35 @@
 			popView();
 		}
 		
-		public function pushView(view:View) {
+		public function pushView(nextView:View) {
 			Main.KEYBOARD.activateFor(null);
 			if (viewStack.length == 0) {
 				// first view from bottom -- demo/test case only...
 				
-				view.update();
-				viewStack.push(view);
-				view.alpha = 0;
-				view.visible = true;
-				addChild(view);
+				nextView.update();
+				nextView.alpha = 0;
+				nextView.visible = true;
 				
-				TweenLite.to(view, 2.0, { delay: 0.5, autoAlpha: 1 });
+				viewStack.push(nextView);
+				addChild(nextView);
+				
+				TweenLite.to(nextView, 2.0, { delay: 0.5, autoAlpha: 1 });
 				
 			} else {
 				// all other views
 				
-				var prevPage:View = viewStack[viewStack.length - 1];
+				var prevView:View = viewStack[viewStack.length - 1];
 				
-				view.update();
-				viewStack.push(view);
-				view.x = 1280;
-				view.visible = true;
-				addChild(view);
+				nextView.update();
+				nextView.x = 1280;
+				nextView.alpha = 0.5;
+				nextView.visible = true;
 				
-				TweenLite.to(prevPage, 0.8, { x: -1280, visible: false });
-				TweenLite.to(view, 0.8, { x: 0 });
+				viewStack.push(nextView);
+				addChild(nextView);
+				
+				TweenLite.to(prevView, 0.8, { x: -1280, autoAlpha: 0.0 });
+				TweenLite.to(nextView, 0.8, { x: 0,     autoAlpha: 1.0 });
 			}
 			
 			Main.FOOTER.updateButtonBar();
@@ -82,10 +87,11 @@
 			
 			prevPage.x = -1280;
 			prevPage.update();
-			prevPage.visible = true;
 			
-			TweenLite.to(lastPage, 0.8, { x: 1280 });
-			TweenLite.to(prevPage, 0.8, { x: 0 });
+			TweenLite.to(lastPage, 0.8, { x: 1280, autoAlpha: 0, onComplete: function() {
+				if (contains(lastPage)) removeChild(lastPage);
+			}});
+			TweenLite.to(prevPage, 0.8, { x: 0, autoAlpha: 1 });
 			
 			Main.FOOTER.updateButtonBar();
 		}
