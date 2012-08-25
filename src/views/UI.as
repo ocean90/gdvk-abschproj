@@ -22,15 +22,14 @@
 			// get current view and remove all others
 			var prevView:View = viewStack.pop();
 			while (viewStack.length > 1) {
-				removeChild(viewStack.pop());
+				viewStack.pop();
 			}
 			var homeView:View = viewStack[viewStack.length - 1];
 			
 			homeView.x = -1280;
-			homeView.alpha = 0.5;
 			
-			TweenLite.to(prevView, 0.8, { x: 1280, autoAlpha: 0, onComplete: function() {
-				if (contains(prevView)) removeChild(prevView);
+			TweenLite.to(prevView, 0.8, { x: 1280, autoAlpha: 0.5, onComplete: function() {
+				TweenLite.to(prevView, 0.8, { autoAlpha: 0 });
 			}});
 			TweenLite.to(homeView, 0.8, { x: 0, autoAlpha: 1 });
 			
@@ -68,8 +67,10 @@
 				viewStack.push(nextView);
 				addChild(nextView);
 				
-				TweenLite.to(prevView, 0.8, { x: -1280, autoAlpha: 0.0 });
-				TweenLite.to(nextView, 0.8, { x: 0,     autoAlpha: 1.0 });
+				TweenLite.to(prevView, 0.8, { x: -1280, autoAlpha: 0.5, onComplete: function() {
+					TweenLite.to(prevView, 0.8, { autoAlpha: 0 });
+				}});
+				TweenLite.to(nextView, 0.8, { x: 0, autoAlpha: 1.0 });
 			}
 			
 			Main.FOOTER.updateButtonBar();
@@ -88,8 +89,8 @@
 			prevPage.x = -1280;
 			prevPage.update();
 			
-			TweenLite.to(lastPage, 0.8, { x: 1280, autoAlpha: 0, onComplete: function() {
-				if (contains(lastPage)) removeChild(lastPage);
+			TweenLite.to(lastPage, 0.8, { x: 1280, autoAlpha: 0.5, onComplete: function() {
+				TweenLite.to(lastPage, 0.8, { autoAlpha: 0 });
 			}});
 			TweenLite.to(prevPage, 0.8, { x: 0, autoAlpha: 1 });
 			
