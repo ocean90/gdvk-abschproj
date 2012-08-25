@@ -131,6 +131,11 @@
 			dateOfBirthInput.update();
 			dateOfBirthInput.visible = false;
 			dateOfBirthInput.addEventListener(MouseEvent.CLICK, focusDateOfBirth);
+			dateOfBirthInput.textField.addEventListener(Event.CHANGE, function(e:Event) {
+				if (dateOfBirthInput.textField.length == 2 || dateOfBirthInput.textField.length == 5) {
+					Main.KEYBOARD.fakeKey(Main.LANGUAGE == 'DE' ? '.' : '-');
+				}
+			});
 			
 			addChild(yesButton);
 			addChild(noButton);
@@ -242,7 +247,7 @@
 		
 		public function focusId(e:Event) {
 			Main.KEYBOARD.activateFor(idInput.textField);
-			Main.KEYBOARD.setOnEnterFunction(null);
+			Main.KEYBOARD.setOnEnterFunction(onEnter);
 			Main.KEYBOARD.onNumberKeyPressed(e);
 		}
 		
@@ -264,9 +269,10 @@
 		public function focusDateOfBirth(e:Event) {
 			Main.KEYBOARD.activateFor(dateOfBirthInput.textField);
 			Main.KEYBOARD.setOnEnterFunction(onEnter);
+			Main.KEYBOARD.onNumberKeyPressed(e);
 		}
 		
-		public function focusUncompleteFields(e:Event) {
+		public function focusUncompletePersonalData(e:Event) {
 			if (firstnameInput.textField.length == 0) {
 				firstnameInput.highlight(0xff0000);
 				focusFirstname(e);
@@ -285,14 +291,21 @@
 		}
 		
 		public function onEnter(textField:TextField) {
-			if (textField == firstnameInput.textField) {
+			if (textField == idInput.textField) {
+				if (idInput.textField.length == 0) {
+					idInput.highlight(0xff0000);
+					focusId(null);
+				} else {
+					Main.KEYBOARD.hide();
+				}
+			} else if (textField == firstnameInput.textField) {
 				focusLastname(null);
 			} else if (textField == lastnameInput.textField) {
 				focusCity(null);
 			} else if (textField == cityInput.textField) {
 				focusDateOfBirth(null);
 			} else if (textField == dateOfBirthInput.textField) {
-				focusUncompleteFields(null);
+				focusUncompletePersonalData(null);
 			}
 		}
 		
