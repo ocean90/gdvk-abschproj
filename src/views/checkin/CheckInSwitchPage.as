@@ -2,6 +2,7 @@
 	import flash.events.Event;
 	import flash.display.Loader;
 	import flash.events.MouseEvent;
+	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
 	
 	import views.View;
@@ -125,7 +126,7 @@
 			dateOfBirthLabel.addEventListener(MouseEvent.CLICK, focusDateOfBirth);
 			
 			dateOfBirthInput = new InputField();
-			dateOfBirthInput.shapeWidth = Grid.SPAN_3;
+			dateOfBirthInput.shapeWidth = 180;
 			dateOfBirthInput.shapeHeight = 50;
 			dateOfBirthInput.update();
 			dateOfBirthInput.visible = false;
@@ -239,39 +240,70 @@
 			dateOfBirthInput.update();
 		}
 		
-		public function onYes(e:Event) {
-			TweenLite.to(yesButton, 0.8, { y: yesButton.y - 80, alpha: 0 });
-			TweenLite.to(noButton, 0.8, { y: yesButton.y - 80, alpha: 0 });
-			
-			idLabel.visible = true;
-			idInput.visible = true;
-			
-			focusId(e);
-		}
-		
 		public function focusId(e:Event) {
 			Main.KEYBOARD.activateFor(idInput.textField);
+			Main.KEYBOARD.setOnEnterFunction(null);
 			Main.KEYBOARD.onNumberKeyPressed(e);
 		}
 		
 		public function focusFirstname(e:Event) {
 			Main.KEYBOARD.activateFor(firstnameInput.textField);
-			Main.KEYBOARD.onNumberKeyPressed(e);
+			Main.KEYBOARD.setOnEnterFunction(onEnter);
 		}
 		
 		public function focusLastname(e:Event) {
 			Main.KEYBOARD.activateFor(lastnameInput.textField);
-			Main.KEYBOARD.onNumberKeyPressed(e);
+			Main.KEYBOARD.setOnEnterFunction(onEnter);
 		}
 		
 		public function focusCity(e:Event) {
 			Main.KEYBOARD.activateFor(cityInput.textField);
-			Main.KEYBOARD.onNumberKeyPressed(e);
+			Main.KEYBOARD.setOnEnterFunction(onEnter);
 		}
 		
 		public function focusDateOfBirth(e:Event) {
 			Main.KEYBOARD.activateFor(dateOfBirthInput.textField);
-			Main.KEYBOARD.onNumberKeyPressed(e);
+			Main.KEYBOARD.setOnEnterFunction(onEnter);
+		}
+		
+		public function focusUncompleteFields(e:Event) {
+			if (firstnameInput.textField.length == 0) {
+				firstnameInput.highlight(0xff0000);
+				focusFirstname(e);
+			} else if (lastnameInput.textField.length == 0) {
+				lastnameInput.highlight(0xff0000);
+				focusLastname(e);
+			} else if (cityInput.textField.length == 0) {
+				cityInput.highlight(0xff0000);
+				focusCity(e);
+			} else if (dateOfBirthInput.textField.length == 0) {
+				dateOfBirthInput.highlight(0xff0000);
+				focusDateOfBirth(e);
+			} else {
+				Main.KEYBOARD.hide();
+			}
+		}
+		
+		public function onEnter(textField:TextField) {
+			if (textField == firstnameInput.textField) {
+				focusLastname(null);
+			} else if (textField == lastnameInput.textField) {
+				focusCity(null);
+			} else if (textField == cityInput.textField) {
+				focusDateOfBirth(null);
+			} else if (textField == dateOfBirthInput.textField) {
+				focusUncompleteFields(null);
+			}
+		}
+		
+		public function onYes(e:Event) {
+			TweenLite.to(yesButton, 0.8, { y: yesButton.y - 80, autoAlpha: 0 });
+			TweenLite.to(noButton, 0.8, { y: yesButton.y - 80, autoAlpha: 0 });
+			
+			idLabel.visible = true;
+			idInput.visible = true;
+			
+			focusId(e);
 		}
 		
 		public function onNo(e:Event) {
@@ -296,22 +328,22 @@
 			lastnameInput.alpha = 0;
 			
 			cityLabel.x = Grid.COLUMN_2;
-			cityLabel.y = 430;
+			cityLabel.y = 440;
 			cityLabel.visible = true;
 			cityLabel.alpha = 0;
 			
 			cityInput.x = Grid.COLUMN_3;
-			cityInput.y = 430;
+			cityInput.y = 440;
 			cityInput.visible = true;
 			cityInput.alpha = 0;
 			
 			dateOfBirthLabel.x = Grid.COLUMN_2;
-			dateOfBirthLabel.y = 500;
+			dateOfBirthLabel.y = 510;
 			dateOfBirthLabel.visible = true;
 			dateOfBirthLabel.alpha = 0;
 
 			dateOfBirthInput.x = Grid.COLUMN_3;
-			dateOfBirthInput.y = 500;
+			dateOfBirthInput.y = 510;
 			dateOfBirthInput.visible = true;
 			dateOfBirthInput.alpha = 0;
 			
@@ -319,20 +351,20 @@
 			TweenLite.to(question, 0.8, { y: question.y - 80 });
 			
 			// face out
-			TweenLite.to(yesButton, 0.8, { y: yesButton.y - 80, alpha: 0 });
-			TweenLite.to(noButton, 0.8, { y: noButton.y - 80, alpha: 0 });
+			TweenLite.to(yesButton, 0.8, { y: yesButton.y - 80, autoAlpha: 0 });
+			TweenLite.to(noButton, 0.8, { y: noButton.y - 80, autoAlpha: 0 });
 			
 			// fade in
 			var fadeInTime:Number = 2.6;
 			var fadeInDelay:Number = 0.4;
-			TweenLite.to(firstnameLabel, fadeInTime,   { alpha: 1, delay: fadeInDelay });
-			TweenLite.to(firstnameInput, fadeInTime,   { alpha: 1, delay: fadeInDelay });
-			TweenLite.to(lastnameLabel, fadeInTime,    { alpha: 1, delay: fadeInDelay });
-			TweenLite.to(lastnameInput, fadeInTime,    { alpha: 1, delay: fadeInDelay });
-			TweenLite.to(cityLabel, fadeInTime,        { alpha: 1, delay: fadeInDelay });
-			TweenLite.to(cityInput, fadeInTime,        { alpha: 1, delay: fadeInDelay });
-			TweenLite.to(dateOfBirthLabel, fadeInTime, { alpha: 1, delay: fadeInDelay });
-			TweenLite.to(dateOfBirthInput, fadeInTime, { alpha: 1, delay: fadeInDelay });
+			TweenLite.to(firstnameLabel, fadeInTime,   { autoAlpha: 1, delay: fadeInDelay });
+			TweenLite.to(firstnameInput, fadeInTime,   { autoAlpha: 1, delay: fadeInDelay });
+			TweenLite.to(lastnameLabel, fadeInTime,    { autoAlpha: 1, delay: fadeInDelay });
+			TweenLite.to(lastnameInput, fadeInTime,    { autoAlpha: 1, delay: fadeInDelay });
+			TweenLite.to(cityLabel, fadeInTime,        { autoAlpha: 1, delay: fadeInDelay });
+			TweenLite.to(cityInput, fadeInTime,        { autoAlpha: 1, delay: fadeInDelay });
+			TweenLite.to(dateOfBirthLabel, fadeInTime, { autoAlpha: 1, delay: fadeInDelay });
+			TweenLite.to(dateOfBirthInput, fadeInTime, { autoAlpha: 1, delay: fadeInDelay });
 			
 			focusFirstname(e);
 		}

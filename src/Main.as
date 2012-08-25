@@ -3,6 +3,11 @@
 	import flash.display.MovieClip;
 	import flash.display.Stage;
 	
+	import com.greensock.plugins.TweenPlugin;
+	import com.greensock.plugins.AutoAlphaPlugin;
+	import com.greensock.plugins.HexColorsPlugin;
+	import com.greensock.plugins.ColorTransformPlugin;
+	
 	import views.ButtonBar;
 	import views.UI;
 	import views.Header;
@@ -23,6 +28,9 @@
 		
 		public function Main() {
 			trace('Main movie loaded with stage size', this.stage.stageWidth, this.stage.stageHeight);
+			
+			TweenPlugin.activate([AutoAlphaPlugin, HexColorsPlugin, ColorTransformPlugin]);
+			
 			Main.STAGE = stage;
 			
 			Main.HEADER = new Header();

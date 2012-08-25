@@ -50,7 +50,7 @@
 				view.visible = true;
 				addChild(view);
 				
-				TweenLite.to(view, 2.0, { delay: 0.5, alpha: 1 });
+				TweenLite.to(view, 2.0, { delay: 0.5, autoAlpha: 1 });
 				
 			} else {
 				// all other views
@@ -94,7 +94,7 @@
 			var view:View = viewStack[viewStack.length - 1];
 			view.alpha = 0;
 			view.update();
-			TweenLite.to(view, 2.0, { alpha: 1 });
+			TweenLite.to(view, 2.0, { autoAlpha: 1 });
 		}
 	}
 	

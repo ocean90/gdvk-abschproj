@@ -43,6 +43,7 @@
 		private var numberModeKeyRight:Sprite;
 		
 		private var activeTextField:TextField;
+		private var onEnterFunction:Function;
 
 		public function VirtualKeyboard() {
 			textFormat = new TextFormat();
@@ -63,6 +64,13 @@
 			}
 		}
 		
+		/**
+		 * set callback function with only one single TextField argument.
+		 */
+		public function setOnEnterFunction(callback:Function) {
+			this.onEnterFunction = callback;
+		}
+		
 		public function show() {
 			keyboardMode = MODE_UPPERCASE;
 			update();
@@ -74,9 +82,13 @@
 		public function hide() {
 			Main.STAGE.focus = null;
 			visible = false;
+			
+			setOnEnterFunction(null);
 		}
 
 		public function createKeys() {
+			var textKey:Sprite;
+			
 			var posX = 0;
 			var posY = 0;
 			for (var i = 0; i < KEY_LINES_LENGTH[0]; i++) {
@@ -93,7 +105,7 @@
 			posX = (KEY_WIDTH + KEY_GAP) * 0.5;
 			posY = KEY_HEIGHT + KEY_GAP;
 			for (i = 0; i < KEY_LINES_LENGTH[1]; i++) {
-				var textKey:Sprite = createKey(posX, posY, KEY_WIDTH, KEY_HEIGHT);
+				textKey = createKey(posX, posY, KEY_WIDTH, KEY_HEIGHT);
 				textKey.addEventListener(MouseEvent.CLICK, onTextKeyPressed);
 				allNormalKeys[1][i] = textKey;
 				posX += KEY_WIDTH + KEY_GAP;
@@ -111,7 +123,7 @@
 			posX += KEY_WIDTH + KEY_GAP;
 			
 			for (i = 0; i < KEY_LINES_LENGTH[2]; i++) {
-				var textKey:Sprite = createKey(posX, posY, KEY_WIDTH, KEY_HEIGHT);
+				textKey = createKey(posX, posY, KEY_WIDTH, KEY_HEIGHT);
 				textKey.addEventListener(MouseEvent.CLICK, onTextKeyPressed);
 				allNormalKeys[2][i] = textKey;
 				posX += KEY_WIDTH + KEY_GAP;
@@ -239,7 +251,11 @@
 		public function onEnterKeyPressed(e:Event) {
 			keyboardMode = MODE_UPPERCASE;
 			update();
-			hide();
+			if (this.onEnterFunction != null) {
+				this.onEnterFunction(this.activeTextField);
+			} else {
+				hide();
+			}
 		}
 		
 		public function onUpKeyPressed(e:Event) {
