@@ -184,6 +184,12 @@
 			// reset all positions that are changed in onYes or onNo!
 			
 			if (Main.LANGUAGE == 'DE') {
+				Main.HEADER.setText('Check-In');
+			} else if (Main.LANGUAGE == 'EN') {
+				Main.HEADER.setText('Check-in');
+			}
+			
+			if (Main.LANGUAGE == 'DE') {
 				question.setText('Haben Sie sich bereits auf unserer Webseite registriert\n' +
 								 'und ihre persönliche Einladung erhalten?');
 			} else if (Main.LANGUAGE == 'EN') {

@@ -58,6 +58,8 @@
 
 		public override function update() {
 			if (Main.LANGUAGE == 'DE') {
+				Main.HEADER.setText('Jetzt wirds laut!');
+				
 				checkin.setText('Check-In');
 				plan.setText('Lageplan');
 				timetable.setText('Zeitplan');
@@ -67,6 +69,8 @@
 				infrastructure.setText('Infrastruktur');
 				help.setText('Vor-Ort-Hilfe');
 			} else if (Main.LANGUAGE == 'EN') {
+				Main.HEADER.setText('Now it gets loud!');
+				
 				checkin.setText('Check-in');
 				plan.setText('Plan');
 				timetable.setText('Timetable');
