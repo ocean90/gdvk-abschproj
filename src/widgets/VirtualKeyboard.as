@@ -36,6 +36,7 @@
 		private var allNormalKeys:Object = [[], [], []];
 		private var delKey:Sprite;
 		private var enterKey:Sprite;
+		private var spaceKey:Sprite;
 		private var upperCaseKeyLeft:Sprite;
 		private var upperCaseKeyRight:Sprite;
 		private var numberModeKeyLeft:Sprite;
@@ -55,7 +56,7 @@
 		
 		public function activateFor(textField:TextField) {
 			activeTextField = textField;
-			if (activeTextField != null) {
+			if (activeTextField != null && activeTextField.visible) {
 				show();
 			} else {
 				hide();
@@ -129,7 +130,8 @@
 			
 			// Space key
 			posX += KEY_WIDTH * 2.0 + KEY_GAP * 2;
-			var spaceKey:Sprite = createKey(posX, posY, KEYBOARD_WIDTH - posX * 2, KEY_HEIGHT);
+			spaceKey = createKey(posX, posY, KEYBOARD_WIDTH - posX * 2, KEY_HEIGHT);
+			spaceKey.addEventListener(MouseEvent.CLICK, onSpaceKeyPressed);
 			posX += KEYBOARD_WIDTH - posX * 2 + KEY_GAP;
 			
 			// Number Mode Key
@@ -158,7 +160,6 @@
 			updateKeyText(upperCaseKeyRight, '⇧').textColor = keyboardMode == MODE_UPPERCASE ? 0x31ceff : 0x000000;
 			updateKeyText(numberModeKeyLeft, '123').textColor = keyboardMode == MODE_NUMBERS ? 0x31ceff : 0x000000;
 			updateKeyText(numberModeKeyRight, '123').textColor = keyboardMode == MODE_NUMBERS ? 0x31ceff : 0x000000;
-			
 		}
 		
 		private function createKey(posX:int, posY:int, buttonWidth:int, buttonHeight:int):Sprite {
@@ -200,17 +201,23 @@
 		public function onTextKeyPressed(e:Event) {
 			var keyBackground:Sprite = ((Sprite) (e.currentTarget));
 			var keyLabel:TextField = ((TextField) (keyBackground.getChildAt(0)));
-			var keyText:String = keyLabel.text;
-			
+			replaceSelectedText(keyLabel.text);
+		}
+		
+		public function onSpaceKeyPressed(e:Event) {
+			replaceSelectedText(' ');
+		}
+		
+		private function replaceSelectedText(text:String) {
 			if (activeTextField) {
 				if (activeTextField.selectionBeginIndex == activeTextField.selectionEndIndex) {
 					// Hack: Only required that the textfield visibility jumps to the end of the textfield
 					// otherwise also replaceSelectedText would be work.
-					activeTextField.appendText(keyText);
+					activeTextField.appendText(text);
 					activeTextField.setSelection(activeTextField.length, activeTextField.length);
 				} else {
 					// if the user double tab the input its marked and so we want to replace the text
-					activeTextField.replaceSelectedText(keyText);
+					activeTextField.replaceSelectedText(text);
 				}
 				
 				if (keyboardMode == MODE_UPPERCASE) {
