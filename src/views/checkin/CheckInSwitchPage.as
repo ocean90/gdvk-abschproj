@@ -155,6 +155,22 @@
 		}
 
 		public override function update() {
+			// Before position could be changed ensure that no tween is running.
+			
+			TweenLite.killTweensOf(question);
+			TweenLite.killTweensOf(yesButton);
+			TweenLite.killTweensOf(noButton);
+			TweenLite.killTweensOf(idLabel);
+			TweenLite.killTweensOf(idInput);
+			TweenLite.killTweensOf(firstnameLabel);
+			TweenLite.killTweensOf(firstnameInput);
+			TweenLite.killTweensOf(lastnameLabel);
+			TweenLite.killTweensOf(lastnameInput);
+			TweenLite.killTweensOf(cityLabel);
+			TweenLite.killTweensOf(cityInput);
+			TweenLite.killTweensOf(dateOfBirthLabel);
+			TweenLite.killTweensOf(dateOfBirthInput);
+			
 			// reset all positions that are changed in onYes or onNo!
 			
 			if (Main.LANGUAGE == 'DE') {
