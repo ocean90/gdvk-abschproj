@@ -62,6 +62,8 @@
 			textField.y = (this.shapeHeight - this.defaultShadowSize) * 0.5 - textField.textHeight * 0.5
 						- this.pushedShadowSize + this.defaultShadowSize;
 			
+			graphics.clear();
+			
 			// 3D Effect draw darken color
 			graphics.beginFill(Colors.getDarkColor(this.color));
 			graphics.drawRoundRect(0, 0, this.shapeWidth, this.shapeHeight, 10);
@@ -77,6 +79,8 @@
 			// hack from http://stackoverflow.com/questions/1568181/flash-vertical-text-alignment-in-middle
 			// center button vertical
 			textField.y =  (this.shapeHeight - this.defaultShadowSize) * 0.5 - textField.textHeight * 0.5;
+			
+			graphics.clear();
 			
 			// 3D Effect draw darken color
 			graphics.beginFill(Colors.getDarkColor(this.color));

@@ -40,6 +40,7 @@
 		public function update() {
 			textField.setTextFormat(textFormat);
 			
+			shape.graphics.clear();
 			shape.graphics.beginFill(0x000000);
 			shape.graphics.drawRect(0, 0, this.shapeWidth, this.shapeHeight);
 			shape.graphics.endFill();
