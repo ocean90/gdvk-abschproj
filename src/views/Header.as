@@ -4,8 +4,8 @@
 	
 	public class Header extends View {
 
-		var inverseText1:InverseText;
-		var inverseText2:InverseText;
+		private var inverseText1:InverseText;
+		private var inverseText2:InverseText;
 		
 		public function Header() {
 			inverseText1 = new InverseText();
@@ -28,6 +28,9 @@
 			
 		}
 
+		public function setText1(text:String) {
+			inverseText1.setText(text);
+		}
 	}
 	
 }
