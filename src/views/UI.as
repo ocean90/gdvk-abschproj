@@ -14,6 +14,7 @@
 		}
 		
 		public function onHome(e:Event) {
+			Main.KEYBOARD.activateFor(null);
 			if (viewStack.length == 1) {
 				return;
 			}
@@ -39,6 +40,7 @@
 		}
 		
 		public function pushView(view:View) {
+			Main.KEYBOARD.activateFor(null);
 			if (viewStack.length == 0) {
 				// first view from bottom -- demo/test case only...
 				
@@ -69,6 +71,7 @@
 		}
 		
 		public function popView() {
+			Main.KEYBOARD.activateFor(null);
 			if (viewStack.length == 1) {
 				return;
 			}
