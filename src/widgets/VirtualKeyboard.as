@@ -21,9 +21,9 @@
 
 		private static var KEY_LINES_LENGTH:Array = [ 10, 9, 9 ];
 		private static var KEY_LINES:Object = {
-			uppercase: ['QWERTZUIOP', 'ASDFGHJKL', 'YXCVBNM.-'],
-			lowercase: ['qwertzuiop', 'asdfghjkl', 'yxcvbnm,_'],
-			numbers:   ['1234567890', '+-*/:;()@', 'äÄöÖüÜß?!']
+			uppercase: ['QWERTZUIOP', 'ASDFGHJKL', 'YXCVBNM._'],
+			lowercase: ['qwertzuiop', 'asdfghjkl', 'yxcvbnm,-'],
+			numbers:   ['1234567890', '+-*/:;()@', 'äÄöÖüÜß!?']
 		};
 		
 		private static var KEY_WIDTH = 61;
@@ -220,6 +220,10 @@
 			replaceSelectedText(' ');
 		}
 		
+		public function fakeKey(text:String) {
+			replaceSelectedText(text);
+		}
+		
 		private function replaceSelectedText(text:String) {
 			if (activeTextField) {
 				if (activeTextField.selectionBeginIndex == activeTextField.selectionEndIndex) {
@@ -227,9 +231,11 @@
 					// otherwise also replaceSelectedText would be work.
 					activeTextField.appendText(text);
 					activeTextField.setSelection(activeTextField.length, activeTextField.length);
+					activeTextField.dispatchEvent(new Event(Event.CHANGE));
 				} else {
 					// if the user double tab the input its marked and so we want to replace the text
 					activeTextField.replaceSelectedText(text);
+					activeTextField.dispatchEvent(new Event(Event.CHANGE));
 				}
 				
 				if (keyboardMode == MODE_UPPERCASE) {
