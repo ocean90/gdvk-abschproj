@@ -64,6 +64,10 @@
 			}
 		}
 		
+		public function currentTextField():TextField {
+			return activeTextField;
+		}
+		
 		/**
 		 * set callback function with only one single TextField argument.
 		 */
@@ -83,7 +87,8 @@
 			Main.STAGE.focus = null;
 			visible = false;
 			
-			setOnEnterFunction(null);
+			activeTextField = null;
+			onEnterFunction = null;
 		}
 
 		public function createKeys() {

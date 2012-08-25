@@ -9,12 +9,21 @@
 	
 	public class ButtonBar extends View {
 
-		var de:SmallButton;
-		var en:SmallButton;
+		private var de:SmallButton;
+		private var en:SmallButton;
 		
-		var home:SmallButton;
-		var back:SmallButton;
-		var logout:SmallButton;
+		public var home:SmallButton;
+		public var back:SmallButton;
+		public var login:SmallButton;
+		public var logout:SmallButton;
+
+		public var cancel:SmallButton;
+		// callback function, argument Event
+		private var cancelCallback:Function;
+		
+		public var submit:SmallButton;
+		// callback function, argument Event
+		private var submitCallback:Function;
 
 		public function ButtonBar() {
 			
@@ -80,15 +89,49 @@
 			back.visible = false;
 			addChild(back);
 			
+			login = new SmallButton('Abmelden', 'lightgray');
+			login.textFormat.color = '0x000000';
+			login.x = Grid.COLUMN_6;
+			login.y = Grid.BUTTON_BAR_Y;
+			login.shapeWidth = Grid.SPAN_1;
+			login.shapeHeight = Grid.BUTTON_BAR_HEIGHT;
+//			login.addEventListener(MouseEvent.CLICK, Main.CONTENT.onBack);
+			login.update();
+			login.visible = false;
+			addChild(login);
+			
 			logout = new SmallButton('Abmelden', 'lightgray');
 			logout.textFormat.color = '0x000000';
-			logout.x = Grid.COLUMN_6;
+			logout.x = Grid.COLUMN_5;
 			logout.y = Grid.BUTTON_BAR_Y;
-			logout.shapeWidth = Grid.SPAN_1;
+			logout.shapeWidth = Grid.SPAN_2;
 			logout.shapeHeight = Grid.BUTTON_BAR_HEIGHT;
-			logout.addEventListener(MouseEvent.CLICK, Main.CONTENT.onBack);
+//			logout.addEventListener(MouseEvent.CLICK, Main.CONTENT.onBack);
 			logout.update();
+			logout.visible = false;
 			addChild(logout);
+			
+			cancel = new SmallButton('Abbrechen', 'lightred');
+			cancel.textFormat.color = '0x000000';
+			cancel.x = Grid.COLUMN_1;
+			cancel.y = Grid.BUTTON_BAR_Y;
+			cancel.shapeWidth = Grid.SPAN_1;
+			cancel.shapeHeight = Grid.BUTTON_BAR_HEIGHT;
+			cancel.addEventListener(MouseEvent.CLICK, onCancel);
+			cancel.update();
+			cancel.visible = false;
+			addChild(cancel);
+			
+			submit = new SmallButton('Speichern', 'lightgreen');
+			submit.textFormat.color = '0x000000';
+			submit.x = Grid.COLUMN_6;
+			submit.y = Grid.BUTTON_BAR_Y;
+			submit.shapeWidth = Grid.SPAN_1;
+			submit.shapeHeight = Grid.BUTTON_BAR_HEIGHT;
+			submit.addEventListener(MouseEvent.CLICK, onSubmit);
+			submit.update();
+			submit.visible = false;
+			addChild(submit);
 			
 		}
 
@@ -98,34 +141,78 @@
 				Main.LANGUAGE = 'DE';
 				de.color = 'languageButtonActive';
 				en.color = 'languageButtonInactive';
-				de.update();
-				en.update();
+				update();
 				Main.CONTENT.updateView();
 			} else if (e.currentTarget == en && Main.LANGUAGE != 'EN') {
 				trace('Switch UI to english');
 				Main.LANGUAGE = 'EN';
 				de.color = 'languageButtonInactive';
 				en.color = 'languageButtonActive';
-				de.update();
-				en.update();
+				update();
 				Main.CONTENT.updateView();
 			}
 		}
+		
+		public function showCancelButton(text:String, callback:Function) {
+			cancel.x = Grid.COLUMN_1;
+			cancel.shapeWidth = Grid.SPAN_1;
+			cancel.visible = true;
+			cancel.setText(text);
+			cancelCallback = callback;
+		}
+		
+		public function onCancel(e:Event) {
+			if (cancelCallback != null) {
+				cancelCallback(e);
+			}
+		}
+		
+		public function showSubmitButton(text:String, callback:Function) {
+			submit.x = Grid.COLUMN_6;
+			submit.shapeWidth = Grid.SPAN_1;
+			submit.visible = true;
+			submit.setText(text);
+			submitCallback = callback;
+		}
+		
+		public function onSubmit(e:Event) {
+			if (submitCallback != null) {
+				submitCallback(e);
+			}
+		}
+		
+		public override function update() {
+			home.setText(Main.LANGUAGE == 'DE' ? 'Hauptmenü' : 'Home');
+			back.setText(Main.LANGUAGE == 'DE' ? 'Zurück' : 'Back');
+			login.setText(Main.LANGUAGE == 'DE' ? 'Login' : 'Login');
+			logout.setText(Main.LANGUAGE == 'DE' ? 'Logout' : 'Logout');
+		}
 
-		public function updateButtonBar() {
-			if (Main.CONTENT.viewStack.length > 1) {
-				de.visible = false;
-				en.visible = false;
-				home.visible = true;
-				back.visible = true;
-			} else {
+		public function resetButtonBar() {
+			if (Main.CONTENT.viewStack.length <= 1) {
+				// inkl. home bedeutet wir sind auf der starteseite und zeigen die länder auswahl an
 				de.visible = true;
 				en.visible = true;
 				home.visible = false;
 				back.visible = false;
+			} else if (Main.CONTENT.viewStack.length == 2) {
+				// inkl. home zwei bedeutet wir haben nur eine view und brauchen kein zurück
+				de.visible = false;
+				en.visible = false;
+				home.visible = true;
+				back.visible = false;
+			} else {
+				de.visible = false;
+				en.visible = false;
+				home.visible = true;
+				back.visible = true;
 			}
+			
+			login.visible = false;
+			logout.visible = false;
+			cancel.visible = false;
+			submit.visible = false;
 		}
-		
 	}
 	
 }

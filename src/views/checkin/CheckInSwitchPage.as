@@ -154,7 +154,13 @@
 			addChild(dateOfBirthInput);
 		}
 
-		public override function update() {
+		private function reset() {
+			Main.KEYBOARD.hide();
+			
+			Main.FOOTER.resetButtonBar();
+			Main.FOOTER.login.visible = false;
+			Main.FOOTER.logout.visible = false;
+			
 			// Before position could be changed ensure that no tween is running.
 			
 			TweenLite.killTweensOf(question);
@@ -170,6 +176,10 @@
 			TweenLite.killTweensOf(cityInput);
 			TweenLite.killTweensOf(dateOfBirthLabel);
 			TweenLite.killTweensOf(dateOfBirthInput);
+		}
+
+		public override function update() {
+			reset();
 			
 			// reset all positions that are changed in onYes or onNo!
 			
@@ -288,7 +298,7 @@
 			Main.KEYBOARD.onNumberKeyPressed(e);
 		}
 		
-		public function focusUncompletePersonalData(e:Event) {
+		public function checkPersonalData(e:Event) {
 			if (firstnameInput.textField.length == 0) {
 				firstnameInput.highlight(0xff0000);
 				focusFirstname(e);
@@ -321,21 +331,84 @@
 			} else if (textField == cityInput.textField) {
 				focusDateOfBirth(null);
 			} else if (textField == dateOfBirthInput.textField) {
-				focusUncompletePersonalData(null);
+				checkPersonalData(null);
 			}
 		}
 		
 		public function onYes(e:Event) {
+			// hack if someone clicks fast on yes and no
+			update();
+			
+			Main.FOOTER.showCancelButton(Main.LANGUAGE == 'DE' ? 'Zurück' : 'Back', function(e:Event) {
+				reset();
+				
+				// fade out - REVERSE
+				TweenLite.to(yesButton, 0.8, { y: yesButton.y + 80, autoAlpha: 1 });
+				TweenLite.to(noButton, 0.8, { y: yesButton.y + 80, autoAlpha: 1 });
+				
+				// fade in - REVERSE
+				var fadeInTime:Number = 0.8;
+				var fadeInDelay:Number = 0.0;
+				TweenLite.to(idLabel, fadeInTime,   { autoAlpha: 0, delay: fadeInDelay });
+				TweenLite.to(idInput, fadeInTime,   { autoAlpha: 0, delay: fadeInDelay });
+			});
+			Main.FOOTER.cancel.x = Grid.COLUMN_2;
+			
+			Main.FOOTER.showSubmitButton(Main.LANGUAGE == 'DE' ? 'Weiter' : 'Next', checkPersonalData);
+			
+			Main.FOOTER.submit.color = 'lightgray';
+			Main.FOOTER.submit.textFormat.color = 0x888888;
+			Main.FOOTER.submit.update();
+			Main.FOOTER.submit.x = Grid.COLUMN_5;
+			
+			// fade out
 			TweenLite.to(yesButton, 0.8, { y: yesButton.y - 80, autoAlpha: 0 });
 			TweenLite.to(noButton, 0.8, { y: yesButton.y - 80, autoAlpha: 0 });
 			
-			idLabel.visible = true;
-			idInput.visible = true;
+			// fade in
+			var fadeInTime:Number = 2.6;
+			var fadeInDelay:Number = 0.4;
+			TweenLite.to(idLabel, fadeInTime,   { autoAlpha: 1, delay: fadeInDelay });
+			TweenLite.to(idInput, fadeInTime,   { autoAlpha: 1, delay: fadeInDelay });
 			
 			focusId(e);
 		}
 		
 		public function onNo(e:Event) {
+			// hack if someone clicks fast on yes and no
+			update();
+			
+			Main.FOOTER.showCancelButton(Main.LANGUAGE == 'DE' ? 'Zurück' : 'Back', function(e:Event) {
+				reset();
+				
+				// move up - REVERSE
+				TweenLite.to(question, 0.8, { y: question.y + 80 });
+			
+				// face out - REVERSE
+				TweenLite.to(yesButton, 0.8, { y: yesButton.y + 80, autoAlpha: 1 });
+				TweenLite.to(noButton, 0.8, { y: noButton.y + 80, autoAlpha: 1 });
+			
+				// fade in - REVERSE
+				var fadeInTime:Number = 0.8;
+				var fadeInDelay:Number = 0.0;
+				TweenLite.to(firstnameLabel, fadeInTime,   { autoAlpha: 0, delay: fadeInDelay });
+				TweenLite.to(firstnameInput, fadeInTime,   { autoAlpha: 0, delay: fadeInDelay });
+				TweenLite.to(lastnameLabel, fadeInTime,    { autoAlpha: 0, delay: fadeInDelay });
+				TweenLite.to(lastnameInput, fadeInTime,    { autoAlpha: 0, delay: fadeInDelay });
+				TweenLite.to(cityLabel, fadeInTime,        { autoAlpha: 0, delay: fadeInDelay });
+				TweenLite.to(cityInput, fadeInTime,        { autoAlpha: 0, delay: fadeInDelay });
+				TweenLite.to(dateOfBirthLabel, fadeInTime, { autoAlpha: 0, delay: fadeInDelay });
+				TweenLite.to(dateOfBirthInput, fadeInTime, { autoAlpha: 0, delay: fadeInDelay });
+			});
+			Main.FOOTER.cancel.x = Grid.COLUMN_2;
+			
+			Main.FOOTER.showSubmitButton(Main.LANGUAGE == 'DE' ? 'Weiter' : 'Next', checkPersonalData);
+			
+			Main.FOOTER.submit.color = 'lightgray';
+			Main.FOOTER.submit.textFormat.color = 0x888888;
+			Main.FOOTER.submit.update();
+			Main.FOOTER.submit.x = Grid.COLUMN_5;
+			
 			firstnameLabel.x = Grid.COLUMN_2;
 			firstnameLabel.y = 300;
 			firstnameLabel.visible = true;
