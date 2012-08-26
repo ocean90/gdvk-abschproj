@@ -33,18 +33,31 @@ package views.events {
 			friday.x = Grid.COLUMN_1;
 			friday.y = 200;
 			_container.addChild(friday);
+			textFormat = new TextFormat();
+			textFormat.color = 0x000000;
+			textFormat.font = 'Myriad Pro';
+			textFormat.size = 20;
+			textFormat.bold = true;
+			title = new TextField();
+			title.mouseEnabled = false;
+			title.text = 'Freitag';
+			title.x = 0;
+			title.width = Grid.SPAN_3;
+			title.y = 0;
+			title.setTextFormat(textFormat);
+			friday.addChild(title);
 			for ( i = 0; i < table['friday'].length; i++ ) {
 				textFormat = new TextFormat();
 				textFormat.color = 0x000000;
 				textFormat.font = 'Myriad Pro';
 				textFormat.size = 18;
 
-				time= new TextField();
+				time = new TextField();
 				time.mouseEnabled = false;
 				time.text = _dateHelper(table['friday'][i]);
 
 				time.width = 200;
-				time.y = i * 25;
+				time.y = (i+1) * 25;
 				time.setTextFormat(textFormat);
 
 				friday.addChild(time);
@@ -54,7 +67,7 @@ package views.events {
 				title.text = table['friday'][i].title;
 				title.x = 150;
 				title.width = Grid.SPAN_3;
-				title.y = i * 25;
+				title.y = (i+1) * 25;
 				title.setTextFormat(textFormat);
 				friday.addChild(title);
 			}
@@ -64,6 +77,19 @@ package views.events {
 			sunday.x = Grid.COLUMN_5;
 			sunday.y = 200;
 			_container.addChild(sunday);
+			textFormat = new TextFormat();
+			textFormat.color = 0x000000;
+			textFormat.font = 'Myriad Pro';
+			textFormat.size = 20;
+			textFormat.bold = true;
+			title = new TextField();
+			title.mouseEnabled = false;
+			title.text = 'Sonntag';
+			title.x = 0;
+			title.width = Grid.SPAN_3;
+			title.y = 0;
+			title.setTextFormat(textFormat);
+			sunday.addChild(title);
 			for ( i = 0; i < table['sunday'].length; i++ ) {
 				textFormat = new TextFormat();
 				textFormat.color = 0x000000;
@@ -75,7 +101,7 @@ package views.events {
 				time.text = _dateHelper(table['sunday'][i]);
 
 				time.width = 200;;
-				time.y = i * 25;
+				time.y = (i+1) * 25;
 				time.setTextFormat(textFormat);
 
 				sunday.addChild(time);
@@ -85,7 +111,7 @@ package views.events {
 				title.text = table['sunday'][i].title;
 				title.x = 150;
 				title.width = Grid.SPAN_3;
-				title.y = i * 25;
+				title.y = (i+1) * 25;
 				title.setTextFormat(textFormat);
 				sunday.addChild(title);
 			}
@@ -95,6 +121,19 @@ package views.events {
 			saturday.x = Grid.COLUMN_1;
 			saturday.y = 400;
 			_container.addChild(saturday);
+			textFormat = new TextFormat();
+			textFormat.color = 0x000000;
+			textFormat.font = 'Myriad Pro';
+			textFormat.size = 30;
+			textFormat.bold = true;
+			title = new TextField();
+			title.mouseEnabled = false;
+			title.text = 'Sonntag';
+			title.x = 0;
+			title.width = Grid.SPAN_3;
+			title.y = 0;
+			title.setTextFormat(textFormat);
+			saturday.addChild(title);
 			for ( i = 0; i < table['saturday'].length; i++ ) {
 				textFormat = new TextFormat();
 				textFormat.color = 0x000000;
@@ -108,7 +147,7 @@ package views.events {
 				time.text = _dateHelper(table['saturday'][i]);
 
 				time.width = 300;;
-				time.y = i * 50;
+				time.y = (i+1) * 40;
 				time.setTextFormat(textFormat);
 
 				saturday.addChild(time);
@@ -118,7 +157,7 @@ package views.events {
 				title.text = table['saturday'][i].title;
 				title.x = 220;
 				title.width = Grid.SPAN_6;
-				title.y = i * 50;
+				title.y = (i+1) * 40;
 				title.setTextFormat(textFormat);
 				saturday.addChild(title);
 			}
