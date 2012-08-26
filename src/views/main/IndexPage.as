@@ -42,8 +42,10 @@
 			});
 
 			plan = new BigButton(Grid.COLUMN_3, 231, 'red');
+			plan.addEventListener(MouseEvent.CLICK, openPlan);
 
 			timetable = new BigButton(Grid.COLUMN_5, 231, 'blue');
+			timetable.addEventListener(MouseEvent.CLICK, openEvent3);
 
 			workshops = new BigButton(Grid.COLUMN_3, 441, 'yellow');
 			workshops.addEventListener(MouseEvent.CLICK, openEvent1);
@@ -55,6 +57,7 @@
 			infrastructure = new BigButton(Grid.COLUMN_3, 651, 'brown');
 
 			help = new BigButton(Grid.COLUMN_5, 651);
+			help.addEventListener(MouseEvent.CLICK, openHelp);
 
 			update();
 
@@ -72,7 +75,7 @@
 		public override function update() {
 			if (Main.LANGUAGE == 'DE') {
 				Main.HEADER.setText('Jetzt wirds laut!');
-				
+
 				checkin.setText('Check-In');
 				userdata.setText('Meine Daten\n(SPÄTER ein button\nmit Check-ín)');
 				plan.setText('Lageplan');
@@ -84,7 +87,7 @@
 				help.setText('Vor-Ort-Hilfe');
 			} else if (Main.LANGUAGE == 'EN') {
 				Main.HEADER.setText('Now it gets loud!');
-				
+
 				checkin.setText('Check-in');
 				userdata.setText('My data\n(SPÄTER ein button\nmit Check-ín)');
 				plan.setText('Plan');
@@ -103,6 +106,16 @@
 
 		public function openEvent2(e:Event) {
 			Main.CONTENT.pushView(Views.Event2);
+		}
+
+		public function openEvent3(e:Event) {
+			Main.CONTENT.pushView(Views.Event3);
+		}
+
+		public function openHelp(e:Event) {
+		}
+		
+		public function openPlan(e:Event) {
 		}
 	}
 

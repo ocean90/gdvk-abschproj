@@ -5,14 +5,14 @@
 	import flash.display.Stage;
 	import flash.events.MouseEvent;
 	import flash.events.Event;
-	
+
 	import com.greensock.TweenLite;
 	import views.View;
 	import flash.text.TextFormatAlign;
 	import utils.Grid;
-	
+
 	public class VirtualKeyboard extends View {
-		
+
 		public static var KEYBOARD_WIDTH:int = Grid.SPAN_4;
 
 		private static var MODE_UPPERCASE:String = 'uppercase';
@@ -25,13 +25,13 @@
 			lowercase: ['qwertzuiop', 'asdfghjkl', 'yxcvbnm,-'],
 			numbers:   ['1234567890', '+-*/:;()@', 'äÄöÖüÜß!?']
 		};
-		
+
 		private static var KEY_WIDTH = 61;
 		private static var KEY_HEIGHT = 61;
 		private static var KEY_GAP = 10;
 
 		private var textFormat:TextFormat;
-		
+
 		private var keyboardMode = MODE_UPPERCASE;
 		private var allNormalKeys:Object = [[], [], []];
 		private var delKey:Sprite;
@@ -41,7 +41,7 @@
 		private var upperCaseKeyRight:Sprite;
 		private var numberModeKeyLeft:Sprite;
 		private var numberModeKeyRight:Sprite;
-		
+
 		private var activeTextField:TextField;
 		private var onEnterFunction:Function;
 
@@ -51,10 +51,10 @@
 			textFormat.font = 'Myriad Pro';
 			textFormat.size = 25;
 			textFormat.align = TextFormatAlign.CENTER;
-			
+
 			createKeys();
 		}
-		
+
 		public function activateFor(textField:TextField) {
 			activeTextField = textField;
 			if (activeTextField != null && activeTextField.visible) {
@@ -63,37 +63,37 @@
 				hide();
 			}
 		}
-		
+
 		public function currentTextField():TextField {
 			return activeTextField;
 		}
-		
+
 		/**
 		 * set callback function with only one single TextField argument.
 		 */
 		public function setOnEnterFunction(callback:Function) {
 			this.onEnterFunction = callback;
 		}
-		
+
 		public function show() {
 			keyboardMode = MODE_UPPERCASE;
 			update();
-			
+
 			visible = true;
 			Main.STAGE.focus = activeTextField;
 		}
-		
+
 		public function hide() {
 			Main.STAGE.focus = null;
 			visible = false;
-			
+
 			activeTextField = null;
 			onEnterFunction = null;
 		}
 
 		public function createKeys() {
 			var textKey:Sprite;
-			
+
 			var posX = 0;
 			var posY = 0;
 			for (var i = 0; i < KEY_LINES_LENGTH[0]; i++) {
@@ -102,11 +102,11 @@
 				allNormalKeys[0][i] = textKey;
 				posX += KEY_WIDTH + KEY_GAP;
 			}
-			
+
 			// TODO icon
 			delKey = createKey(posX, posY, KEYBOARD_WIDTH - posX, KEY_HEIGHT);
 			delKey.addEventListener(MouseEvent.CLICK, onDelKeyPressed);
-			
+
 			posX = (KEY_WIDTH + KEY_GAP) * 0.5;
 			posY = KEY_HEIGHT + KEY_GAP;
 			for (i = 0; i < KEY_LINES_LENGTH[1]; i++) {
@@ -115,51 +115,51 @@
 				allNormalKeys[1][i] = textKey;
 				posX += KEY_WIDTH + KEY_GAP;
 			}
-			
+
 			enterKey = createKey(posX, posY, KEYBOARD_WIDTH - posX, KEY_HEIGHT);
 			enterKey.addEventListener(MouseEvent.CLICK, onEnterKeyPressed);
-			
+
 			posX = 0;
 			posY = KEY_HEIGHT * 2 + KEY_GAP * 2;
-			
+
 			// TODO icon
 			upperCaseKeyLeft = createKey(posX, posY, KEY_WIDTH, KEY_HEIGHT);
 			upperCaseKeyLeft.addEventListener(MouseEvent.CLICK, onUpKeyPressed);
 			posX += KEY_WIDTH + KEY_GAP;
-			
+
 			for (i = 0; i < KEY_LINES_LENGTH[2]; i++) {
 				textKey = createKey(posX, posY, KEY_WIDTH, KEY_HEIGHT);
 				textKey.addEventListener(MouseEvent.CLICK, onTextKeyPressed);
 				allNormalKeys[2][i] = textKey;
 				posX += KEY_WIDTH + KEY_GAP;
 			}
-			
+
 			// TODO icon
 			upperCaseKeyRight = createKey(posX, posY, KEYBOARD_WIDTH - posX, KEY_HEIGHT);
 			upperCaseKeyRight.addEventListener(MouseEvent.CLICK, onUpKeyPressed);
-			
+
 			posX = 0;
 			posY = KEY_HEIGHT * 3 + KEY_GAP * 3;
-			
+
 			// Number Mode Key
 			numberModeKeyLeft = createKey( posX, posY, KEY_WIDTH * 2.0 + KEY_GAP, KEY_HEIGHT);
 			numberModeKeyLeft.addEventListener(MouseEvent.CLICK, onNumberKeyPressed);
-			
+
 			// Space key
 			posX += KEY_WIDTH * 2.0 + KEY_GAP * 2;
 			spaceKey = createKey(posX, posY, KEYBOARD_WIDTH - posX * 2, KEY_HEIGHT);
 			spaceKey.addEventListener(MouseEvent.CLICK, onSpaceKeyPressed);
 			posX += KEYBOARD_WIDTH - posX * 2 + KEY_GAP;
-			
+
 			// Number Mode Key
 			numberModeKeyRight = createKey(posX, posY, KEY_WIDTH * 2.0 + KEY_GAP, KEY_HEIGHT);
 			numberModeKeyRight.addEventListener(MouseEvent.CLICK, onNumberKeyPressed);
 		}
-		
+
 		public override function update() {
 			updateKeys();
 		}
-		
+
 		private function updateKeys() {
 			//trace('setKeyboardText', KEY_LINES[keyboardMode]);
 			for (var line = 0; line < allNormalKeys.length; line++) {
@@ -169,7 +169,7 @@
 					updateKeyText(keyBackground, keyText);
 				}
 			}
-			
+
 			updateKeyText(delKey, '←');
 			updateKeyText(enterKey, '↵').x = 15;
 			updateKeyText(enterKey, '↵').y = 20;
@@ -178,7 +178,7 @@
 			updateKeyText(numberModeKeyLeft, '123').textColor = keyboardMode == MODE_NUMBERS ? 0x31ceff : 0x000000;
 			updateKeyText(numberModeKeyRight, '123').textColor = keyboardMode == MODE_NUMBERS ? 0x31ceff : 0x000000;
 		}
-		
+
 		private function createKey(posX:int, posY:int, buttonWidth:int, buttonHeight:int):Sprite {
 			var keyBackground:Sprite = new Sprite();
 			keyBackground.buttonMode = true;
@@ -190,7 +190,7 @@
 			keyBackground.y = posY;
 			keyBackground.width = buttonWidth;
 			keyBackground.height = buttonHeight;
-			
+
 			var keyLabel:TextField = new TextField();
 			keyLabel.mouseEnabled = false;
 			keyLabel.text = 'X';
@@ -202,33 +202,33 @@
 			keyLabel.text = '';
 
 			keyBackground.addChild(keyLabel);
-			
+
 			addChild(keyBackground);
-			
+
 			return keyBackground;
 		}
-	
+
 		private function updateKeyText(keyBackground:Sprite, keyText:String):TextField {
 			var keyLabel:TextField = ((TextField) (keyBackground.getChildAt(0)));
 			keyLabel.text = keyText;
 			keyLabel.setTextFormat(textFormat);
 			return keyLabel;
 		}
-		
+
 		public function onTextKeyPressed(e:Event) {
 			var keyBackground:Sprite = ((Sprite) (e.currentTarget));
 			var keyLabel:TextField = ((TextField) (keyBackground.getChildAt(0)));
 			replaceSelectedText(keyLabel.text);
 		}
-		
+
 		public function onSpaceKeyPressed(e:Event) {
 			replaceSelectedText(' ');
 		}
-		
+
 		public function fakeKey(text:String) {
 			replaceSelectedText(text);
 		}
-		
+
 		private function replaceSelectedText(text:String) {
 			if (activeTextField) {
 				if (activeTextField.selectionBeginIndex == activeTextField.selectionEndIndex) {
@@ -242,7 +242,7 @@
 					activeTextField.replaceSelectedText(text);
 					activeTextField.dispatchEvent(new Event(Event.CHANGE));
 				}
-				
+
 				if (keyboardMode == MODE_UPPERCASE) {
 					keyboardMode = MODE_LOWERCASE;
 					update();
@@ -250,7 +250,7 @@
 			}
 			Main.STAGE.focus = activeTextField;
 		}
-		
+
 		public function onDelKeyPressed(e:Event) {
 			if (activeTextField && activeTextField.length > 0) {
 				if (activeTextField.selectionBeginIndex == activeTextField.selectionEndIndex) {
@@ -266,7 +266,7 @@
 			}
 			Main.STAGE.focus = activeTextField;
 		}
-		
+
 		public function onEnterKeyPressed(e:Event) {
 			keyboardMode = MODE_UPPERCASE;
 			update();
@@ -276,7 +276,7 @@
 				hide();
 			}
 		}
-		
+
 		public function onUpKeyPressed(e:Event) {
 			if (keyboardMode != MODE_UPPERCASE) {
 				keyboardMode = MODE_UPPERCASE;
@@ -286,7 +286,7 @@
 			update();
 			Main.STAGE.focus = activeTextField;
 		}
-		
+
 		public function onNumberKeyPressed(e:Event) {
 			if (keyboardMode != MODE_NUMBERS) {
 				keyboardMode = MODE_NUMBERS;
