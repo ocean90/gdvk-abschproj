@@ -1,4 +1,4 @@
-﻿package views.checkin {
+﻿package views.user {
 	import flash.events.Event;
 	import flash.display.Loader;
 	import flash.events.MouseEvent;
@@ -17,7 +17,7 @@
 	/**
 	 * STEP 1 - Check in switch with question "have you already an id?"
 	 */
-	public class CheckInSwitchPage extends View {
+	public class CheckInPage extends View {
 
 		private static var MODE_QUESTION:String = 'id?';
 		private static var MODE_PERSONAL_ID:String = 'yes';
@@ -44,7 +44,7 @@
 		private var dateOfBirthLabel:TextLabel;
 		private var dateOfBirthInput:InputField;
 
-		public function CheckInSwitchPage() {
+		public function CheckInPage() {
 			
 			question = new TextLabel();
 			question.shapeWidth = Grid.SPAN_4;
