@@ -6,6 +6,7 @@
 	import flash.net.URLRequest;
 	import flash.events.Event;
 	import flash.text.TextFieldAutoSize;
+	import com.greensock.TweenLite;
 	
 	public class ButtonBar extends View {
 
@@ -67,72 +68,77 @@
 			loader.y = 12;
 			en.addChild(loader);
 			
-			home = new SmallButton('Hauptmenü', 'lightgray');
+			home = new SmallButton('', 'lightgray');
 			home.textFormat.color = '0x000000';
 			home.x = Grid.COLUMN_1;
 			home.y = Grid.BUTTON_BAR_Y;
 			home.shapeWidth = Grid.SPAN_1;
 			home.shapeHeight = Grid.BUTTON_BAR_HEIGHT;
-			home.addEventListener(MouseEvent.CLICK, Main.CONTENT.onHome);
-			home.update();
 			home.visible = false;
+			home.addEventListener(MouseEvent.CLICK, Main.CONTENT.onHome);
 			addChild(home);
 			
-			back = new SmallButton('Zurück', 'lightgray');
+			back = new SmallButton('', 'lightgray');
 			back.textFormat.color = '0x000000';
 			back.x = Grid.COLUMN_2;
 			back.y = Grid.BUTTON_BAR_Y;
 			back.shapeWidth = Grid.SPAN_1;
 			back.shapeHeight = Grid.BUTTON_BAR_HEIGHT;
-			back.addEventListener(MouseEvent.CLICK, Main.CONTENT.onBack);
-			back.update();
 			back.visible = false;
+			back.addEventListener(MouseEvent.CLICK, Main.CONTENT.onBack);
 			addChild(back);
 			
-			login = new SmallButton('Abmelden', 'lightgray');
+			login = new SmallButton('', 'lightgray');
 			login.textFormat.color = '0x000000';
 			login.x = Grid.COLUMN_6;
 			login.y = Grid.BUTTON_BAR_Y;
 			login.shapeWidth = Grid.SPAN_1;
 			login.shapeHeight = Grid.BUTTON_BAR_HEIGHT;
-//			login.addEventListener(MouseEvent.CLICK, Main.CONTENT.onBack);
-			login.update();
 			login.visible = false;
+			login.addEventListener(MouseEvent.CLICK, function(e:Event) {
+				Views.CheckIn.cancelCallback = null;
+				Views.CheckIn.submitCallback = null;
+				Main.CONTENT.pushView(Views.CheckIn);
+			});
 			addChild(login);
 			
-			logout = new SmallButton('Abmelden', 'lightgray');
+			logout = new SmallButton('', 'lightgray');
 			logout.textFormat.color = '0x000000';
-			logout.x = Grid.COLUMN_5;
+			logout.x = Grid.COLUMN_6;
 			logout.y = Grid.BUTTON_BAR_Y;
-			logout.shapeWidth = Grid.SPAN_2;
+			logout.shapeWidth = Grid.SPAN_1;
 			logout.shapeHeight = Grid.BUTTON_BAR_HEIGHT;
-//			logout.addEventListener(MouseEvent.CLICK, Main.CONTENT.onBack);
-			logout.update();
 			logout.visible = false;
+			logout.addEventListener(MouseEvent.CLICK, function(e:Event) {
+				Main.USER.logout();
+				Main.CONTENT.updateView();
+				
+				logout.visible = 0;
+				login.alpha = 0;
+				login.visible = true;
+				TweenLite.to(login, 2.0, { autoAlpha: 1.0 });
+			});
 			addChild(logout);
 			
-			cancel = new SmallButton('Abbrechen', 'lightred');
+			cancel = new SmallButton('', 'lightred');
 			cancel.textFormat.color = '0x000000';
 			cancel.x = Grid.COLUMN_1;
 			cancel.y = Grid.BUTTON_BAR_Y;
 			cancel.shapeWidth = Grid.SPAN_1;
 			cancel.shapeHeight = Grid.BUTTON_BAR_HEIGHT;
-			cancel.addEventListener(MouseEvent.CLICK, onCancel);
-			cancel.update();
 			cancel.visible = false;
+			cancel.addEventListener(MouseEvent.CLICK, onCancel);
 			addChild(cancel);
 			
-			submit = new SmallButton('Speichern', 'lightgreen');
+			submit = new SmallButton('', 'lightgreen');
 			submit.textFormat.color = '0x000000';
 			submit.x = Grid.COLUMN_6;
 			submit.y = Grid.BUTTON_BAR_Y;
 			submit.shapeWidth = Grid.SPAN_1;
 			submit.shapeHeight = Grid.BUTTON_BAR_HEIGHT;
-			submit.addEventListener(MouseEvent.CLICK, onSubmit);
-			submit.update();
 			submit.visible = false;
+			submit.addEventListener(MouseEvent.CLICK, onSubmit);
 			addChild(submit);
-			
 		}
 
 		public function changeLanguage(e:Event) {
@@ -182,10 +188,13 @@
 		}
 		
 		public override function update() {
+			de.update();
+			en.update();
+			
 			home.setText(Main.LANGUAGE == 'DE' ? 'Hauptmenü' : 'Home');
 			back.setText(Main.LANGUAGE == 'DE' ? 'Zurück' : 'Back');
-			login.setText(Main.LANGUAGE == 'DE' ? 'Login' : 'Login');
-			logout.setText(Main.LANGUAGE == 'DE' ? 'Logout' : 'Logout');
+			login.setText(Main.LANGUAGE == 'DE' ? 'Anmelden' : 'Login');
+			logout.setText(Main.LANGUAGE == 'DE' ? 'Abmelden' : 'Logout');
 		}
 
 		public function resetButtonBar() {
@@ -208,8 +217,13 @@
 				back.visible = true;
 			}
 			
-			login.visible = false;
-			logout.visible = false;
+			if (Main.USER.isLoggedIn()) {
+				login.visible = false;
+				logout.visible = true;
+			} else {
+				login.visible = true;
+				logout.visible = false;
+			}
 			cancel.visible = false;
 			submit.visible = false;
 		}

@@ -44,6 +44,22 @@
 		private var dateOfBirthLabel:TextLabel;
 		private var dateOfBirthInput:InputField;
 
+		// Function which was called if the used cancel the login. No arguments.
+		// See DEFAULT_CANCEL_CALLBACK. Could also be null to use the default!
+		public var cancelCallback:Function = null;
+		
+		// Function which was called if the used finished the login. No arguments.
+		// See DEFAULT_SUBMIT_CALLBACK. Could also be null to use the default!
+		public var submitCallback:Function = null;
+		
+		public static const DEFAULT_CANCEL_CALLBACK = function() {
+			Main.CONTENT.popView();
+		};
+		
+		public static const DEFAULT_SUBMIT_CALLBACK = function() {
+			Main.CONTENT.popView();
+		};
+		
 		public function CheckInPage() {
 			
 			question = new TextLabel();
@@ -267,7 +283,16 @@
 			}
 			
 			Main.FOOTER.showCancelButton(Main.LANGUAGE == 'DE' ? 'Abbrechen' : 'Cancel', function(e:Event) {
-				Main.CONTENT.popView();
+				// call callback
+				if (cancelCallback) {
+					cancelCallback();
+				} else {
+					DEFAULT_CANCEL_CALLBACK();
+				}
+				
+				// reset callback
+				cancelCallback = null;
+				submitCallback = null;
 			});
 			Main.FOOTER.cancel.x = Grid.COLUMN_2;
 		}
@@ -551,9 +576,29 @@
 			});
 			
 			Main.FOOTER.showSubmitButton(Main.LANGUAGE == 'DE' ? 'Weiter' : 'Next', function(e:Event) {
-				if (checkData(e)) {
-					Main.CONTENT.replaceView(Views.Event1);
+				if (!checkData(e)) {
+					return;
 				}
+				
+				// Login the user
+				Main.USER.login({
+					'id': idInput.textField.text,
+					'firstname': firstnameInput.textField.text,
+					'lastname': lastnameInput.textField.text,
+					'city': cityInput.textField.text,
+					'dateOfBirth': dateOfBirthInput.textField.text
+				});
+				
+				// call callback
+				if (submitCallback) {
+					submitCallback();
+				} else {
+					DEFAULT_SUBMIT_CALLBACK();
+				}
+				
+				// reset callback
+				cancelCallback = null;
+				submitCallback = null;
 			});
 			
 			firstnameLabel.x = Grid.COLUMN_2;

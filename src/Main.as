@@ -26,6 +26,8 @@
 		
 		public static var KEYBOARD:VirtualKeyboard;
 		
+		public static var USER:User = new User();
+		
 		public function Main() {
 			trace('Main movie loaded with stage size', this.stage.stageWidth, this.stage.stageHeight);
 			
@@ -36,6 +38,7 @@
 			Main.HEADER = new Header();
 			Main.CONTENT = new UI();
 			Main.FOOTER = new ButtonBar();
+			Main.FOOTER.update();
 			
 			Main.KEYBOARD = new VirtualKeyboard();
 			Main.KEYBOARD.x = Main.STAGE.stageWidth * 0.5 - VirtualKeyboard.KEYBOARD_WIDTH * 0.5;

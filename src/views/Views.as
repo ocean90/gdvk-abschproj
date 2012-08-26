@@ -10,7 +10,7 @@
 		public static var Index:View = new IndexPage();
 		public static var Test:View = new TestPage();
 		
-		public static var CheckIn:View = new CheckInPage();
+		public static var CheckIn:CheckInPage = new CheckInPage();
 		
 		public static var Event1:View = new Workshops();
 		public static var Event2:View = new EventPage2();

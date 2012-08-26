@@ -26,6 +26,10 @@
 			checkin.shapeWidth = Grid.SPAN_2;
 			checkin.shapeHeight = Grid.SPAN_2;
 			checkin.addEventListener(MouseEvent.CLICK, function(e:Event) {
+				Views.CheckIn.cancelCallback = null;
+				Views.CheckIn.submitCallback = function() {
+					Main.CONTENT.replaceView(Views.Event1);
+				};
 				Main.CONTENT.pushView(Views.CheckIn);
 			});
 
