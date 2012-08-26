@@ -26,6 +26,7 @@
 			}
 			var homeView:View = viewStack[viewStack.length - 1];
 			
+			Main.HEADER.reset();
 			Main.FOOTER.resetButtonBar();
 			homeView.update();
 			homeView.x = -1280;
@@ -45,6 +46,7 @@
 		 */
 		public function pushHome(home:View) {
 			viewStack.push(home);
+			Main.HEADER.reset();
 			Main.FOOTER.resetButtonBar();
 			home.update();
 			
@@ -59,6 +61,7 @@
 			Main.KEYBOARD.activateFor(null);
 			
 			viewStack.push(nextView);
+			Main.HEADER.reset();
 			Main.FOOTER.resetButtonBar();
 			nextView.update();
 			
@@ -80,6 +83,7 @@
 			
 			var oldView:View = viewStack.pop();
 			viewStack.push(newView);
+			Main.HEADER.reset();
 			Main.FOOTER.resetButtonBar();
 			newView.update();
 			
@@ -104,6 +108,7 @@
 			var lastPage:View = viewStack.pop();
 			var prevPage:View = viewStack[viewStack.length - 1];
 			
+			Main.HEADER.reset();
 			Main.FOOTER.resetButtonBar();
 			prevPage.update();
 			prevPage.x = -1280;

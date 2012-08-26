@@ -13,6 +13,7 @@
 	public class IndexPage extends View {
 
 		private var checkin:BigButton;
+		private var userdata:BigButton;
 		private var plan:BigButton;
 		private var timetable:BigButton;
 		private var workshops:BigButton;
@@ -24,13 +25,20 @@
 		public function IndexPage() {
 			checkin = new BigButton(Grid.COLUMN_1, 231, 'yellow');
 			checkin.shapeWidth = Grid.SPAN_2;
-			checkin.shapeHeight = Grid.SPAN_2;
+			checkin.shapeHeight = Grid.SPAN_1;
 			checkin.addEventListener(MouseEvent.CLICK, function(e:Event) {
 				Views.CheckIn.cancelCallback = null;
 				Views.CheckIn.submitCallback = function() {
 					Main.CONTENT.replaceView(Views.Event1);
 				};
 				Main.CONTENT.pushView(Views.CheckIn);
+			});
+
+			userdata = new BigButton(Grid.COLUMN_1, 441, 'yellow');
+			userdata.shapeWidth = Grid.SPAN_2;
+			userdata.shapeHeight = Grid.SPAN_1;
+			userdata.addEventListener(MouseEvent.CLICK, function(e:Event) {
+				Main.CONTENT.pushView(Views.UserData);
 			});
 
 			plan = new BigButton(Grid.COLUMN_3, 231, 'red');
@@ -51,6 +59,7 @@
 			update();
 
 			addChild(checkin);
+			addChild(userdata);
 			addChild(plan);
 			addChild(timetable);
 			addChild(workshops);
@@ -65,6 +74,7 @@
 				Main.HEADER.setText('Jetzt wirds laut!');
 				
 				checkin.setText('Check-In');
+				userdata.setText('Meine Daten\n(SPÄTER ein button\nmit Check-ín)');
 				plan.setText('Lageplan');
 				timetable.setText('Zeitplan');
 				workshops.setText('Workshops');
@@ -76,6 +86,7 @@
 				Main.HEADER.setText('Now it gets loud!');
 				
 				checkin.setText('Check-in');
+				userdata.setText('My data\n(SPÄTER ein button\nmit Check-ín)');
 				plan.setText('Plan');
 				timetable.setText('Timetable');
 				workshops.setText('Workshops');

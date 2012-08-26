@@ -88,7 +88,7 @@
 			back.addEventListener(MouseEvent.CLICK, Main.CONTENT.onBack);
 			addChild(back);
 			
-			login = new SmallButton('', 'lightgray');
+			login = new SmallButton('', 'lightgreen');
 			login.textFormat.color = '0x000000';
 			login.x = Grid.COLUMN_6;
 			login.y = Grid.BUTTON_BAR_Y;
@@ -102,7 +102,7 @@
 			});
 			addChild(login);
 			
-			logout = new SmallButton('', 'lightgray');
+			logout = new SmallButton('', 'lightred');
 			logout.textFormat.color = '0x000000';
 			logout.x = Grid.COLUMN_6;
 			logout.y = Grid.BUTTON_BAR_Y;
