@@ -30,6 +30,7 @@ package widgets {
 		}
 
 		public function push(cover:Cover) {
+			cover.cacheAsBitmap = true;
 			_covers.push(cover);
 			_coversContainer.addChild(cover);
 		}

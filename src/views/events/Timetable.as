@@ -1,15 +1,130 @@
 package views.events {
+	import flash.display.Sprite;
+	import flash.text.TextField;
+	import flash.text.TextFieldAutoSize;
+	import flash.text.TextFormat;
+
+	import utils.Grid;
+
 	import views.View;
 
 	public class Timetable extends View {
 		var table:Array;
+		var _container:Sprite;
+
 		public function Timetable() {
 			update();
+			_container = new Sprite();
+			addChild(_container);
 
 			fillTable()
+			layout()
+		}
 
-			trace(table['friday'][0].begin);
+		public function layout() {
+			// Friday
+			var friday:Sprite = new Sprite();
+			friday.x = Grid.COLUMN_1;
+			friday.y = 200;
+			_container.addChild(friday);
+			for ( var i:int = 0; i < table['friday'].length; i++ ) {
+				var textFormat:TextFormat = new TextFormat();
+				textFormat.color = 0x000000;
+				textFormat.font = 'Myriad Pro';
+				textFormat.size = 18;
 
+				var time:TextField = new TextField();
+				time.mouseEnabled = false;
+				time.text = _dateHelper(table['friday'][i]);
+
+				time.width = 200;
+				time.y = i * 25;
+				time.setTextFormat(textFormat);
+
+				friday.addChild(time);
+
+				var title:TextField = new TextField();
+				title.mouseEnabled = false;
+				title.text = table['friday'][i].title;
+				title.x = 150;
+				title.width = Grid.SPAN_3;
+				title.y = i * 25;
+				title.setTextFormat(textFormat);
+				friday.addChild(title);
+			}
+
+			// Sunday
+			var sunday:Sprite = new Sprite();
+			sunday.x = Grid.COLUMN_5;
+			sunday.y = 200;
+			_container.addChild(sunday);
+			for ( var i:int = 0; i < table['sunday'].length; i++ ) {
+				var textFormat:TextFormat = new TextFormat();
+				textFormat.color = 0x000000;
+				textFormat.font = 'Myriad Pro';
+				textFormat.size = 18;
+
+				var time:TextField = new TextField();
+				time.mouseEnabled = false;
+				time.text = _dateHelper(table['sunday'][i]);
+
+				time.width = 200;;
+				time.y = i * 25;
+				time.setTextFormat(textFormat);
+
+				sunday.addChild(time);
+
+				var title:TextField = new TextField();
+				title.mouseEnabled = false;
+				title.text = table['sunday'][i].title;
+				title.x = 150;
+				title.width = Grid.SPAN_3;
+				title.y = i * 25;
+				title.setTextFormat(textFormat);
+				sunday.addChild(title);
+			}
+
+			// Saturday
+			var saturday:Sprite = new Sprite();
+			saturday.x = Grid.COLUMN_1;
+			saturday.y = 400;
+			_container.addChild(saturday);
+			for ( var i:int = 0; i < table['saturday'].length; i++ ) {
+				var textFormat:TextFormat = new TextFormat();
+				textFormat.color = 0x000000;
+				textFormat.font = 'Myriad Pro';
+				textFormat.size = 28;
+
+				var time:TextField = new TextField();
+				time.mouseEnabled = false;
+				time.text = _dateHelper(table['saturday'][i]);
+
+				time.width = 300;;
+				time.y = i * 50;
+				time.setTextFormat(textFormat);
+
+				saturday.addChild(time);
+
+				var title:TextField = new TextField();
+				title.mouseEnabled = false;
+				title.text = table['saturday'][i].title;
+				title.x = 220;
+				title.width = Grid.SPAN_6;
+				title.y = i * 50;
+				title.setTextFormat(textFormat);
+				saturday.addChild(title);
+			}
+		}
+
+		public function _dateHelper(obj:Object):String {
+			if ( obj.begin && obj.end )
+				return obj.begin + ' - ' + obj.end + ' Uhr';
+			else if ( obj.begin )
+				return 'ab ' + obj.begin + ' Uhr';
+			else if ( obj.end )
+				return 'bis ' + obj.end + ' Uhr';
+
+			return '';
 		}
 
 		public override function update() {
@@ -44,10 +159,8 @@ package views.events {
 			table['saturday'][10] = { 'begin': '23:00', 'title': 'Party, Halle 43'};
 
 			table['sunday'] = new Array();
-			table['saturday'][0] = { 'begin': '07:00', 'end': '11:00', 'title': 'Frühstück, Mensa'};
-			table['saturday'][1] = { 'end': '14:00', 'title': 'Check-out'};
-
-
+			table['sunday'][0] = { 'begin': '07:00', 'end': '11:00', 'title': 'Frühstück, Mensa'};
+			table['sunday'][1] = { 'end': '14:00', 'title': 'Check-out'};
 		}
 	}
 }
