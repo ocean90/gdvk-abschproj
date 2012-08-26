@@ -1,4 +1,5 @@
-package views.events {
+package widgets {
+	import flash.display.Sprite;
 	import flash.display.Loader;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
@@ -10,36 +11,44 @@ package views.events {
 	import utils.Colors;
 	import utils.Grid;
 
-	public class CoverFlow extends Sprite {
-		public var color:uint;
-		public var shapeWidth:int = 870;
-		public var shapeHeight:int = 600;
+	public class Cover extends Sprite {
+		private var _color:uint;
+		private var _shapeWidth:Number;
+		private var _shapeHeight:Number;
+		private var _posX:int;
+		private var _posY:int;
 
-		public function CoverFlow(color:String = 'blue') {
-			this.color = Colors.getColor(color);
+		public function Cover(color:String = 'blue', width:Number = 870, height:Number = 600) {
+			trace("Cover");
+			_color = Colors.getColor(color);
+			_shapeWidth = width;
+			_shapeHeight = height;
 
-			paintBox();
+			_posX = Grid.COLUMN_2 - 30;
+			_posY = Grid.SPAN_1 + 50;
 
-			this.x = Grid.COLUMN_2 - 25;
-			this.y = Grid.SPAN_1 + 50;
+			this.x = _posX;
+			this.y = _posY;
+
+			paintCover();
 		}
 
-		public function paintBox() {
-			graphics.beginFill(this.color);
-			graphics.drawRect(0, 0, this.shapeWidth, this.shapeHeight);
+		public function paintCover() {
+			graphics.beginFill(_color);
+			graphics.drawRect(0, 0, _shapeWidth, _shapeHeight);
 			graphics.endFill();
 		}
 
 		public function setImage(path:String) {
 			var loader:Loader = new Loader();
 			loader.load(new URLRequest(path));
-			loader.x = 25;
+			loader.x = 30;
 			loader.y = 25
 			addChild(loader);
 
-			var overlay:MovieClip = new MovieClip();
-			overlay.graphics.beginFill(this.color);
-			overlay.graphics.drawRect(205, 25, this.shapeWidth-205, 140);
+			var overlay:Sprite = new Sprite();
+			overlay.graphics.beginFill(_color);
+			overlay.graphics.drawRect(205, 25, _shapeWidth-205, 140);
 			overlay.graphics.endFill();
 			addChild(overlay);
 		}
@@ -55,7 +64,7 @@ package views.events {
 			textField.text = title;
 			textField.x = 230;
 			textField.y = 45;
-			textField.width = this.shapeWidth-205;
+			textField.width = _shapeWidth-205;
 			textField.height = 55;
 			textField.setTextFormat(textFormat);
 
@@ -76,8 +85,8 @@ package views.events {
 			textField.x = 435;
 			textField.y = 160;
 			textField.wordWrap = true;
-			textField.width = this.shapeWidth-435-25;
-			textField.height = this.shapeHeight - 140;
+			textField.width = _shapeWidth-435-30;
+			textField.height = _shapeHeight - 140;
 			textField.setTextFormat(textFormat);
 
 			addChild(textField);
@@ -94,7 +103,7 @@ package views.events {
 			textField.text = '~ ' + author;
 			textField.x = 230;
 			textField.y = 45 + 55;
-			textField.width = this.shapeWidth-205;
+			textField.width = _shapeWidth-205;
 			textField.height = 25;
 			textField.setTextFormat(textFormat);
 
@@ -121,8 +130,8 @@ package views.events {
 			textFieldLeft.setTextFormat(textFormat);
 			textFieldRight.setTextFormat(textFormat);
 
-			textFieldLeft.x = 25;
-			textFieldRight.x = 230;
+			textFieldLeft.x = 30;
+			textFieldRight.x = 235;
 			textFieldLeft.y = textFieldRight.y = 285;
 
 			textFieldLeft.width = textFieldRight.width = 192.5; //(180*2+25)/2
@@ -150,8 +159,8 @@ package views.events {
 			textFieldLeft.setTextFormat(textFormat);
 			textFieldRight.setTextFormat(textFormat);
 
-			textFieldLeft.x = 25;
-			textFieldRight.x = 230;
+			textFieldLeft.x = 30;
+			textFieldRight.x = 235;
 			textFieldLeft.y = textFieldRight.y = 435;
 
 			textFieldLeft.width = textFieldRight.width = 192.5; //(180*2+25)/2
@@ -159,6 +168,25 @@ package views.events {
 
 			addChild(textFieldLeft);
 			addChild(textFieldRight);
+		}
+
+		/*
+		 * Overide some setters and getters
+		 */
+		public override function set width(w:Number):void {
+			_shapeWidth = w;
+		}
+
+		public override function get width():Number {
+			return _shapeWidth;
+		}
+
+		public override function set height(h:Number):void {
+			_shapeHeight = h;
+		}
+
+		public override function get height():Number {
+			return _shapeHeight;
 		}
 	}
 }
