@@ -4,6 +4,7 @@ package widgets {
 	import widgets.Cover;
 	import utils.Grid;
 	import flash.geom.*;
+	import com.greensock.TweenLite;
 
 	public class CoverFlow extends Sprite {
 		private var _width:int;
@@ -53,24 +54,39 @@ package widgets {
 			for (var i:int = 0; i < len; i++) {
 				cover = _covers[i];
 				if (i == _selectedIndex) {
-					cover.rotationY = 0;
-					cover.x = Grid.COLUMN_2 - 30;
-					cover.z = 0;
-					cover.alpha = 0.5 // Debug
 					_coversContainer.setChildIndex(cover, _coversContainer.numChildren-1);
+					TweenLite.to(
+						cover,
+						0.5,
+						{
+							x: Grid.COLUMN_2 - 30,
+							z: 0,
+							rotationY: 0
+						}
+					);
 				} else if (i < _selectedIndex) {
 					distanceFromCenter = _selectedIndex - i;
-					cover.rotationY = -45;
-					cover.x = (Grid.COLUMN_2 - 30 - 60) - (distanceFromCenter * 30);
-					cover.z = 150;
-					cover.alpha = 1; // Debug
+					TweenLite.to(
+						cover,
+						0.5,
+						{
+							x: (Grid.COLUMN_2 - 30 - 60) - (distanceFromCenter * 30),
+							z: 150,
+							rotationY: -45
+						}
+					);
 					_coversContainer.setChildIndex(cover, _coversContainer.numChildren - (distanceFromCenter + 1));
 				} else if (i > _selectedIndex) {
 					distanceFromCenter = i - _selectedIndex;
-					cover.rotationY = 45;
-					cover.x = (Grid.COLUMN_2 - 30 + 60) + (distanceFromCenter * 30);
-					cover.z = 150;
-					cover.alpha = 1; // Debug
+					TweenLite.to(
+						cover,
+						0.5,
+						{
+							x: (Grid.COLUMN_2 - 30 - 60) + (distanceFromCenter * 30),
+							z: 150,
+							rotationY: 45
+						}
+					);
 					_coversContainer.setChildIndex(cover, _coversContainer.numChildren - (distanceFromCenter + 1));
 				}
 				cover.y = 250;
