@@ -255,7 +255,7 @@
 			if (mode == MODE_QUESTION) {
 				if (Main.LANGUAGE == 'DE') {
 					question.setText('Haben Sie sich bereits auf unserer Webseite registriert\n' +
-									 'und ihre persänliche Einladung erhalten?');
+									 'und ihre persönliche Einladung erhalten?');
 				} else if (Main.LANGUAGE == 'EN') {
 					question.setText('Have you already registered on our website\n' +
 									 'and receive your personal invitation?');
@@ -284,7 +284,7 @@
 			
 			Main.FOOTER.showCancelButton(Main.LANGUAGE == 'DE' ? 'Abbrechen' : 'Cancel', function(e:Event) {
 				// call callback
-				if (cancelCallback) {
+				if (cancelCallback != null) {
 					cancelCallback();
 				} else {
 					DEFAULT_CANCEL_CALLBACK();
@@ -590,7 +590,7 @@
 				});
 				
 				// call callback
-				if (submitCallback) {
+				if (submitCallback != null) {
 					submitCallback();
 				} else {
 					DEFAULT_SUBMIT_CALLBACK();

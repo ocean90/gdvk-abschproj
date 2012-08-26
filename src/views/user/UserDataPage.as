@@ -14,6 +14,8 @@
 	
 	public class UserDataPage extends View {
 
+		private var barcodeButton:SmallButton;
+
 		public function UserDataPage() {
 			// constructor code
 		}
@@ -55,7 +57,7 @@
 				createBarcodeText('Barcode daher direkt hier aus!', posY += lineHeight, delayTime += addDelay);
 				
 				posY = 220;
-				var barcodeButton:SmallButton = new SmallButton('Barcode\ndrucken', 'green');
+				barcodeButton = new SmallButton('Barcode\ndrucken', 'green');
 				barcodeButton.x = Grid.COLUMN_6;
 				barcodeButton.y = posY += lineHeight;
 				barcodeButton.shapeWidth = Grid.SPAN_1;
@@ -93,7 +95,7 @@
 				createBarcodeText('Please print now and here your barcode:', posY += lineHeight, delayTime += addDelay);
 				
 				posY = 220;
-				var barcodeButton:SmallButton = new SmallButton('Print\nbarcode', 'green');
+				barcodeButton = new SmallButton('Print\nbarcode', 'green');
 				barcodeButton.x = Grid.COLUMN_6;
 				barcodeButton.y = posY += lineHeight;
 				barcodeButton.shapeWidth = Grid.SPAN_1;

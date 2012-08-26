@@ -97,7 +97,7 @@
 			var posX = 0;
 			var posY = 0;
 			for (var i = 0; i < KEY_LINES_LENGTH[0]; i++) {
-				var textKey:Sprite = createKey(posX, posY, KEY_WIDTH, KEY_HEIGHT);
+				textKey = createKey(posX, posY, KEY_WIDTH, KEY_HEIGHT);
 				textKey.addEventListener(MouseEvent.CLICK, onTextKeyPressed);
 				allNormalKeys[0][i] = textKey;
 				posX += KEY_WIDTH + KEY_GAP;

@@ -113,7 +113,7 @@
 				Main.USER.logout();
 				Main.CONTENT.updateView();
 				
-				logout.visible = 0;
+				logout.visible = false;
 				login.alpha = 0;
 				login.visible = true;
 				TweenLite.to(login, 2.0, { autoAlpha: 1.0 });
