@@ -7,8 +7,8 @@
 				'languageButtonActive':   0xdddddd,
 				'languageButtonInactive': 0xbbbbbb,
 			    'lightgray': 0xdddddd,
-				'lightred':       0xDB2D1F, // same as red, for now
-				'lightgreen':     0x69A733, // same as green, for now
+				'lightred':       ColorUtil.brightenColor(0xDB2D1F, 40), // inner color same as red, for now
+				'lightgreen':     ColorUtil.brightenColor(0x69A733, 40), // inner color same as green, for now
 				'blue':      0x2D8EAC,
 				'red':       0xDB2D1F,
 				'brown':     0x33190D,

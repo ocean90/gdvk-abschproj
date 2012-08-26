@@ -26,7 +26,7 @@
 			checkin.shapeWidth = Grid.SPAN_2;
 			checkin.shapeHeight = Grid.SPAN_2;
 			checkin.addEventListener(MouseEvent.CLICK, function(e:Event) {
-				Main.CONTENT.pushView(Views.CheckInSwitch);
+				Main.CONTENT.pushView(Views.CheckIn);
 			});
 
 			plan = new BigButton(Grid.COLUMN_3, 231, 'red');

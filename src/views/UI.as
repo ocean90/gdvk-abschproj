@@ -40,6 +40,21 @@
 			popView();
 		}
 		
+		/** 
+		 * Prüft aktuell NICHT ob dies wirklich die erste View ist!
+		 */
+		public function pushHome(home:View) {
+			viewStack.push(home);
+			Main.FOOTER.resetButtonBar();
+			home.update();
+			
+			home.alpha = 0;
+			home.visible = true;
+			addChild(home);
+			
+			TweenLite.to(home, 2.0, { delay: 0.5, autoAlpha: 1 });
+		}
+		
 		public function pushView(nextView:View) {
 			Main.KEYBOARD.activateFor(null);
 			
@@ -47,29 +62,36 @@
 			Main.FOOTER.resetButtonBar();
 			nextView.update();
 			
-			if (viewStack.length == 1) {
-				// first view from bottom -- demo/test case only...
-				nextView.alpha = 0;
-				nextView.visible = true;
-				addChild(nextView);
-				
-				TweenLite.to(nextView, 2.0, { delay: 0.5, autoAlpha: 1 });
-				
-			} else {
-				// all other views
-				
-				var prevView:View = viewStack[viewStack.length - 2];
-				
-				nextView.x = 1280;
-				nextView.alpha = 0.5;
-				nextView.visible = true;
-				addChild(nextView);
-				
-				TweenLite.to(prevView, 0.8, { x: -1280, autoAlpha: 0.5, onComplete: function() {
-					TweenLite.to(prevView, 0.8, { autoAlpha: 0 });
-				}});
-				TweenLite.to(nextView, 0.8, { x: 0, autoAlpha: 1.0 });
-			}
+			var prevView:View = viewStack[viewStack.length - 2];
+			
+			nextView.x = 1280;
+			nextView.alpha = 0.5;
+			nextView.visible = true;
+			addChild(nextView);
+			
+			TweenLite.to(prevView, 0.8, { x: -1280, autoAlpha: 0.5, onComplete: function() {
+				TweenLite.to(prevView, 0.8, { autoAlpha: 0 });
+			}});
+			TweenLite.to(nextView, 0.8, { x: 0, autoAlpha: 1.0 });
+		}
+		
+		public function replaceView(newView:View) {
+			Main.KEYBOARD.activateFor(null);
+			
+			var oldView:View = viewStack.pop();
+			viewStack.push(newView);
+			Main.FOOTER.resetButtonBar();
+			newView.update();
+			
+			newView.x = 1280;
+			newView.alpha = 0.5;
+			newView.visible = true;
+			addChild(newView);
+			
+			TweenLite.to(oldView, 0.8, { x: -1280, autoAlpha: 0.5, onComplete: function() {
+				TweenLite.to(oldView, 0.8, { autoAlpha: 0 });
+			}});
+			TweenLite.to(newView, 0.8, { x: 0, autoAlpha: 1.0 });
 		}
 		
 		public function popView() {

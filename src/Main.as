@@ -48,7 +48,7 @@
 			
 			addChild(Main.KEYBOARD);
 			
-			Main.CONTENT.pushView(Views.Index);
+			Main.CONTENT.pushHome(Views.Index);
 		}
 	}
 
