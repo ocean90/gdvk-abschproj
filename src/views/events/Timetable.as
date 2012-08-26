@@ -5,12 +5,16 @@ package views.events {
 	import flash.text.TextFormat;
 
 	import utils.Grid;
+	import utils.Colors;
 
 	import views.View;
 
 	public class Timetable extends View {
 		var table:Array;
 		var _container:Sprite;
+		var textFormat:TextFormat;
+		var time:TextField;
+		var title:TextField
 
 		public function Timetable() {
 			update();
@@ -22,18 +26,20 @@ package views.events {
 		}
 
 		public function layout() {
+			var i:int;
+
 			// Friday
 			var friday:Sprite = new Sprite();
 			friday.x = Grid.COLUMN_1;
 			friday.y = 200;
 			_container.addChild(friday);
-			for ( var i:int = 0; i < table['friday'].length; i++ ) {
-				var textFormat:TextFormat = new TextFormat();
+			for ( i = 0; i < table['friday'].length; i++ ) {
+				textFormat = new TextFormat();
 				textFormat.color = 0x000000;
 				textFormat.font = 'Myriad Pro';
 				textFormat.size = 18;
 
-				var time:TextField = new TextField();
+				time= new TextField();
 				time.mouseEnabled = false;
 				time.text = _dateHelper(table['friday'][i]);
 
@@ -43,7 +49,7 @@ package views.events {
 
 				friday.addChild(time);
 
-				var title:TextField = new TextField();
+				title = new TextField();
 				title.mouseEnabled = false;
 				title.text = table['friday'][i].title;
 				title.x = 150;
@@ -58,13 +64,13 @@ package views.events {
 			sunday.x = Grid.COLUMN_5;
 			sunday.y = 200;
 			_container.addChild(sunday);
-			for ( var i:int = 0; i < table['sunday'].length; i++ ) {
-				var textFormat:TextFormat = new TextFormat();
+			for ( i = 0; i < table['sunday'].length; i++ ) {
+				textFormat = new TextFormat();
 				textFormat.color = 0x000000;
 				textFormat.font = 'Myriad Pro';
 				textFormat.size = 18;
 
-				var time:TextField = new TextField();
+				time = new TextField();
 				time.mouseEnabled = false;
 				time.text = _dateHelper(table['sunday'][i]);
 
@@ -74,7 +80,7 @@ package views.events {
 
 				sunday.addChild(time);
 
-				var title:TextField = new TextField();
+				title = new TextField();
 				title.mouseEnabled = false;
 				title.text = table['sunday'][i].title;
 				title.x = 150;
@@ -89,13 +95,15 @@ package views.events {
 			saturday.x = Grid.COLUMN_1;
 			saturday.y = 400;
 			_container.addChild(saturday);
-			for ( var i:int = 0; i < table['saturday'].length; i++ ) {
-				var textFormat:TextFormat = new TextFormat();
+			for ( i = 0; i < table['saturday'].length; i++ ) {
+				textFormat = new TextFormat();
 				textFormat.color = 0x000000;
 				textFormat.font = 'Myriad Pro';
 				textFormat.size = 28;
+				if ( table['saturday'][i].red ) // @TODO Oder InverseText??
+					textFormat.color = Colors.getColor('red');
 
-				var time:TextField = new TextField();
+				time = new TextField();
 				time.mouseEnabled = false;
 				time.text = _dateHelper(table['saturday'][i]);
 
@@ -105,7 +113,7 @@ package views.events {
 
 				saturday.addChild(time);
 
-				var title:TextField = new TextField();
+				title = new TextField();
 				title.mouseEnabled = false;
 				title.text = table['saturday'][i].title;
 				title.x = 220;
