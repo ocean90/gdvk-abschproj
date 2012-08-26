@@ -253,8 +253,16 @@
 		
 		public function onDelKeyPressed(e:Event) {
 			if (activeTextField && activeTextField.length > 0) {
-				activeTextField.setSelection(activeTextField.length - 1, activeTextField.length);
-				activeTextField.replaceSelectedText('');
+				if (activeTextField.selectionBeginIndex == activeTextField.selectionEndIndex) {
+					// remove the char before the caret
+					activeTextField.setSelection(activeTextField.selectionBeginIndex - 1, activeTextField.selectionEndIndex);
+					activeTextField.replaceSelectedText('');
+					activeTextField.dispatchEvent(new Event(Event.CHANGE));
+				} else {
+					// remove the selection
+					activeTextField.replaceSelectedText('');
+					activeTextField.dispatchEvent(new Event(Event.CHANGE));
+				}
 			}
 			Main.STAGE.focus = activeTextField;
 		}
