@@ -1,12 +1,15 @@
 ﻿package views.events {
 
+	import flash.events.Event;
+	import flash.events.MouseEvent;
+
+	import utils.Grid;
+
 	import views.View;
 
-
-
 	import widgets.Cover;
-
 	import widgets.CoverFlow;
+	import widgets.SmallButton;
 
 	public class Workshops extends View {
 		private var workshops:CoverFlow;
@@ -17,6 +20,34 @@
 			addChild(workshops);
 
 			registerWorkshops();
+			workshops.layout();
+
+			// @TODO mit Pfeilen ersetzen
+			var prev:SmallButton = new SmallButton('prev', 'lightgray');
+			var next:SmallButton = new SmallButton('next', 'lightgray');
+
+			prev.x = Grid.COLUMN_1;
+			prev.y = 400;
+			prev.shapeWidth = Grid.SPAN_1;
+			prev.shapeHeight = Grid.BUTTON_BAR_HEIGHT;
+			prev.addEventListener(MouseEvent.CLICK, prevWorkshop);
+			addChild(prev);
+
+			next.x = Grid.COLUMN_6;
+			next.y = 400;
+			next.shapeWidth = Grid.SPAN_1;
+			next.shapeHeight = Grid.BUTTON_BAR_HEIGHT;
+			next.addEventListener(MouseEvent.CLICK, nextWorkshop);
+			addChild(next);
+		}
+
+		public function nextWorkshop(e:Event) {
+			workshops.next();
+			workshops.layout();
+		}
+
+		public function prevWorkshop(e:Event) {
+			workshops.prev();
 			workshops.layout();
 		}
 

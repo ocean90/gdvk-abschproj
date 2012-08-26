@@ -21,6 +21,7 @@ package widgets {
 			_width = w;
 			_height = h;
 			_covers = new Vector.<Cover>();
+			_selectedIndex = 0;
 
 			_coversContainer = new Sprite();
 			addChild(_coversContainer);
@@ -32,30 +33,44 @@ package widgets {
 			_coversContainer.addChild(cover);
 		}
 
+		public function next() {
+			_selectedIndex++;
+
+			if ( _selectedIndex >  _covers.length - 1)
+				_selectedIndex = _covers.length - 1
+		}
+
+		public function prev() {
+			_selectedIndex--;
+			if ( _selectedIndex < 0 )
+				_selectedIndex = 0
+		}
+
 		public function layout() {
-			_selectedIndex = 2;
 			var len:uint = _covers.length;
 			var cover:Cover;
-			var distanceFromCenter:uint;
-			for (var i:uint = 0; i < len; i++) {
+			var distanceFromCenter:int;
+			for (var i:int = 0; i < len; i++) {
 				cover = _covers[i];
 				if (i == _selectedIndex) {
 					cover.rotationY = 0;
 					cover.x = Grid.COLUMN_2 - 30;
 					cover.z = 0;
-					cover.alpha = 0.5
+					cover.alpha = 0.5 // Debug
 					_coversContainer.setChildIndex(cover, _coversContainer.numChildren-1);
 				} else if (i < _selectedIndex) {
 					distanceFromCenter = _selectedIndex - i;
 					cover.rotationY = -45;
 					cover.x = (Grid.COLUMN_2 - 30 - 60) - (distanceFromCenter * 30);
 					cover.z = 150;
+					cover.alpha = 1; // Debug
 					_coversContainer.setChildIndex(cover, _coversContainer.numChildren - (distanceFromCenter + 1));
 				} else if (i > _selectedIndex) {
 					distanceFromCenter = i - _selectedIndex;
 					cover.rotationY = 45;
 					cover.x = (Grid.COLUMN_2 - 30 + 60) + (distanceFromCenter * 30);
 					cover.z = 150;
+					cover.alpha = 1; // Debug
 					_coversContainer.setChildIndex(cover, _coversContainer.numChildren - (distanceFromCenter + 1));
 				}
 				cover.y = 250;
