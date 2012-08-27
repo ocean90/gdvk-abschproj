@@ -1,5 +1,6 @@
 ﻿package views.main {
 
+	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 
@@ -9,6 +10,7 @@
 	import views.Views;
 
 	import widgets.BigButton;
+	import widgets.PageOverlay;
 
 	public class IndexPage extends View {
 
@@ -107,6 +109,15 @@
 		}
 		
 		public function openHelp(e:Event) {
+			var overlay:PageOverlay = new PageOverlay();
+			addChild(overlay);
+
+			var content:Sprite = overlay.getContent();
+			content.graphics.beginFill(0xffffff);
+			content.graphics.drawRect(0,0,200,200);
+			content.graphics.endFill();
+
+			overlay.setContent(content);
 		}
 	}
 
