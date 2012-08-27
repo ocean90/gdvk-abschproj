@@ -40,14 +40,22 @@
 			addChild(next);
 		}
 
+		public override function update() {
+			if (Main.LANGUAGE == 'DE') {
+				Main.HEADER.setText('Workshops');
+			} else if (Main.LANGUAGE == 'EN') {
+				Main.HEADER.setText('Workshops');
+			}
+			
+			workshops.next();
+		}
+
 		public function nextWorkshop(e:Event) {
 			workshops.next();
-			workshops.layout();
 		}
 
 		public function prevWorkshop(e:Event) {
 			workshops.prev();
-			workshops.layout();
 		}
 
 		public function registerWorkshops() {
@@ -127,11 +135,5 @@
 			workshops.push(cover);
 
 		}
-
-
-
-
-
 	}
-
 }

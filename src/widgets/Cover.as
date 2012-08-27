@@ -1,4 +1,4 @@
-package widgets {
+﻿package widgets {
 	import flash.display.Loader;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
@@ -14,19 +14,11 @@ package widgets {
 		private var _color:uint;
 		private var _shapeWidth:Number;
 		private var _shapeHeight:Number;
-		private var _posX:int;
-		private var _posY:int;
 
 		public function Cover(color:String = 'blue', width:Number = 870, height:Number = 600) {
 			_color = Colors.getColor(color);
 			_shapeWidth = width;
 			_shapeHeight = height;
-
-			_posX = Grid.COLUMN_2 - Grid.COLUMN_PADDING;
-			_posY = 200;
-
-			this.x = _posX;
-			this.y = _posY;
 
 			paintCover();
 		}
