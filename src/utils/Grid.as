@@ -23,7 +23,7 @@
 		public static var SPAN_5:int = columnWidth * 5 + COLUMN_PADDING * 4;
 		public static var SPAN_6:int = columnWidth * 6 + COLUMN_PADDING * 5;
 
-		public static var BUTTON_BAR_Y:int = 947;
+		public static var BUTTON_BAR_Y:int = 939;
 		public static var BUTTON_BAR_X:int = COLUMN_1;
 		public static var BUTTON_BAR_WIDTH:int = 1280 - columnSpanLeft - columnSpanRight;
 		public static var BUTTON_BAR_HEIGHT:int = 60;
