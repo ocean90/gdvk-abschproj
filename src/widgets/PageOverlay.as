@@ -1,19 +1,22 @@
 package widgets {
 	import flash.display.Sprite;
 
+	import utils.Colors;
+
 	public class PageOverlay extends Sprite {
-		private var _owidth:int;
-		private var _oheight:int;
+		private var _owidth:Number;
+		private var _oheight:Number;
 		private var _background:uint;
-		private var _stagewidth:int;
-		private var _stageheight:int;
+		private var _stagewidth:Number;
+		private var _stageheight:Number;
 
 		private var _overlay:Sprite;
+		public var contentBox:Sprite;
 
-		public function PageOverlay(w:int = 1080,h:int = 824) {
+		public function PageOverlay(background:* = 0x000000, w:Number = 1080,h:Number = 824) {
 			_owidth = w;
 			_oheight = h;
-			_background = 0x000000;
+			_background = Colors.getColor(background);;
 			_stagewidth = Main.STAGE.stageWidth;
 			_stageheight = Main.STAGE.stageHeight
 
@@ -24,18 +27,15 @@ package widgets {
 			paintContentBox();
 		}
 
-		public function getContent():Sprite {
-			var content:Sprite = new Sprite();
-			content.x = 0;
-			content.y = 0;
-			content.width = _owidth;
-			content.height = _oheight;
-
-			return content;
+		public function getContentContainer():Sprite {
+			var container:Sprite = new Sprite();
+			return container;
 		}
 
 		public function setContent(content:Sprite) {
-			_overlay.addChild(content);
+			//content.width = _owidth;
+			//content.height = _oheight;
+			contentBox.addChild(content);
 		}
 
 		public function darkenPage() {
@@ -50,14 +50,33 @@ package widgets {
 
 		public function paintContentBox() {
 			var x:int, y:int;
-			var contentBox:Sprite = new Sprite();
-			x = _stagewidth * 0.5 - _owidth * 0.5;
-			y = _stageheight * 0.5 - _oheight * 0.5;
-			contentBox.graphics.beginFill(0x000000);
-			contentBox.graphics.drawRect(x, y, _owidth, _oheight);
+			contentBox = new Sprite();
+			contentBox.x = _stagewidth * 0.5 - _owidth * 0.5;
+			contentBox.y = _stageheight * 0.5 - _oheight * 0.5;
+			contentBox.graphics.beginFill(_background);
+			contentBox.graphics.drawRect(0, 0, _owidth, _oheight);
 			contentBox.graphics.endFill();
 
 			_overlay.addChild(contentBox);
+		}
+
+		/*
+		* Overide some setters and getters
+		*/
+		public override function set width(w:Number):void {
+			_owidth = w;
+		}
+
+		public override function get width():Number {
+			return _owidth;
+		}
+
+		public override function set height(h:Number):void {
+			_oheight = h;
+		}
+
+		public override function get height():Number {
+			return _oheight;
 		}
 	}
 }

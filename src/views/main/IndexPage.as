@@ -9,6 +9,8 @@
 	import views.View;
 	import views.Views;
 
+	import views.overlays.HelpOverlay;
+
 	import widgets.BigButton;
 	import widgets.PageOverlay;
 
@@ -107,17 +109,14 @@
 				help.setText('Local support');
 			}
 		}
-		
+
 		public function openHelp(e:Event) {
-			var overlay:PageOverlay = new PageOverlay();
+			var overlay:PageOverlay = new PageOverlay('blue');
 			addChild(overlay);
 
-			var content:Sprite = overlay.getContent();
-			content.graphics.beginFill(0xffffff);
-			content.graphics.drawRect(0,0,200,200);
-			content.graphics.endFill();
-
-			overlay.setContent(content);
+			var container:Sprite = overlay.getContentContainer();
+			container.addChild(new HelpOverlay());
+			overlay.setContent(container);
 		}
 	}
 
