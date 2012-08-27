@@ -11,7 +11,7 @@ package utils {
 		public function Debug() {
 			gridOverlay = new GridOverlay();
 			gridOverlay.visible = false;
-			addChild(gridOverlay);
+			Main.STAGE.addChild(gridOverlay);
 			Main.STAGE.addEventListener(KeyboardEvent.KEY_DOWN, toggleDebug);
 		}
 
@@ -20,6 +20,7 @@ package utils {
 
 			switch (key) {
 				case Keyboard.D :
+					Main.STAGE.setChildIndex(gridOverlay, Main.STAGE.numChildren - 1);
 					gridOverlay.visible = ! gridOverlay.visible;
 					break;
 			}
