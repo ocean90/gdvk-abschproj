@@ -40,7 +40,7 @@
 
 		public function next() {
 			_selectedIndex++;
-			if (_selectedIndex >  _covers.length - 1) {
+			if (_selectedIndex > _covers.length - 1) {
 				_selectedIndex = _covers.length - 1;
 			}
 			layout();
@@ -53,14 +53,14 @@
 			}
 			layout();
 		}
-		
+
 		public function layout() {
 			var len:uint = _covers.length;
 			var cover:Cover;
 			var distanceFromCenter:int;
 			for (var i:int = 0; i < len; i++) {
 				cover = _covers[i];
-				
+
 				if (i == _selectedIndex) {
 					_coversContainer.setChildIndex(cover, _coversContainer.numChildren-1);
 					TweenLite.to(
