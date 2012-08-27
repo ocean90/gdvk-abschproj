@@ -30,11 +30,12 @@
 			Main.FOOTER.resetButtonBar();
 			homeView.update();
 			homeView.x = -1280;
+			homeView.visible = true;
 			
-			TweenLite.to(prevView, 0.8, { x: 1280, autoAlpha: 0.5, onComplete: function() {
-				TweenLite.to(prevView, 0.8, { autoAlpha: 0 });
+			TweenLite.to(prevView, 0.8, { x: 1280, onComplete: function() {
+				prevView.visible = false;
 			}});
-			TweenLite.to(homeView, 0.8, { x: 0, autoAlpha: 1 });
+			TweenLite.to(homeView, 0.8, { x: 0 });
 		}
 		
 		public function onBack(e:Event) {
@@ -68,14 +69,13 @@
 			var prevView:View = viewStack[viewStack.length - 2];
 			
 			nextView.x = 1280;
-			nextView.alpha = 0.5;
 			nextView.visible = true;
 			addChild(nextView);
 			
-			TweenLite.to(prevView, 0.8, { x: -1280, autoAlpha: 0.5, onComplete: function() {
-				TweenLite.to(prevView, 0.8, { autoAlpha: 0 });
+			TweenLite.to(prevView, 0.8, { x: -1280, onComplete: function() {
+				prevView.visible = false;
 			}});
-			TweenLite.to(nextView, 0.8, { x: 0, autoAlpha: 1.0 });
+			TweenLite.to(nextView, 0.8, { x: 0 });
 		}
 		
 		public function replaceView(newView:View) {
@@ -88,14 +88,13 @@
 			newView.update();
 			
 			newView.x = 1280;
-			newView.alpha = 0.5;
 			newView.visible = true;
 			addChild(newView);
 			
-			TweenLite.to(oldView, 0.8, { x: -1280, autoAlpha: 0.5, onComplete: function() {
-				TweenLite.to(oldView, 0.8, { autoAlpha: 0 });
+			TweenLite.to(oldView, 0.8, { x: -1280, onComplete: function() {
+				oldView.visible = false;
 			}});
-			TweenLite.to(newView, 0.8, { x: 0, autoAlpha: 1.0 });
+			TweenLite.to(newView, 0.8, { x: 0 });
 		}
 		
 		public function popView() {
@@ -112,11 +111,12 @@
 			Main.FOOTER.resetButtonBar();
 			prevPage.update();
 			prevPage.x = -1280;
+			prevPage.visible = true;
 			
-			TweenLite.to(lastPage, 0.8, { x: 1280, autoAlpha: 0.5, onComplete: function() {
-				TweenLite.to(lastPage, 0.8, { autoAlpha: 0 });
+			TweenLite.to(lastPage, 0.8, { x: 1280, onComplete: function() {
+				lastPage.visible = false;
 			}});
-			TweenLite.to(prevPage, 0.8, { x: 0, autoAlpha: 1 });
+			TweenLite.to(prevPage, 0.8, { x: 0 });
 		}
 		
 		public function updateView() {
