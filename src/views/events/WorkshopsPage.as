@@ -15,7 +15,6 @@
 		private var workshops:CoverFlow;
 
 		public function WorkshopsPage() {
-			trace("Workshops");
 			workshops = new CoverFlow(Main.STAGE.stageWidth,Main.STAGE.stageHeight);
 			addChild(workshops);
 
@@ -57,7 +56,7 @@
 
 			// Relaxed Hand Technique
 			cover = new Cover('green');
-			cover.setImage('../resources/noten.png');
+			cover.setImage(new Noten());
 			cover.setTitle('Relaxed Hand Technique');
 			cover.setDesc('Moeller-Technik nach Sanford A. Moeller und Jim Chapin, Stickcontrol, Rudiments; Koordination und Unabhängigkeit, Rhythmische Konzepte, Notenlesen, Musikalische Stilistiken von Blues über Jazz und Rock bis zu neuesten Stilen, Groove-und Timing-Übungen, Fill-ins und Solospiel, Improvisation, Begleitung.');
 			cover.setAuthor('Maren Reus');
@@ -75,7 +74,7 @@
 
 			// Fluide Grooves
 			cover = new Cover('red');
-			cover.setImage('../resources/noten.png');
+			cover.setImage(new Noten());
 			cover.setTitle('Fluide Grooves');
 			cover.setDesc('Puls, Stilrichtungen & Grooves, Rudiments, Moeller- Technik, melodiöse Gestaltung von Stickings, Stimmen der Trommeln und Soundideen, das Set als Soloinstrument');
 			cover.setAuthor('Pascal Hettig');
@@ -93,7 +92,7 @@
 
 			// Drum Tuning & Setup
 			cover = new Cover('yellow');
-			cover.setImage('../resources/noten.png');
+			cover.setImage(new Noten());
 			cover.setTitle('Drum Tuning & Setup');
 			cover.setDesc('Groove, Sound und Spielfreude sind mit die wichtigsten Faktoren, wenn es ans Musikmachen geht. Dies erreicht man jedoch nicht allein durch eine ausgefeilte Spieltechnik – es bedarf auch eines gut klingenden und auf den Spieler eingestimmten Instruments.');
 			cover.setAuthor('Ramon Delt, Silvia Lopez');
@@ -111,7 +110,7 @@
 
 			// Body Percussion
 			cover = new Cover();
-			cover.setImage('../resources/noten.png');
+			cover.setImage(new Noten());
 			cover.setTitle('Body Percussion');
 			cover.setDesc('Rhythmus ist der gemeinsame Nenner der Musik der verschiedenen Kulturen. Jede Art des gemeinsamen Musizierens erfordert gewisse rhythmische Grundfertigkeiten. Bodypercussion ist eine Methode des praktischen Erlernens und Erlangens rhythmischer Sicherheit. Es ermöglicht die Erkundung von Rhythmen ohne den Einsatz von Instrumenten und Notenmaterial.');
 			cover.setAuthor('Brune Belchatjut-Halmarkat, Johannes Schwer');

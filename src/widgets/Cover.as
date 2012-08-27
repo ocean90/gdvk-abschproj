@@ -1,5 +1,4 @@
 package widgets {
-	import flash.display.Sprite;
 	import flash.display.Loader;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
@@ -39,12 +38,10 @@ package widgets {
 			graphics.endFill();
 		}
 
-		public function setImage(path:String) {
-			var loader:Loader = new Loader();
-			loader.load(new URLRequest(path));
-			loader.x = 30;
-			loader.y = 25
-			addChild(loader);
+		public function setImage(image:MovieClip) {
+			image.x = 30;
+			image.y = 25
+			addChild(image);
 
 			var overlay:Sprite = new Sprite();
 			overlay.graphics.beginFill(_color);
