@@ -18,13 +18,12 @@ package widgets {
 		private var _posY:int;
 
 		public function Cover(color:String = 'blue', width:Number = 870, height:Number = 600) {
-			trace("Cover");
 			_color = Colors.getColor(color);
 			_shapeWidth = width;
 			_shapeHeight = height;
 
-			_posX = Grid.COLUMN_2 - 30;
-			_posY = Grid.SPAN_1 + 50;
+			_posX = Grid.COLUMN_2 - Grid.COLUMN_PADDING;
+			_posY = 200;
 
 			this.x = _posX;
 			this.y = _posY;
@@ -41,11 +40,12 @@ package widgets {
 		public function setImage(image:MovieClip) {
 			image.x = 30;
 			image.y = 25
+			image.width = 390;
 			addChild(image);
 
 			var overlay:Sprite = new Sprite();
 			overlay.graphics.beginFill(_color);
-			overlay.graphics.drawRect(205, 25, _shapeWidth-205, 140);
+			overlay.graphics.drawRect(Grid.COLUMN_2 - 25, 25, _shapeWidth-Grid.COLUMN_2 - 25, 140);
 			overlay.graphics.endFill();
 			addChild(overlay);
 		}
@@ -59,9 +59,9 @@ package widgets {
 			var textField:TextField = new TextField();
 			textField.mouseEnabled = false;
 			textField.text = title;
-			textField.x = 230;
-			textField.y = 45;
-			textField.width = _shapeWidth-205;
+			textField.x = Grid.COLUMN_2;
+			textField.y = 50;
+			textField.width = _shapeWidth-Grid.COLUMN_2;
 			textField.height = 55;
 			textField.setTextFormat(textFormat);
 
@@ -72,17 +72,17 @@ package widgets {
 			var textFormat:TextFormat = new TextFormat();
 			textFormat.color = '0x000000';
 			textFormat.font = 'Georgia';
-			textFormat.size = 24;
+			textFormat.size = 23;
 			textFormat.italic = true;
-			textFormat.leading = 12;
+			textFormat.leading = 10;
 
 			var textField:TextField = new TextField();
 			textField.mouseEnabled = false;
 			textField.text = desc;
-			textField.x = 435;
+			textField.x = Grid.COLUMN_3;
 			textField.y = 160;
 			textField.wordWrap = true;
-			textField.width = _shapeWidth-435-30;
+			textField.width = _shapeWidth-Grid.COLUMN_3 - 30;
 			textField.height = _shapeHeight - 140;
 			textField.setTextFormat(textFormat);
 
@@ -98,9 +98,9 @@ package widgets {
 			var textField:TextField = new TextField();
 			textField.mouseEnabled = false;
 			textField.text = '~ ' + author;
-			textField.x = 230;
-			textField.y = 45 + 55;
-			textField.width = _shapeWidth-205;
+			textField.x = Grid.COLUMN_2;
+			textField.y = 50 + 55;
+			textField.width = _shapeWidth-Grid.COLUMN_2 - 30;
 			textField.height = 25;
 			textField.setTextFormat(textFormat);
 
@@ -111,8 +111,8 @@ package widgets {
 			var textFormat:TextFormat = new TextFormat();
 			textFormat.color = '0xffffff';
 			textFormat.font = 'Myriad Pro';
-			textFormat.size = 24;
-			textFormat.leading = 12;
+			textFormat.size = 21;
+			textFormat.leading = 10;
 
 			var textFieldLeft:TextField = new TextField();
 			var textFieldRight:TextField = new TextField();
@@ -143,15 +143,16 @@ package widgets {
 			var textFormat:TextFormat = new TextFormat();
 			textFormat.color = '0xffffff';
 			textFormat.font = 'Myriad Pro';
-			textFormat.size = 24;
-			textFormat.leading = 12;
+			textFormat.size = 21;
+			textFormat.leading = 10;
 
 			var textFieldLeft:TextField = new TextField();
 			var textFieldRight:TextField = new TextField();
 
-			textFieldLeft.text = "Anzahl der aktuell verfügbaren Plätze";
+			textFieldLeft.text = "Anzahl der aktuell verfügbaren Plätze:";
 			textFieldLeft.wordWrap = true;
 			textFieldRight.appendText("\n" + places);
+			textFieldLeft.mouseEnabled = textFieldRight.mouseEnabled = false;
 
 			textFieldLeft.setTextFormat(textFormat);
 			textFieldRight.setTextFormat(textFormat);
