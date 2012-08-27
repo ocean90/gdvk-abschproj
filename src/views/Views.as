@@ -3,7 +3,6 @@
 	import views.main.PlanPage;
 
 	import views.events.WorkshopsPage;
-	import views.events.EventPage2;
 	import views.events.TimetablePage;
 
 	import views.user.CheckInPage;
@@ -18,9 +17,8 @@
 		public static var CheckIn:CheckInPage = new CheckInPage();
 		public static var UserData:UserDataPage = new UserDataPage();
 
-		public static var Event1:View = new WorkshopsPage();
-		public static var Event2:View = new EventPage2();
-		public static var Event3:View = new TimetablePage();
+		public static var Workshops:View = new WorkshopsPage();
+		public static var Timetable:View = new TimetablePage();
 	}
 
 }

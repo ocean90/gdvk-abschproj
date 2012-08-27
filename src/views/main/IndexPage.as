@@ -29,7 +29,7 @@
 			checkin.addEventListener(MouseEvent.CLICK, function(e:Event) {
 				Views.CheckIn.cancelCallback = null;
 				Views.CheckIn.submitCallback = function() {
-					Main.CONTENT.replaceView(Views.Event1);
+					Main.CONTENT.replaceView(Views.UserData);
 				};
 				Main.CONTENT.pushView(Views.CheckIn);
 			});
@@ -42,13 +42,19 @@
 			});
 
 			plan = new BigButton(Grid.COLUMN_3, 231, 'red');
-			plan.addEventListener(MouseEvent.CLICK, openPlan);
+			plan.addEventListener(MouseEvent.CLICK, function(e:Event) {
+				Main.CONTENT.pushView(Views.Plan);
+			});
 
 			timetable = new BigButton(Grid.COLUMN_5, 231, 'blue');
-			timetable.addEventListener(MouseEvent.CLICK, openEvent3);
+			timetable.addEventListener(MouseEvent.CLICK, function(e:Event) {
+				Main.CONTENT.pushView(Views.Timetable);
+			});
 
 			workshops = new BigButton(Grid.COLUMN_3, 441, 'yellow');
-			workshops.addEventListener(MouseEvent.CLICK, openEvent1);
+			workshops.addEventListener(MouseEvent.CLICK, function(e:Event) {
+				Main.CONTENT.pushView(Views.Workshops);
+			});
 
 			members = new BigButton(Grid.COLUMN_5, 441, 'green');
 
@@ -99,24 +105,8 @@
 				help.setText('Local support');
 			}
 		}
-
-		public function openEvent1(e:Event) {
-			Main.CONTENT.pushView(Views.Event1);
-		}
-
-		public function openEvent2(e:Event) {
-			Main.CONTENT.pushView(Views.Event2);
-		}
-
-		public function openEvent3(e:Event) {
-			Main.CONTENT.pushView(Views.Event3);
-		}
-
-		public function openHelp(e:Event) {
-		}
 		
-		public function openPlan(e:Event) {
-			Main.CONTENT.pushView(Views.Plan);
+		public function openHelp(e:Event) {
 		}
 	}
 
