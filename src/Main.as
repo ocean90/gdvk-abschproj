@@ -1,17 +1,22 @@
 ﻿package  {
 
+	import com.greensock.plugins.AutoAlphaPlugin;
+	import com.greensock.plugins.ColorTransformPlugin;
+	import com.greensock.plugins.HexColorsPlugin;
+	import com.greensock.plugins.TweenPlugin;
+
 	import flash.display.MovieClip;
+	import flash.display.Sprite;
 	import flash.display.Stage;
 
-	import com.greensock.plugins.TweenPlugin;
-	import com.greensock.plugins.AutoAlphaPlugin;
-	import com.greensock.plugins.HexColorsPlugin;
-	import com.greensock.plugins.ColorTransformPlugin;
+	import utils.Grid;
+	import utils.Debug;
 
 	import views.ButtonBar;
-	import views.UI;
 	import views.Header;
+	import views.UI;
 	import views.Views;
+
 	import widgets.VirtualKeyboard;
 
 	public class Main extends MovieClip {
@@ -50,6 +55,8 @@
 			addChild(Main.KEYBOARD);
 
 			Main.CONTENT.pushHome(Views.Index);
+
+			addChild(new Debug());
 		}
 	}
 
