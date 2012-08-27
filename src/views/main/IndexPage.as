@@ -116,6 +116,7 @@
 		}
 		
 		public function openPlan(e:Event) {
+			Main.CONTENT.pushView(Views.Plan);
 		}
 	}
 

@@ -11,10 +11,10 @@
 	import widgets.CoverFlow;
 	import widgets.SmallButton;
 
-	public class Workshops extends View {
+	public class WorkshopsPage extends View {
 		private var workshops:CoverFlow;
 
-		public function Workshops() {
+		public function WorkshopsPage() {
 			trace("Workshops");
 			workshops = new CoverFlow(Main.STAGE.stageWidth,Main.STAGE.stageHeight);
 			addChild(workshops);
@@ -29,14 +29,14 @@
 			prev.x = Grid.COLUMN_1;
 			prev.y = 400;
 			prev.shapeWidth = Grid.SPAN_1;
-			prev.shapeHeight = Grid.BUTTON_BAR_HEIGHT;
+			prev.shapeHeight = Grid.BUTTON_BAR_BUTTON_HEIGHT;
 			prev.addEventListener(MouseEvent.CLICK, prevWorkshop);
 			addChild(prev);
 
 			next.x = Grid.COLUMN_6;
 			next.y = 400;
 			next.shapeWidth = Grid.SPAN_1;
-			next.shapeHeight = Grid.BUTTON_BAR_HEIGHT;
+			next.shapeHeight = Grid.BUTTON_BAR_BUTTON_HEIGHT;
 			next.addEventListener(MouseEvent.CLICK, nextWorkshop);
 			addChild(next);
 		}

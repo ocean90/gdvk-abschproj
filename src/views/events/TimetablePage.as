@@ -1,4 +1,4 @@
-package views.events {
+﻿package views.events {
 	import flash.display.Sprite;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
@@ -9,14 +9,14 @@ package views.events {
 
 	import views.View;
 
-	public class Timetable extends View {
+	public class TimetablePage extends View {
 		var table:Array;
 		var _container:Sprite;
 		var textFormat:TextFormat;
 		var time:TextField;
 		var title:TextField
 
-		public function Timetable() {
+		public function TimetablePage() {
 			update();
 			_container = new Sprite();
 			addChild(_container);
