@@ -1,5 +1,5 @@
 ﻿package utils {
-	
+
 	import be.viplib.util.ColorUtil;
 
 	public class Colors {
@@ -16,13 +16,27 @@
 				'green':     0x69A733,
 				'yellow':    0xF3A831
 		};
-			
-		public static function getColor(color:String) {
-			return _colors[color];
+
+		public static function getColor(color:*) {
+			if ( 'string' == typeof color )
+				return _colors[color];
+			else
+				return color;
 		}
-			
-		public static function getDarkColor(color:String) {
-			return ColorUtil.darkenColor(_colors[color], 20);
+
+		public static function getDarkColor(color:*) {
+			if ( 'string' == typeof color )
+				return ColorUtil.darkenColor(_colors[color], 20);
+			else
+				return ColorUtil.darkenColor(color, 20);
 		}
+
+		public static function getLightColor(color:*) {
+			if ( 'string' == typeof color )
+				return ColorUtil.brightenColor(_colors[color], 20);
+			else
+				return ColorUtil.brightenColor(color, 20);
+		}
+
 	}
 }
