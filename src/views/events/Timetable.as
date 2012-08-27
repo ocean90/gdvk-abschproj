@@ -128,7 +128,7 @@ package views.events {
 			textFormat.bold = true;
 			title = new TextField();
 			title.mouseEnabled = false;
-			title.text = 'Sonntag';
+			title.text = 'Samstag';
 			title.x = 0;
 			title.width = Grid.SPAN_3;
 			title.y = 0;
