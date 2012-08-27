@@ -46,8 +46,6 @@
 			} else if (Main.LANGUAGE == 'EN') {
 				Main.HEADER.setText('Workshops');
 			}
-			
-			workshops.next();
 		}
 
 		public function nextWorkshop(e:Event) {
