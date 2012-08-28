@@ -13,6 +13,7 @@
 	import widgets.RoundButton;
 
 	public class WorkshopsPage extends View {
+		
 		private var workshops:CoverFlow;
 
 		public function WorkshopsPage() {
@@ -61,6 +62,25 @@
 			} else if (Main.LANGUAGE == 'EN') {
 				Main.HEADER.setText('Workshops');
 			}
+			
+			// TODO irgendwoher den status nehmen
+			Main.FOOTER.showCancelButton(Main.LANGUAGE == 'DE' ? 'Abmelden' : 'Unsubscribe', function(e:Event) {
+				trace('abmelden vom workshop');
+				update();
+			});
+			Main.FOOTER.cancel.x = Grid.COLUMN_4;
+			Main.FOOTER.cancel.shapeWidth = Grid.SPAN_1;
+			Main.FOOTER.cancel.update();
+			
+			Main.FOOTER.showSubmitButton(Main.LANGUAGE == 'DE' ? 'Teilnehmen' : 'Subscribe', function(e:Event) {
+				trace('anmelden zum workshop');
+				update();
+			});
+			Main.FOOTER.submit.x = Grid.COLUMN_5;
+			Main.FOOTER.submit.shapeWidth = Grid.SPAN_1;
+			Main.FOOTER.submit.update();
+			
+			Main.FOOTER.animateOverlay(Grid.COLUMN_4 - Grid.COLUMN_PADDING * 1.0);
 		}
 
 		public function nextWorkshop(e:Event) {
