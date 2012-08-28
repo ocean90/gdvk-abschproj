@@ -1,5 +1,6 @@
 package widgets {
 	import flash.display.Sprite;
+	import flash.events.Event;
 
 	import utils.Colors;
 
@@ -13,7 +14,7 @@ package widgets {
 		private var _overlay:Sprite;
 		public var contentBox:Sprite;
 
-		public function PageOverlay(background:* = 0x000000, w:Number = 1080,h:Number = 824) {
+		public function PageOverlay(background:* = 0xffffff, w:Number = 1080,h:Number = 824) {
 			_owidth = w;
 			_oheight = h;
 			_background = Colors.getColor(background);;
@@ -33,9 +34,13 @@ package widgets {
 		}
 
 		public function setContent(content:Sprite) {
-			//content.width = _owidth;
-			//content.height = _oheight;
 			contentBox.addChild(content);
+		}
+
+		public function destroy(e:Event) {
+			while (_overlay.numChildren) {
+				_overlay.removeChildAt(0);
+			}
 		}
 
 		public function darkenPage() {
