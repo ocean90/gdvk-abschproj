@@ -111,11 +111,11 @@
 		}
 
 		public function openHelp(e:Event) {
-			var overlay:PageOverlay = new PageOverlay('blue');
+			var overlay:PageOverlay = new PageOverlay();
 			addChild(overlay);
 
 			var container:Sprite = overlay.getContentContainer();
-			container.addChild(new HelpOverlay());
+			container.addChild(new HelpOverlay(overlay));
 			overlay.setContent(container);
 		}
 	}
