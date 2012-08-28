@@ -10,6 +10,7 @@
 	import widgets.Cover;
 	import widgets.CoverFlow;
 	import widgets.SmallButton;
+	import widgets.RoundButton;
 
 	public class WorkshopsPage extends View {
 		private var workshops:CoverFlow;
@@ -22,8 +23,8 @@
 			workshops.layout();
 
 			// @TODO mit Pfeilen ersetzen
-			var prev:SmallButton = new SmallButton('prev', 'lightgray');
-			var next:SmallButton = new SmallButton('next', 'lightgray');
+			var prev:SmallButton = new SmallButton('←', 'lightgray');
+			var next:SmallButton = new SmallButton('→', 'lightgray');
 
 			prev.x = Grid.COLUMN_1;
 			prev.y = 400;
@@ -38,6 +39,20 @@
 			next.shapeHeight = Grid.BUTTON_BAR_BUTTON_HEIGHT;
 			next.addEventListener(MouseEvent.CLICK, nextWorkshop);
 			addChild(next);
+			
+			// @TODO mit Pfeilen ersetzen
+			var prev2:RoundButton = new RoundButton(50, '←', 'lightgray');
+			var next2:RoundButton = new RoundButton(50, '→', 'lightgray');
+
+			prev2.x = Grid.COLUMN_1 + Grid.SPAN_1 * 0.5 - prev2.shapeRadius;
+			prev2.y = 480;
+			prev2.addEventListener(MouseEvent.CLICK, prevWorkshop);
+			addChild(prev2);
+
+			next2.x = Grid.COLUMN_6 + Grid.SPAN_1 * 0.5 - prev2.shapeRadius;
+			next2.y = 480;
+			next2.addEventListener(MouseEvent.CLICK, nextWorkshop);
+			addChild(next2);
 		}
 
 		public override function update() {
