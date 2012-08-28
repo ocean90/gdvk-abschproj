@@ -15,7 +15,7 @@ package views.overlays {
 			super(background, w, h);
 
 			var cancel:SmallButton = new SmallButton('','red');
-			cancel.x = 30;
+			cancel.x = -30;
 			cancel.y = this.height - cancel.height;
 			if (Main.LANGUAGE == 'DE') {
 				cancel.setText('Abbrechen');

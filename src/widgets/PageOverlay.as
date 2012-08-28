@@ -1,8 +1,9 @@
 package widgets {
+	import com.greensock.TweenLite;
+
 	import flash.display.Sprite;
 	import flash.events.Event;
-
-	import com.greensock.TweenLite;
+	import flash.geom.Rectangle;
 
 	import utils.Colors;
 
@@ -33,6 +34,9 @@ package widgets {
 			paintContentBox();
 			content = new Sprite();
 			contentBox.addChild(content);
+
+			// Don't overflow.
+			contentBox.scrollRect = new Rectangle(0, 0, _owidth, _owidth);
 
 			_overlay.visible = true;
 			TweenLite.to(_overlay, 0.5, { alpha: 1});
