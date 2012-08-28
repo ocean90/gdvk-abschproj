@@ -11,6 +11,7 @@
 	import flash.events.Event;
 	import widgets.SmallButton;
 	import widgets.InverseText;
+	import com.greensock.easing.Quint;
 	
 	public class UserDataPage extends View {
 
@@ -29,7 +30,7 @@
 			var posY:int;
 			
 			var delayTime:Number = 0.8;
-			var addDelay:Number = 0.4;
+			var addDelay:Number = 0.05;
 			
 			if (Main.LANGUAGE == 'DE') {
 				Main.HEADER.setText('Meine Daten');
@@ -38,7 +39,8 @@
 				posY = 220;
 				createLine('Ihr Platz', 'Flur 2. Etage - Platz 2.106', posY += lineHeight, delayTime += addDelay);
 				createLine('Ihr Betreuer', 'Herr Schmitz', posY += lineHeight, delayTime += addDelay);
-			
+				
+				delayTime += 0.3;
 				Main.HEADER.addHeadline('Persönliche Daten', 400, delayTime += addDelay);
 				posY = 420;
 				createLine('Persönliche ID:', Main.USER.getData('id'), posY += lineHeight, delayTime += addDelay);
@@ -47,6 +49,7 @@
 				createLine('Stadt:', Main.USER.getData('city'), posY += lineHeight, delayTime += addDelay);
 				createLine('Geburtsdatum:', Main.USER.getData('dateOfBirth'), posY += lineHeight, delayTime += addDelay);
 				
+				delayTime += 0.3;
 				addRightHeadline('Barcode', Grid.COLUMN_4, 200, delayTime += addDelay);
 				posY = 220;
 				lineHeight = 35;
@@ -61,7 +64,7 @@
 				barcodeButton.x = Grid.COLUMN_6;
 				barcodeButton.y = posY += lineHeight;
 				barcodeButton.shapeWidth = Grid.SPAN_1;
-				barcodeButton.shapeHeight = Grid.SPAN_1;
+				barcodeButton.shapeHeight = Grid.SPAN_1 * 0.95;
 				barcodeButton.addEventListener(MouseEvent.CLICK, onPrintBarcode);
 				barcodeButton.update();
 				
@@ -77,7 +80,8 @@
 				posY = 220;
 				createLine('Your place', 'Corridor 2nd floor - Field 2.106', posY += lineHeight, delayTime += addDelay);
 				createLine('Your advisor', 'Herr Schmitz', posY += lineHeight, delayTime += addDelay);
-			
+				
+				delayTime += 0.3;
 				Main.HEADER.addHeadline('Personal data', 400, delayTime += addDelay);
 				posY = 420;
 				createLine('Personal ID:', Main.USER.getData('id'), posY += lineHeight, delayTime += addDelay);
@@ -86,6 +90,7 @@
 				createLine('City', Main.USER.getData('city'), posY += lineHeight, delayTime += addDelay);
 				createLine('Date of birth:', Main.USER.getData('dateOfBirth'), posY += lineHeight, delayTime += addDelay);
 				
+				delayTime += 0.3;
 				addRightHeadline('Barcode', Grid.COLUMN_4, 200, delayTime += addDelay);
 				posY = 220;
 				lineHeight = 35;
@@ -99,14 +104,14 @@
 				barcodeButton.x = Grid.COLUMN_6;
 				barcodeButton.y = posY += lineHeight;
 				barcodeButton.shapeWidth = Grid.SPAN_1;
-				barcodeButton.shapeHeight = Grid.SPAN_1;
+				barcodeButton.shapeHeight = Grid.SPAN_1 * 0.95;
 				barcodeButton.addEventListener(MouseEvent.CLICK, onPrintBarcode);
 				barcodeButton.update();
 				
 				barcodeButton.alpha = 0;
 				barcodeButton.x = Grid.COLUMN_6 + Grid.COLUMN_2;
 				addChild(barcodeButton);
-				TweenLite.to(barcodeButton, 0.8, { x: Grid.COLUMN_6, autoAlpha: 1.0, delay: delayTime += addDelay, ease:Back.easeOut });
+				TweenLite.to(barcodeButton, 0.8, { x: Grid.COLUMN_6, autoAlpha: 1.0, delay: delayTime += addDelay, ease:Quint.easeOut });
 			}
 		}
 		
@@ -146,7 +151,7 @@
 			label.x = Grid.COLUMN_6; // add extra space for the animcation
 			label.alpha = 0;
 			addChild(label);
-			TweenLite.to(label, 0.8, { x: Grid.COLUMN_4, autoAlpha: 1.0, delay: delay, ease:Back.easeOut });
+			TweenLite.to(label, 0.8, { x: Grid.COLUMN_4, autoAlpha: 1.0, delay: delay, ease:Quint.easeOut });
 		}
 		
 		private function addRightHeadline(text:String, posX:int, posY:int, delay:Number = 0) {
@@ -166,7 +171,7 @@
 			headline.alpha = 0;
 			addChild(headline);
 			
-			TweenLite.to(headline, 0.8, { x: posX - Grid.COLUMN_PADDING, alpha: 1.0, delay: delay, ease:Back.easeOut });
+			TweenLite.to(headline, 0.8, { x: posX - Grid.COLUMN_PADDING, alpha: 1.0, delay: delay, ease:Quint.easeOut });
 		}
 		
 		public function onPrintBarcode(e:Event) {
