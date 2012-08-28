@@ -56,6 +56,9 @@
 			addChild(next2);
 		}
 
+		// TODO
+		private var TODO:Boolean = false;
+
 		public override function update() {
 			if (Main.LANGUAGE == 'DE') {
 				Main.HEADER.setText('Workshops');
@@ -63,22 +66,28 @@
 				Main.HEADER.setText('Workshops');
 			}
 			
-			// TODO irgendwoher den status nehmen
-			Main.FOOTER.showCancelButton(Main.LANGUAGE == 'DE' ? 'Abmelden' : 'Unsubscribe', function(e:Event) {
-				trace('abmelden vom workshop');
-				update();
-			});
-			Main.FOOTER.cancel.x = Grid.COLUMN_4;
-			Main.FOOTER.cancel.shapeWidth = Grid.SPAN_1;
-			Main.FOOTER.cancel.update();
+			Main.FOOTER.resetButtonBar();
 			
-			Main.FOOTER.showSubmitButton(Main.LANGUAGE == 'DE' ? 'Teilnehmen' : 'Subscribe', function(e:Event) {
-				trace('anmelden zum workshop');
-				update();
-			});
-			Main.FOOTER.submit.x = Grid.COLUMN_5;
-			Main.FOOTER.submit.shapeWidth = Grid.SPAN_1;
-			Main.FOOTER.submit.update();
+			// TODO irgendwoher den status nehmen
+			if (TODO) {
+				Main.FOOTER.showCancelButton(Main.LANGUAGE == 'DE' ? 'Von Workshop Abmelden' : 'Unsubscribe from workshop', function(e:Event) {
+					trace('abmelden vom workshop');
+					TODO = !TODO;
+					update();
+				});
+				Main.FOOTER.cancel.x = Grid.COLUMN_4;
+				Main.FOOTER.cancel.shapeWidth = Grid.SPAN_2 + Grid.COLUMN_PADDING; // ja das ist eine ausnahme fürs coverflow!
+				Main.FOOTER.cancel.update();
+			} else {
+				Main.FOOTER.showSubmitButton(Main.LANGUAGE == 'DE' ? 'An Workshop Teilnehmen' : 'Subscribe to workshop', function(e:Event) {
+					trace('anmelden zum workshop');
+					TODO = !TODO;
+					update();
+				});
+				Main.FOOTER.submit.x = Grid.COLUMN_4;
+				Main.FOOTER.submit.shapeWidth = Grid.SPAN_2 + Grid.COLUMN_PADDING; // ja das ist eine ausnahme fürs coverflow!
+				Main.FOOTER.submit.update();
+			}
 			
 			Main.FOOTER.animateOverlay(Grid.COLUMN_4 - Grid.COLUMN_PADDING * 1.0);
 		}
