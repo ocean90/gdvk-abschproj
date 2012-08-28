@@ -47,7 +47,7 @@
 
 			plan = new BigButton(Grid.COLUMN_3, 231, 'red');
 			plan.addEventListener(MouseEvent.CLICK, function(e:Event) {
-				Main.CONTENT.pushView(Views.Plan);
+				Main.CONTENT.pushView(Views.Map);
 			});
 
 			timetable = new BigButton(Grid.COLUMN_5, 231, 'blue');
@@ -102,7 +102,7 @@
 
 				checkin.setText('Check-in');
 				userdata.setText('My data\n(SPÄTER ein button\nmit Check-ín)');
-				plan.setText('Plan');
+				plan.setText('Map');
 				timetable.setText('Timetable');
 				workshops.setText('Workshops');
 				members.setText('Members');

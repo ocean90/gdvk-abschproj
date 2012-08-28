@@ -6,11 +6,11 @@
 
 	import views.View;
 
-	public class PlanPage extends View {
+	public class MapPage extends View {
 		private var _building:Array;
 		private var _house:Sprite;
 
-		public function PlanPage() {
+		public function MapPage() {
 			update();
 
 			_house = new Sprite;
@@ -51,7 +51,7 @@
 			if (Main.LANGUAGE == 'DE') {
 				Main.HEADER.setText('Lageplan');
 			} else if (Main.LANGUAGE == 'EN') {
-				Main.HEADER.setText('Plan');
+				Main.HEADER.setText('Map');
 			}
 		}
 	}
