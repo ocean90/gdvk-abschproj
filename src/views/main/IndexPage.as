@@ -67,7 +67,9 @@
 			infrastructure = new BigButton(Grid.COLUMN_3, 651, 'brown');
 
 			help = new BigButton(Grid.COLUMN_5, 651);
-			help.addEventListener(MouseEvent.CLICK, openHelp);
+			help.addEventListener(MouseEvent.CLICK, function(e:Event) {
+				addChild(new HelpOverlay());
+			});
 
 			update();
 
@@ -108,15 +110,6 @@
 				infrastructure.setText('Infrastructure');
 				help.setText('Local support');
 			}
-		}
-
-		public function openHelp(e:Event) {
-			var overlay:PageOverlay = new PageOverlay();
-			addChild(overlay);
-
-			var container:Sprite = overlay.getContentContainer();
-			container.addChild(new HelpOverlay(overlay));
-			overlay.setContent(container);
 		}
 	}
 

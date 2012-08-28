@@ -2,6 +2,8 @@ package widgets {
 	import flash.display.Sprite;
 	import flash.events.Event;
 
+	import com.greensock.TweenLite;
+
 	import utils.Colors;
 
 	public class PageOverlay extends Sprite {
@@ -12,7 +14,8 @@ package widgets {
 		private var _stageheight:Number;
 
 		private var _overlay:Sprite;
-		public var contentBox:Sprite;
+		private var contentBox:Sprite;
+		public var content:Sprite
 
 		public function PageOverlay(background:* = 0xffffff, w:Number = 1080,h:Number = 824) {
 			_owidth = w;
@@ -22,25 +25,26 @@ package widgets {
 			_stageheight = Main.STAGE.stageHeight
 
 			_overlay = new Sprite();
+			_overlay.visible = false;
+			_overlay.alpha = 0;
 			Main.STAGE.addChild(_overlay);
 
 			darkenPage();
 			paintContentBox();
-		}
-
-		public function getContentContainer():Sprite {
-			var container:Sprite = new Sprite();
-			return container;
-		}
-
-		public function setContent(content:Sprite) {
+			content = new Sprite();
 			contentBox.addChild(content);
+
+			_overlay.visible = true;
+			TweenLite.to(_overlay, 0.5, { alpha: 1});
 		}
 
 		public function destroy(e:Event) {
-			while (_overlay.numChildren) {
-				_overlay.removeChildAt(0);
-			}
+			TweenLite.to(_overlay, 0.3, { alpha: 0, onComplete: function() {
+				_overlay.visible = false;
+				while (_overlay.numChildren) {
+					_overlay.removeChildAt(0);
+				}
+			}});
 		}
 
 		public function darkenPage() {
