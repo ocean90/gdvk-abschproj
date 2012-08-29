@@ -1,8 +1,11 @@
 ﻿package views {
 	import com.greensock.TweenLite;
+	import com.greensock.easing.Back;
+	import com.greensock.easing.Quint;
 
 	import flash.display.Loader;
 	import flash.display.MovieClip;
+	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.net.URLRequest;
@@ -11,17 +14,14 @@
 	import utils.Grid;
 
 	import widgets.SmallButton;
-	import flash.display.Sprite;
-	import com.greensock.easing.Back;
-	import com.greensock.easing.Quint;
 
 	public class ButtonBar extends View {
 
-		private var overlay:Sprite;
+		public var background:MovieClip;
 
 		private var de:SmallButton;
 		private var en:SmallButton;
-		
+
 		public var home:SmallButton;
 		public var back:SmallButton;
 		public var login:SmallButton;
@@ -39,14 +39,11 @@
 		private var germanFlag:MovieClip;
 
 		public function ButtonBar() {
-			overlay = new Sprite();
-			overlay.graphics.beginFill(0xffffff);
-			overlay.graphics.drawRect(0, 0, 1280 + 200, Grid.BUTTON_BAR_HEIGHT);
-			overlay.graphics.endFill();
-			overlay.x = Main.STAGE.stageWidth;
-			overlay.y = Main.STAGE.stageHeight - Grid.BUTTON_BAR_HEIGHT;
-			addChild(overlay);
-			
+			background = new ButtonBarBackground();
+			background.y = Main.STAGE.stageHeight - background.height;
+			background.x = 0;
+			addChild(background);
+
 			englishFlag = new EnglishFlag();
 			germanFlag = new GermanFlag();
 
@@ -212,8 +209,8 @@
 		}
 
 		public function resetButtonBar() {
-			TweenLite.to(overlay, 0.4, { x: Main.STAGE.stageWidth });
-			
+			TweenLite.to(background, 0.3, { x: 0, ease:Quint.easeOut });
+
 			if (Main.CONTENT.viewStack.length <= 1) {
 				// inkl. home bedeutet wir sind auf der starteseite und zeigen die länder auswahl an
 				de.visible = true;
@@ -243,12 +240,15 @@
 			cancel.visible = false;
 			submit.visible = false;
 		}
-		
-		public function animateOverlay(posX:int, delay:Number = 0.8) {
+
+		public function animateFooter(posX:int) {
 			login.visible = (posX >= Main.STAGE.stageWidth);
 			logout.visible = (posX >= Main.STAGE.stageWidth);
-			
-			TweenLite.to(overlay, 0.8, { x: posX, delay: delay, ease:Quint.easeOut });
+
+			posX = background.width + posX + 30;
+			posX = Main.STAGE.stageWidth - posX;
+
+			TweenLite.to(background, 0.5, { x: posX, ease:Quint.easeOut });
 		}
 	}
 

@@ -44,8 +44,8 @@
 					TODO = !TODO;
 					update();
 				});
-				Main.FOOTER.cancel.x = Grid.COLUMN_4;
-				Main.FOOTER.cancel.shapeWidth = Grid.SPAN_2 + Grid.COLUMN_PADDING; // ja das ist eine ausnahme fürs coverflow!
+				Main.FOOTER.cancel.x = Grid.COLUMN_5;
+				Main.FOOTER.cancel.shapeWidth = Grid.SPAN_2;
 				Main.FOOTER.cancel.update();
 			} else {
 				Main.FOOTER.showSubmitButton(Main.LANGUAGE == 'DE' ? 'An Workshop Teilnehmen' : 'Subscribe to workshop', function(e:Event) {
@@ -53,12 +53,12 @@
 					TODO = !TODO;
 					update();
 				});
-				Main.FOOTER.submit.x = Grid.COLUMN_4;
-				Main.FOOTER.submit.shapeWidth = Grid.SPAN_2 + Grid.COLUMN_PADDING; // ja das ist eine ausnahme fürs coverflow!
+				Main.FOOTER.submit.x = Grid.COLUMN_5;
+				Main.FOOTER.submit.shapeWidth = Grid.SPAN_2;
 				Main.FOOTER.submit.update();
 			}
 
-			Main.FOOTER.animateOverlay(Grid.COLUMN_4 - Grid.COLUMN_PADDING * 1.0);
+			Main.FOOTER.animateFooter(Grid.COLUMN_3 - Grid.COLUMN_PADDING);
 		}
 
 		public function registerWorkshops() {
