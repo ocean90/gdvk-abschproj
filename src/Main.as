@@ -8,9 +8,10 @@
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.display.Stage;
+	import flash.geom.Rectangle;
 
-	import utils.Grid;
 	import utils.Debug;
+	import utils.Grid;
 
 	import views.ButtonBar;
 	import views.Header;
@@ -35,6 +36,9 @@
 
 		public function Main() {
 			TweenPlugin.activate([AutoAlphaPlugin, HexColorsPlugin, ColorTransformPlugin]);
+
+			// Don't overflow.
+			this.scrollRect = new Rectangle(0, 0, Grid.STAGE_WIDTH, Grid.STAGE_HEIGHT);
 
 			Main.STAGE = stage;
 

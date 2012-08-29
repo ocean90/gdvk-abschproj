@@ -1,12 +1,13 @@
 ﻿package utils {
 	public class Grid {
 		// TODO var -> const
-		private static var width:int = 1280;
-		private static var height:int = 1024;
 		private static var columns:int = 6;
 		private static var columnWidth:int = 180;
 		private static var columnSpanLeft:int = 25;
 		private static var columnSpanRight:int = 25;
+
+		public static var STAGE_WIDTH:int = 1280;
+		public static var STAGE_HEIGHT:int = 1024;
 
 		public static var COLUMN_PADDING:int = 30;
 
@@ -24,10 +25,10 @@
 		public static var SPAN_5:int = columnWidth * 5 + COLUMN_PADDING * 4;
 		public static var SPAN_6:int = columnWidth * 6 + COLUMN_PADDING * 5;
 
-		public static var BUTTON_BAR_WIDTH:int = width - columnSpanLeft - columnSpanRight;
+		public static var BUTTON_BAR_WIDTH:int = STAGE_WIDTH - columnSpanLeft - columnSpanRight;
 		public static var BUTTON_BAR_HEIGHT:int = 100;
 		public static var BUTTON_BAR_BUTTON_HEIGHT:int = BUTTON_BAR_HEIGHT - 25 - 25;
-		public static var BUTTON_BAR_Y:int = height - BUTTON_BAR_HEIGHT + 25;
+		public static var BUTTON_BAR_Y:int = STAGE_HEIGHT - BUTTON_BAR_HEIGHT + 25;
 		public static var BUTTON_BAR_X:int = COLUMN_1;
 
 		public function Grid() {
