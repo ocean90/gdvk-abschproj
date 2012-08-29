@@ -27,7 +27,7 @@
 		private var help:BigButton;
 
 		public function IndexPage() {
-			checkin = new BigButton(Grid.COLUMN_1, 231, 'yellow');
+			checkin = new BigButton(Grid.COLUMN_1, 231, 'orange');
 			checkin.shapeWidth = Grid.SPAN_2;
 			checkin.shapeHeight = Grid.SPAN_1;
 			checkin.addEventListener(MouseEvent.CLICK, function(e:Event) {
@@ -38,7 +38,7 @@
 				Main.CONTENT.pushView(Views.CheckIn);
 			});
 
-			userdata = new BigButton(Grid.COLUMN_1, 441, 'yellow');
+			userdata = new BigButton(Grid.COLUMN_1, 441, 'orange');
 			userdata.shapeWidth = Grid.SPAN_2;
 			userdata.shapeHeight = Grid.SPAN_1;
 			userdata.addEventListener(MouseEvent.CLICK, function(e:Event) {
@@ -55,14 +55,14 @@
 				Main.CONTENT.pushView(Views.Timetable);
 			});
 
-			workshops = new BigButton(Grid.COLUMN_3, 441, 'yellow');
+			workshops = new BigButton(Grid.COLUMN_3, 441, 'purple');
 			workshops.addEventListener(MouseEvent.CLICK, function(e:Event) {
 				Main.CONTENT.pushView(Views.Workshops);
 			});
 
 			members = new BigButton(Grid.COLUMN_5, 441, 'green');
 
-			catering = new BigButton(Grid.COLUMN_1, 651, 'purple')
+			catering = new BigButton(Grid.COLUMN_1, 651, 'moos')
 
 			infrastructure = new BigButton(Grid.COLUMN_3, 651, 'brown');
 

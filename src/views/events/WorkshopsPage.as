@@ -102,7 +102,7 @@
 			workshops.push(cover);
 
 			// Drum Tuning & Setup
-			cover = new Cover('yellow');
+			cover = new Cover('orange');
 			cover.setImage(new Noten());
 			cover.setTitle('Drum Tuning & Setup');
 			cover.setDesc('Groove, Sound und Spielfreude sind mit die wichtigsten Faktoren, wenn es ans Musikmachen geht. Dies erreicht man jedoch nicht allein durch eine ausgefeilte Spieltechnik – es bedarf auch eines gut klingenden und auf den Spieler eingestimmten Instruments.');
@@ -121,24 +121,6 @@
 
 			// Body Percussion
 			cover = new Cover();
-			cover.setImage(new Noten());
-			cover.setTitle('Body Percussion');
-			cover.setDesc('Rhythmus ist der gemeinsame Nenner der Musik der verschiedenen Kulturen. Jede Art des gemeinsamen Musizierens erfordert gewisse rhythmische Grundfertigkeiten. Bodypercussion ist eine Methode des praktischen Erlernens und Erlangens rhythmischer Sicherheit. Es ermöglicht die Erkundung von Rhythmen ohne den Einsatz von Instrumenten und Notenmaterial.');
-			cover.setAuthor('Brune Belchatjut-Halmarkat, Johannes Schwer');
-
-			infos = [];
-			infos["Ort"] = "FH, Raum 1.400";
-			infos["Uhrzeit"] = "10:00 & 14:00 Uhr";
-			infos["Zielgruppe"] = "alle";
-			infos["Preis"] = "kostenlos";
-			cover.setInfos(infos);
-
-			cover.setFreePlaces(80); // @TODO dynamisch
-
-			workshops.push(cover);
-
-			// Body Percussion
-			cover = new Cover('brown');
 			cover.setImage(new Noten());
 			cover.setTitle('Body Percussion');
 			cover.setDesc('Rhythmus ist der gemeinsame Nenner der Musik der verschiedenen Kulturen. Jede Art des gemeinsamen Musizierens erfordert gewisse rhythmische Grundfertigkeiten. Bodypercussion ist eine Methode des praktischen Erlernens und Erlangens rhythmischer Sicherheit. Es ermöglicht die Erkundung von Rhythmen ohne den Einsatz von Instrumenten und Notenmaterial.');
