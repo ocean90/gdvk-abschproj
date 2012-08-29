@@ -1,12 +1,14 @@
 ﻿package widgets {
 	import com.greensock.TweenLite;
 
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
 	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.geom.*;
-
+	import flash.display.CapsStyle;
 	import utils.Grid;
 
 	import widgets.Cover;
@@ -44,44 +46,39 @@
 		}
 
 		public function createButtons() {
-			nextButton.graphics.beginFill(0x000000);
-			nextButton.graphics.drawRect(0, 0, 100, 600);
+			var transparent:BitmapData = new BitmapData(100,600,true,0xffffff);
+
+			nextButton.graphics.beginBitmapFill(transparent);
+			nextButton.graphics.drawRect(0,0,100,600);
 			nextButton.graphics.endFill();
-			nextButton.alpha = 1/nextButton.alpha; // http://stackoverflow.com/a/2759367
 			nextButton.buttonMode = true;
 			nextButton.x = 15;
 			nextButton.y = 250;
-
 			var nextButtonTriangle:Shape = new Shape();
-			nextButtonTriangle.graphics.lineStyle(10,0x000000)
+			nextButtonTriangle.graphics.lineStyle(10,0x000000, 1.0, false, "normal", CapsStyle.SQUARE);
 			nextButtonTriangle.graphics.moveTo(15, nextButton.height/2);
 			nextButtonTriangle.graphics.lineTo(nextButton.width - 5, nextButton.height/2 - 70);
 			nextButtonTriangle.graphics.moveTo(15, nextButton.height/2);
 			nextButtonTriangle.graphics.lineTo(nextButton.width - 5, nextButton.height/2 + 70);
-			nextButtonTriangle.alpha = 1;
+			nextButtonTriangle.alpha = 2;
 			nextButton.addChild(nextButtonTriangle)
-
 			nextButton.addEventListener(MouseEvent.CLICK, next);
 
 
-			prevButton.graphics.beginFill(0x000000);
-			prevButton.graphics.drawRect(0, 0, 100, 600);
+			prevButton.graphics.beginBitmapFill(transparent);
+			prevButton.graphics.drawRect(0,0,100,600);
 			prevButton.graphics.endFill();
-			prevButton.alpha = 1/prevButton.alpha; // http://stackoverflow.com/a/2759367
 			prevButton.buttonMode = true;
 			prevButton.x = 1280-100-15;
 			prevButton.y = 250;
-
 			var prevButtonTriangle:Shape = new Shape();
-			prevButtonTriangle.graphics.lineStyle(10,0x000000)
+			prevButtonTriangle.graphics.lineStyle(10,0x000000, 1.0, false, "normal", CapsStyle.SQUARE);
 			prevButtonTriangle.graphics.moveTo(5, prevButton.height/2 -70);
 			prevButtonTriangle.graphics.lineTo(prevButton.width - 15, prevButton.height/2);
 			prevButtonTriangle.graphics.moveTo(5, prevButton.height/2 + 70);
 			prevButtonTriangle.graphics.lineTo(prevButton.width - 15, prevButton.height/2);
 			nextButtonTriangle.alpha = 1;
 			prevButton.addChild(prevButtonTriangle);
-
-
 			prevButton.addEventListener(MouseEvent.CLICK, prev);
 		}
 
@@ -118,7 +115,6 @@
 		}
 
 		public function layout() {
-			updateNavigation();
 			var len:uint = _covers.length;
 			var cover:Cover;
 			var distanceFromCenter:int;
@@ -170,6 +166,7 @@
 					_coversContainer.setChildIndex(cover, _coversContainer.numChildren - (distanceFromCenter + 1));
 				}
 			}
+			updateNavigation();
 		}
 
 		// Workaround fo blurry texts if z-axes is set.
