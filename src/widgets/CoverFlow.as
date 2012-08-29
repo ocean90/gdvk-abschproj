@@ -48,38 +48,38 @@
 		public function createButtons() {
 			var transparent:BitmapData = new BitmapData(100,600,true,0xffffff);
 
-			nextButton.graphics.beginBitmapFill(transparent);
-			nextButton.graphics.drawRect(0,0,100,600);
-			nextButton.graphics.endFill();
-			nextButton.buttonMode = true;
-			nextButton.x = 15;
-			nextButton.y = 250;
-			var nextButtonTriangle:Shape = new Shape();
-			nextButtonTriangle.graphics.lineStyle(10,0x000000, 1.0, false, "normal", CapsStyle.SQUARE);
-			nextButtonTriangle.graphics.moveTo(15, nextButton.height/2);
-			nextButtonTriangle.graphics.lineTo(nextButton.width - 5, nextButton.height/2 - 70);
-			nextButtonTriangle.graphics.moveTo(15, nextButton.height/2);
-			nextButtonTriangle.graphics.lineTo(nextButton.width - 5, nextButton.height/2 + 70);
-			nextButtonTriangle.alpha = 2;
-			nextButton.addChild(nextButtonTriangle)
-			nextButton.addEventListener(MouseEvent.CLICK, next);
-
-
+			// Linker Button
 			prevButton.graphics.beginBitmapFill(transparent);
 			prevButton.graphics.drawRect(0,0,100,600);
 			prevButton.graphics.endFill();
 			prevButton.buttonMode = true;
-			prevButton.x = 1280-100-15;
+			prevButton.x = 15;
 			prevButton.y = 250;
 			var prevButtonTriangle:Shape = new Shape();
 			prevButtonTriangle.graphics.lineStyle(10,0x000000, 1.0, false, "normal", CapsStyle.SQUARE);
-			prevButtonTriangle.graphics.moveTo(5, prevButton.height/2 -70);
-			prevButtonTriangle.graphics.lineTo(prevButton.width - 15, prevButton.height/2);
-			prevButtonTriangle.graphics.moveTo(5, prevButton.height/2 + 70);
-			prevButtonTriangle.graphics.lineTo(prevButton.width - 15, prevButton.height/2);
-			nextButtonTriangle.alpha = 1;
-			prevButton.addChild(prevButtonTriangle);
+			prevButtonTriangle.graphics.moveTo(15, prevButton.height/2);
+			prevButtonTriangle.graphics.lineTo(prevButton.width - 5, prevButton.height/2 - 70);
+			prevButtonTriangle.graphics.moveTo(15, prevButton.height/2);
+			prevButtonTriangle.graphics.lineTo(prevButton.width - 5, prevButton.height/2 + 70);
+			prevButton.addChild(prevButtonTriangle)
 			prevButton.addEventListener(MouseEvent.CLICK, prev);
+
+
+			// Rechter Button
+			nextButton.graphics.beginBitmapFill(transparent);
+			nextButton.graphics.drawRect(0,0,100,600);
+			nextButton.graphics.endFill();
+			nextButton.buttonMode = true;
+			nextButton.x = 1280-100-15;
+			nextButton.y = 250;
+			var nextButtonTriangle:Shape = new Shape();
+			nextButtonTriangle.graphics.lineStyle(10,0x000000, 1.0, false, "normal", CapsStyle.SQUARE);
+			nextButtonTriangle.graphics.moveTo(5, nextButton.height/2 -70);
+			nextButtonTriangle.graphics.lineTo(nextButton.width - 15, nextButton.height/2);
+			nextButtonTriangle.graphics.moveTo(5, nextButton.height/2 + 70);
+			nextButtonTriangle.graphics.lineTo(nextButton.width - 15, nextButton.height/2);
+			nextButton.addChild(nextButtonTriangle);
+			nextButton.addEventListener(MouseEvent.CLICK, next);
 		}
 
 		public function push(cover:Cover) {
@@ -112,6 +112,15 @@
 		public function updateNavigation() {
 			_coversContainer.setChildIndex(nextButton, _coversContainer.numChildren -1);
 			_coversContainer.setChildIndex(prevButton, _coversContainer.numChildren -1);
+
+			prevButton.visible = nextButton.visible = true;
+			if (_selectedIndex == 0) {
+				prevButton.visible = false;
+			}
+
+			if (_selectedIndex == _covers.length - 1) {
+				nextButton.visible = false;
+			}
 		}
 
 		public function layout() {
