@@ -68,7 +68,6 @@
 			bigHeader.visible = false;
 			
 			cancel = new SmallButton('', 'red');
-			cancel.textFormat.color = '0x000000';
 			cancel.x = Grid.COLUMN_PADDING;
 			cancel.y = this.height - Grid.BUTTON_BAR_BUTTON_HEIGHT - Grid.COLUMN_PADDING;
 			cancel.shapeWidth = Grid.SPAN_1;
@@ -77,7 +76,6 @@
 			cancel.addEventListener(MouseEvent.CLICK, onCancel);
 
 			submit = new SmallButton('', 'green');
-			submit.textFormat.color = '0x000000';
 			submit.x = this.width - Grid.COLUMN_PADDING - Grid.SPAN_1;
 			submit.y = this.height - Grid.BUTTON_BAR_BUTTON_HEIGHT - Grid.COLUMN_PADDING;
 			submit.shapeWidth = Grid.SPAN_1;

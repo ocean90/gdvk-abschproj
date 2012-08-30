@@ -61,7 +61,6 @@
 			question.textFormat.size = 30;
 			
 			yesButton = new BigButton(Grid.COLUMN_2, 441, 'orange');
-			//yesButton.textFormat.color = '0x000000';
 			yesButton.shapeWidth = Grid.SPAN_2;
 			yesButton.shapeHeight = Grid.SPAN_1;
 			yesButton.addEventListener(MouseEvent.CLICK, function(e:Event) {
@@ -75,7 +74,6 @@
 			yesButton.update();
 			
 			noButton = new BigButton(Grid.COLUMN_4, 441, 'orange');
-			//noButton.textFormat.color = '0x000000';
 			noButton.shapeWidth = Grid.SPAN_2;
 			noButton.shapeHeight = Grid.SPAN_1;
 			noButton.addEventListener(MouseEvent.CLICK, function(e:Event) {
@@ -394,21 +392,8 @@
 				}
 			}
 			
-			if (validData) {
-				cancel.color = 'red';
-				cancel.textFormat.color = 0x000000;
-				
-				submit.color = 'green';
-				submit.textFormat.color = 0x000000;
-			} else {
-				cancel.color = 'red';
-				cancel.textFormat.color = 0x000000;
-				
-				submit.color = 'lightgray';
-				submit.textFormat.color = 0x888888;
-			}
-			
-			cancel.update();
+			submit.color = validData ? 'green' : 'lightgray';
+			submit.textFormat.color = validData ? '0xffffff' : '0x888888';
 			submit.update();
 		}
 		

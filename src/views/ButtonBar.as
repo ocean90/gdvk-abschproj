@@ -111,7 +111,6 @@
 //			});
 
 			logout = new SmallButton('', 'red');
-			logout.textFormat.color = '0x000000';
 			logout.x = Grid.COLUMN_6;
 			logout.y = Grid.BUTTON_BAR_Y;
 			logout.shapeWidth = Grid.SPAN_1;
@@ -128,7 +127,6 @@
 			});
 
 			cancel = new SmallButton('', 'red');
-			cancel.textFormat.color = '0x000000';
 			cancel.x = Grid.COLUMN_1;
 			cancel.y = Grid.BUTTON_BAR_Y;
 			cancel.shapeWidth = Grid.SPAN_1;
@@ -137,7 +135,6 @@
 			cancel.addEventListener(MouseEvent.CLICK, onCancel);
 
 			submit = new SmallButton('', 'green');
-			submit.textFormat.color = '0x000000';
 			submit.x = Grid.COLUMN_6;
 			submit.y = Grid.BUTTON_BAR_Y;
 			submit.shapeWidth = Grid.SPAN_1;
