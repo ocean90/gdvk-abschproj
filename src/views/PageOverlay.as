@@ -20,14 +20,12 @@
 		private var _owidth:Number;
 		private var _oheight:Number;
 		private var _background:uint;
-		private var _stagewidth:Number;
-		private var _stageheight:Number;
 
 		private var _overlay:Sprite;
 		private var darkenContent:Sprite;
 		public var darkenButtonBar:Sprite; // ja das ist ein hack, egal..
-		private var contentBox:Sprite;
 		
+		public var contentBox:Sprite;
 		public var content:Sprite
 
 		private var leftOverlapping:int = 200;
@@ -45,9 +43,7 @@
 			_owidth = w;
 			_oheight = h;
 			_background = Colors.getColor(background);;
-			_stagewidth = Main.STAGE.stageWidth;
-			_stageheight = Main.STAGE.stageHeight
-
+			
 			_overlay = new Sprite();
 			_overlay.visible = false;
 			_overlay.alpha = 0;
@@ -108,12 +104,13 @@
 					_overlay.removeChildAt(0);
 				}
 			}});
+			Main.CONTENT.hideOverlay();
 		}
 
 		public function darkenPage() {
 			darkenContent = new Sprite();
 			darkenContent.graphics.beginFill(0x000000);
-			darkenContent.graphics.drawRect(0, 0, _stagewidth, _stageheight - Grid.BUTTON_BAR_HEIGHT);
+			darkenContent.graphics.drawRect(0, 0, Main.STAGE.width, Main.STAGE.height - Grid.BUTTON_BAR_HEIGHT);
 			darkenContent.graphics.endFill();
 			darkenContent.alpha = 0.8;
 
@@ -121,7 +118,7 @@
 			
 			darkenButtonBar = new Sprite();
 			darkenButtonBar.graphics.beginFill(0x000000);
-			darkenButtonBar.graphics.drawRect(0, _stageheight - Grid.BUTTON_BAR_HEIGHT, _stagewidth, VirtualKeyboard.KEYBOARD_HEIGHT);
+			darkenButtonBar.graphics.drawRect(0, Main.STAGE.height - Grid.BUTTON_BAR_HEIGHT, Main.STAGE.width, VirtualKeyboard.KEYBOARD_HEIGHT);
 			darkenButtonBar.graphics.endFill();
 			darkenButtonBar.alpha = 0.8;
 
@@ -131,8 +128,10 @@
 		public function paintContentBox() {
 			var x:int, y:int;
 			contentBox = new Sprite();
-			contentBox.x = _stagewidth * 0.5 - _owidth * 0.5;
-			contentBox.y = _stageheight * 0.5 - _oheight * 0.5;
+			// Vereinfacht da dies auch in VirtualKeyboard gesetzt wird!
+			contentBox.x = Main.STAGE.width * 0.5 - this.width * 0.5;
+			contentBox.y = Main.STAGE.height * 0.5 - this.height * 0.5;
+			contentBox.graphics.clear();
 			contentBox.graphics.beginFill(_background);
 			contentBox.graphics.drawRect(0, 0, _owidth, _oheight);
 			contentBox.graphics.endFill();

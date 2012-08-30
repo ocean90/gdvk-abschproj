@@ -17,7 +17,6 @@
 
 	public class IndexPage extends View {
 
-		private var checkin:BigButton;
 		private var userdata:BigButton;
 		private var plan:BigButton;
 		private var timetable:BigButton;
@@ -28,25 +27,20 @@
 		private var help:BigButton;
 
 		public function IndexPage() {
-			checkin = new BigButton(Grid.COLUMN_1, 231, 'orange');
-			checkin.shapeWidth = Grid.SPAN_2;
-			checkin.shapeHeight = Grid.SPAN_1;
-			checkin.addEventListener(MouseEvent.CLICK, function(e:Event) {
-				var checkIn:CheckInOverlay = new CheckInOverlay();
-				
-				checkIn.cancelCallback = null;
-				checkIn.submitCallback = function() {
-					Main.CONTENT.replaceView(Views.UserData);
-				};
-				
-				Main.CONTENT.showOverlay(checkIn);
-			});
-
-			userdata = new BigButton(Grid.COLUMN_1, 441, 'orange');
+			userdata = new BigButton(Grid.COLUMN_1, 231, 'orange');
 			userdata.shapeWidth = Grid.SPAN_2;
-			userdata.shapeHeight = Grid.SPAN_1;
+			userdata.shapeHeight = Grid.SPAN_2;
 			userdata.addEventListener(MouseEvent.CLICK, function(e:Event) {
-				Main.CONTENT.pushView(Views.UserData);
+				if (Main.USER.isLoggedIn()) {
+					Main.CONTENT.pushView(Views.UserData);
+				} else {
+					var checkIn:CheckInOverlay = new CheckInOverlay();
+					checkIn.afterFinishCallback = function(e:Event) {
+						trace('check in done. load userdata now.');
+						Main.CONTENT.pushView(Views.UserData);
+					};
+					Main.CONTENT.showOverlay(checkIn);
+				}
 			});
 
 			plan = new BigButton(Grid.COLUMN_3, 231, 'red');
@@ -77,7 +71,6 @@
 
 			update();
 
-			addChild(checkin);
 			addChild(userdata);
 			addChild(plan);
 			addChild(timetable);
@@ -92,8 +85,7 @@
 			if (Main.LANGUAGE == 'DE') {
 				Main.HEADER.setText('Jetzt wirds laut!');
 
-				checkin.setText('Check-In');
-				userdata.setText('Meine Daten\n(SPÄTER ein button\nmit Check-ín)');
+				userdata.setText(Main.USER.isLoggedIn() ? 'Meine Daten' : 'Check-In');
 				plan.setText('Lageplan');
 				timetable.setText('Zeitplan');
 				workshops.setText('Workshops');
@@ -104,8 +96,7 @@
 			} else if (Main.LANGUAGE == 'EN') {
 				Main.HEADER.setText('Now it gets loud!');
 
-				checkin.setText('Check-in');
-				userdata.setText('My data\n(SPÄTER ein button\nmit Check-ín)');
+				userdata.setText(Main.USER.isLoggedIn() ? 'My data' : 'Check-in');
 				plan.setText('Map');
 				timetable.setText('Timetable');
 				workshops.setText('Workshops');

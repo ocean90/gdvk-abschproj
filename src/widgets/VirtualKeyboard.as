@@ -89,15 +89,18 @@
 			TweenLite.to(Main.CONTENT, 0.8, { y: -moveUp });
 			TweenLite.to(Main.FOOTER, 0.8, { y: -moveUp });
 			
-			y = Main.STAGE.stageHeight - Grid.BUTTON_BAR_HEIGHT;
-			visible = true;
-			TweenLite.to(this, 0.8, { y: y - moveUp });
+			if (!visible) {
+				y = Main.STAGE.stageHeight - Grid.BUTTON_BAR_HEIGHT;
+				visible = true;
+			}
+			TweenLite.to(this, 0.8, { y: Main.STAGE.stageHeight - Grid.BUTTON_BAR_HEIGHT - moveUp });
 			
-			keys.alpha = 0;
 			TweenLite.to(Main.FOOTER.buttons, 0.2, { autoAlpha: 0 });
 			TweenLite.to(this.keys, 0.4, { autoAlpha: 1 });
+			
 			if (Main.CONTENT.overlay) {
 				TweenLite.to(Main.CONTENT.overlay.darkenButtonBar, 0.4, { autoAlpha: 0 });
+				TweenLite.to(Main.CONTENT.overlay.contentBox, 0.8, { y: Main.STAGE.height * 0.5 - Main.CONTENT.overlay.height * 0.5 + 60 });
 			}
 			
 			Main.STAGE.focus = activeTextField;
@@ -116,8 +119,10 @@
 			
 			TweenLite.to(this.keys, 0.4, { delay: 0.2, autoAlpha: 0 });
 			TweenLite.to(Main.FOOTER.buttons, 0.4, { delay: 0.8, autoAlpha: 1 });
+			
 			if (Main.CONTENT.overlay) {
 				TweenLite.to(Main.CONTENT.overlay.darkenButtonBar, 0.4, { autoAlpha: 0.8 });
+				TweenLite.to(Main.CONTENT.overlay.contentBox, 0.8, { y: Main.STAGE.height * 0.5 - Main.CONTENT.overlay.height * 0.5 });
 			}
 			
 			activeTextField = null;

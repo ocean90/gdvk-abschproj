@@ -17,8 +17,6 @@
 			showCancelButton((Main.LANGUAGE == 'DE' ? 'Abbrechen' : 'Cancel'), function() {
 				Main.CONTENT.hideOverlay();
 			});
-
-			content.addChild(cancel)
 		}
 	}
 }

@@ -153,9 +153,11 @@
 		
 		public function hideOverlay() {
 			if (this.overlay) {
-				this.overlay.destroy();
-				removeChild(this.overlay);
+				var old:PageOverlay = this.overlay;
 				this.overlay = null;
+				
+				old.destroy();
+				removeChild(old);
 				
 				Main.KEYBOARD.activateFor(null);
 				Main.HEADER.reset();
@@ -165,59 +167,5 @@
 				view.update();
 			}
 		}
-		
-		public function resetButtonBar() {
-			if (overlay) {
-				overlay.cancel.visible = false;
-				overlay.submit.visible = false;
-			}
-			Main.FOOTER.resetButtonBar();
-		}
-		
-		/**
-		 * Redirects the cancel callback registration to the overlay or the button bar.
-		 */
-		public function showCancelButton(text:String, callback:Function) {
-			if (overlay) {
-				overlay.showCancelButton(text, callback);
-			} else {
-				Main.FOOTER.showCancelButton(text, callback);
-			}
-		}
-		
-		/**
-		 * Returns the cancel button of the overlay or the buttonbar.
-		 */
-		public function get cancelButton():SmallButton {
-			if (overlay) {
-				return overlay.cancel;
-			} else {
-				return Main.FOOTER.cancel;
-			}
-		}
-
-		/**
-		 * Redirects the submit callback registration to the overlay or the button bar.
-		 */
-		public function showSubmitButton(text:String, callback:Function) {
-			if (overlay) {
-				overlay.showSubmitButton(text, callback);
-			} else {
-				Main.FOOTER.showSubmitButton(text, callback);
-			}
-		}
-		
-		/**
-		 * Returns the cancel button of the overlay or the buttonbar.
-		 */
-		public function get submitButton():SmallButton {
-			if (overlay) {
-				return overlay.submit;
-			} else {
-				return Main.FOOTER.submit;
-			}
-		}
-
 	}
-
 }

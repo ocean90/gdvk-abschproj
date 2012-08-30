@@ -28,11 +28,11 @@
 //		public var login:SmallButton;
 		public var logout:SmallButton;
 
-		var cancel:SmallButton;
+		public var cancel:SmallButton;
 		// callback function, argument Event
 		private var cancelCallback:Function;
 
-		var submit:SmallButton;
+		public var submit:SmallButton;
 		// callback function, argument Event
 		private var submitCallback:Function;
 
@@ -175,7 +175,7 @@
 			}
 		}
 
-		function showCancelButton(text:String, callback:Function) {
+		public function showCancelButton(text:String, callback:Function) {
 			cancel.x = Grid.COLUMN_1;
 			cancel.shapeWidth = Grid.SPAN_1;
 			cancel.visible = true;
@@ -189,7 +189,7 @@
 			}
 		}
 
-		function showSubmitButton(text:String, callback:Function) {
+		public function showSubmitButton(text:String, callback:Function) {
 			submit.x = Grid.COLUMN_6;
 			submit.shapeWidth = Grid.SPAN_1;
 			submit.visible = true;
@@ -213,7 +213,7 @@
 			logout.setText(Main.LANGUAGE == 'DE' ? 'Abmelden' : 'Logout');
 		}
 
-		function resetButtonBar() {
+		public function resetButtonBar() {
 			TweenLite.to(background, 0.3, { x: 0, ease:Quint.easeOut });
 
 			if (Main.CONTENT.length <= 1) {

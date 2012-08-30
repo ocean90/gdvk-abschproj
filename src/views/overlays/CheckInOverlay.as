@@ -42,29 +42,8 @@
 		private var dateOfBirthLabel:TextLabel;
 		private var dateOfBirthInput:InputField;
 
-		// Function which was called if the used cancel the login. No arguments.
-		// See DEFAULT_CANCEL_CALLBACK. Could also be null to use the default!
-		public var cancelCallback:Function = null;
-		
-		// Function which was called if the used finished the login. No arguments.
-		// See DEFAULT_SUBMIT_CALLBACK. Could also be null to use the default!
-		public var submitCallback:Function = null;
-		
-		public static const DEFAULT_CANCEL_CALLBACK = function() {
-			if (Main.CONTENT.overlay) {
-				Main.CONTENT.hideOverlay();
-			} else {
-				Main.CONTENT.popView();
-			}
-		};
-		
-		public static const DEFAULT_SUBMIT_CALLBACK = function() {
-			if (Main.CONTENT.overlay) {
-				Main.CONTENT.hideOverlay();
-			} else {
-				Main.CONTENT.popView();
-			}
-		};
+		// Function which was called if the user are successfully logged in!
+		public var afterFinishCallback:Function = null;
 		
 		public function CheckInOverlay(background:* = 0xffffff, w:Number = 870,h:Number = 650) {
 			super(background, w, h);
@@ -220,10 +199,6 @@
 		private function reset() {
 			Main.KEYBOARD.hide();
 			
-			Main.CONTENT.resetButtonBar();
-//			Main.FOOTER.login.visible = false;
-			Main.FOOTER.logout.visible = false;
-			
 			// Before position could be changed ensure that no tween is running.
 			
 			TweenLite.killTweensOf(question);
@@ -296,17 +271,8 @@
 				}
 			}
 			
-			Main.CONTENT.showCancelButton(Main.LANGUAGE == 'DE' ? 'Abbrechen' : 'Cancel', function(e:Event) {
-				// call callback
-				if (cancelCallback != null) {
-					cancelCallback();
-				} else {
-					DEFAULT_CANCEL_CALLBACK();
-				}
-				
-				// reset callback
-				cancelCallback = null;
-				submitCallback = null;
+			showCancelButton(Main.LANGUAGE == 'DE' ? 'Abbrechen' : 'Cancel', function(e:Event) {
+				Main.CONTENT.hideOverlay();
 			});
 		}
 
@@ -429,21 +395,21 @@
 			}
 			
 			if (validData) {
-				Main.CONTENT.cancelButton.color = 'red';
-				Main.CONTENT.cancelButton.textFormat.color = 0x000000;
+				cancel.color = 'red';
+				cancel.textFormat.color = 0x000000;
 				
-				Main.CONTENT.submitButton.color = 'green';
-				Main.CONTENT.submitButton.textFormat.color = 0x000000;
+				submit.color = 'green';
+				submit.textFormat.color = 0x000000;
 			} else {
-				Main.CONTENT.cancelButton.color = 'red';
-				Main.CONTENT.cancelButton.textFormat.color = 0x000000;
+				cancel.color = 'red';
+				cancel.textFormat.color = 0x000000;
 				
-				Main.CONTENT.submitButton.color = 'lightgray';
-				Main.CONTENT.submitButton.textFormat.color = 0x888888;
+				submit.color = 'lightgray';
+				submit.textFormat.color = 0x888888;
 			}
 			
-			Main.CONTENT.cancelButton.update();
-			Main.CONTENT.submitButton.update();
+			cancel.update();
+			submit.update();
 		}
 		
 		/**
@@ -514,7 +480,7 @@
 			// hack if someone clicks fast on yes and no
 			reset();
 			
-			Main.CONTENT.showCancelButton(Main.LANGUAGE == 'DE' ? 'Zurück' : 'Back', function(e:Event) {
+			showCancelButton(Main.LANGUAGE == 'DE' ? 'Zurück' : 'Back', function(e:Event) {
 				mode = MODE_QUESTION;
 				reset();
 				
@@ -529,7 +495,7 @@
 				TweenLite.to(idInput, fadeInTime,   { autoAlpha: 0, delay: fadeInDelay });
 			});
 			
-			Main.CONTENT.showSubmitButton(Main.LANGUAGE == 'DE' ? 'Weiter' : 'Next', function(e:Event) {
+			showSubmitButton(Main.LANGUAGE == 'DE' ? 'Weiter' : 'Next', function(e:Event) {
 				if (checkData(e)) {
 					mode = MODE_PERSONAL_DATA;
 					
@@ -561,7 +527,7 @@
 			// hack if someone clicks fast on yes and no
 			reset();
 			
-			Main.CONTENT.showCancelButton(Main.LANGUAGE == 'DE' ? 'Zurück' : 'Back', function(e:Event) {
+			showCancelButton(Main.LANGUAGE == 'DE' ? 'Zurück' : 'Back', function(e:Event) {
 				mode = MODE_QUESTION;
 				reset();
 				
@@ -582,7 +548,7 @@
 				TweenLite.to(dateOfBirthInput, fadeInTime, { autoAlpha: 0, delay: fadeInDelay });
 			});
 			
-			Main.CONTENT.showSubmitButton(Main.LANGUAGE == 'DE' ? 'Weiter' : 'Next', function(e:Event) {
+			showSubmitButton(Main.LANGUAGE == 'DE' ? 'Weiter' : 'Next', function(e:Event) {
 				if (!checkData(e)) {
 					return;
 				}
@@ -596,16 +562,11 @@
 					'dateOfBirth': dateOfBirthInput.textField.text
 				});
 				
-				// call callback
-				if (submitCallback != null) {
-					submitCallback();
-				} else {
-					DEFAULT_SUBMIT_CALLBACK();
+				if (afterFinishCallback != null) {
+					afterFinishCallback(e);
 				}
 				
-				// reset callback
-				cancelCallback = null;
-				submitCallback = null;
+				Main.CONTENT.hideOverlay();
 			});
 			
 			firstnameLabel.x = Grid.COLUMN_2;
