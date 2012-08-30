@@ -150,7 +150,7 @@
 						cover,
 						0.5,
 						{
-							x: _width / 2 - cover.width / 2 - distanceFromCenter * 30,
+							x: _width / 2 - cover.width / 2 - distanceFromCenter * 50,
 							y: 250,
 							z: 0,
 							rotationY: -45
@@ -166,7 +166,7 @@
 						cover,
 						0.5,
 						{
-							x: cover.width * 0.53 + distanceFromCenter * 30,
+							x: cover.width * 0.53 + distanceFromCenter * 50,
 							y: 250,
 							z: cover.width * 0.70,
 							rotationY: 45
