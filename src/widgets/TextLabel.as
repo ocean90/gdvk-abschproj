@@ -17,6 +17,7 @@
 			textFormat.color = '0x000000';
 			textFormat.font = 'Myriad Pro';
 			textFormat.size = 20;
+			textFormat.leading = 20;
 			
 			textField = new TextField();
 			textField.mouseEnabled = false;
