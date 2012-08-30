@@ -1,4 +1,4 @@
-package widgets {
+﻿package widgets {
 	import com.greensock.TweenLite;
 
 	import flash.display.Sprite;
@@ -28,7 +28,8 @@ package widgets {
 			_overlay = new Sprite();
 			_overlay.visible = false;
 			_overlay.alpha = 0;
-			Main.STAGE.addChild(_overlay);
+			// Wird dem Content angehangen damit es zwar Header und Footer überlagert, aber nicht das Keyboard.
+			Main.CONTENT.addChild(_overlay);
 
 			darkenPage();
 			paintContentBox();
@@ -43,10 +44,15 @@ package widgets {
 		}
 
 		public function destroy(e:Event) {
+			Main.HEADER.reset();
+			Main.FOOTER.resetButtonBar();
+			
+			var self:PageOverlay = this;
 			TweenLite.to(_overlay, 0.3, { alpha: 0, onComplete: function() {
 				_overlay.visible = false;
 				while (_overlay.numChildren) {
 					_overlay.removeChildAt(0);
+					self.parent.removeChild(self);
 				}
 			}});
 		}

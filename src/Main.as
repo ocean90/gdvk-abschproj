@@ -52,10 +52,10 @@
 			Main.KEYBOARD.y = 620;
 			Main.KEYBOARD.visible = false;
 
-			addChild(Main.CONTENT);
 			addChild(Main.HEADER);
 			addChild(Main.FOOTER);
-
+			// Content überdeckt Header und Footer für Overlays, aber nicht das Keyboard.
+			addChild(Main.CONTENT);
 			addChild(Main.KEYBOARD);
 
 			Main.CONTENT.pushHome(Views.Index);
