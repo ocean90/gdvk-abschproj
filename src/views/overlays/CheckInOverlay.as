@@ -5,15 +5,15 @@
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
 	
-	import views.View;
-	import utils.Grid;
 	import com.greensock.TweenLite;
-	import views.Views;
+	
+	import utils.Grid;
+	import views.View;
+	import views.PageOverlay;
 	import widgets.InputField;
 	import widgets.TextLabel;
 	import widgets.SmallButton;
 	import widgets.BigButton;
-	import widgets.PageOverlay;
 
 	public class CheckInOverlay extends PageOverlay {
 

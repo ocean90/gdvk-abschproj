@@ -16,10 +16,11 @@
 	import views.ButtonBar;
 	import views.Header;
 	import views.UI;
-	import views.Views;
+	import views.PageOverlay;
 
+	import views.main.IndexPage;
+	
 	import widgets.VirtualKeyboard;
-	import widgets.PageOverlay;
 
 	public class Main extends MovieClip {
 

@@ -7,13 +7,12 @@
 	import utils.Grid;
 
 	import views.View;
-	import views.Views;
-
+	import views.events.TimetablePage;
+	import views.events.WorkshopsPage;
 	import views.overlays.HelpOverlay;
+	import views.overlays.CheckInOverlay;
 
 	import widgets.BigButton;
-	import widgets.PageOverlay;
-	import views.overlays.CheckInOverlay;
 
 	public class IndexPage extends View {
 

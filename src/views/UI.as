@@ -5,7 +5,8 @@
 	import flash.events.Event;
 
 	import com.greensock.TweenLite;
-	import widgets.PageOverlay;
+	
+	import views.PageOverlay;
 	import widgets.SmallButton;
 
 	public class UI extends MovieClip {

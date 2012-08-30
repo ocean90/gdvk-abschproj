@@ -1,15 +1,19 @@
-﻿package widgets {
+﻿package views {
 	import com.greensock.TweenLite;
 
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.geom.Rectangle;
+	import flash.events.MouseEvent;
+
+	import com.greensock.easing.Back;
 
 	import utils.Colors;
 	import utils.Grid;
 	import views.View;
-	import flash.events.MouseEvent;
-	import com.greensock.easing.Back;
+	import widgets.InverseText;
+	import widgets.SmallButton;
+	import widgets.VirtualKeyboard;
 
 	public class PageOverlay extends View {
 		
