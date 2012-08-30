@@ -7,6 +7,7 @@
 	import utils.Grid;
 
 	import views.View;
+	import views.Views;
 	import views.events.TimetablePage;
 	import views.events.WorkshopsPage;
 	import views.overlays.HelpOverlay;

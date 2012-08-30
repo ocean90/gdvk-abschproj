@@ -17,6 +17,7 @@
 	import views.Header;
 	import views.UI;
 	import views.PageOverlay;
+	import views.Views;
 
 	import views.main.IndexPage;
 	
