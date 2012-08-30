@@ -36,6 +36,7 @@
 			}
 
 			Main.FOOTER.resetButtonBar();
+			Main.FOOTER.animateFooter(Grid.COLUMN_3 - Grid.COLUMN_PADDING);
 
 			// TODO irgendwoher den status nehmen
 			if (TODO) {
@@ -57,8 +58,6 @@
 				Main.FOOTER.submit.shapeWidth = Grid.SPAN_2;
 				Main.FOOTER.submit.update();
 			}
-
-			Main.FOOTER.animateFooter(Grid.COLUMN_3 - Grid.COLUMN_PADDING);
 		}
 
 		public function registerWorkshops() {
