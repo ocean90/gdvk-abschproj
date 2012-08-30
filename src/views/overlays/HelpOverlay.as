@@ -24,6 +24,7 @@
 			infoText.y = 300;
 			infoText.shapeWidth = Grid.SPAN_4;
 			infoText.shapeHeight = 300;
+			infoText.textFormat.leading = 20;
 			
 			if (Main.LANGUAGE == 'DE') {
 				infoText.setText('Wenn Sie hilfe an ihrem aktuellen Ort brauchen drücken Sie bitte auf "Hilfe rufen".\n' +

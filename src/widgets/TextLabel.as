@@ -17,7 +17,7 @@
 			textFormat.color = '0x000000';
 			textFormat.font = 'Myriad Pro';
 			textFormat.size = 20;
-			textFormat.leading = 20;
+			// hier kein leading. das verschiebt einzeiler komisch
 			
 			textField = new TextField();
 			textField.mouseEnabled = false;

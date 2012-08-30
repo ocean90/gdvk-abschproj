@@ -18,12 +18,14 @@
 		private var userSeatPosition:Point = new Point(200, 20);
 		private var userSeatPositionFloor = 2; // 0 = EG
 		private var infoPointPositions:Array = new Array();
+		private var workshopPositions:Array = new Array();
 		
 		private var mainEntryPositionLabel:TextLabel;
 		private var otherEntryPositionLabel:TextLabel;
 		private var currentPositionLabel:TextLabel;
 		private var userSeatPositionLabel:TextLabel;
 		private var infoPointPositionLabel:TextLabel;
+		private var workshopsLabel:TextLabel;
 		
 		private var _building:Array;
 		private var _house:Sprite;
@@ -45,35 +47,44 @@
 			otherEntryPositions.push(new Point(500, 150));
 			otherEntryPositions.push(new Point(800, 250));
 			
+			workshopPositions.push(new Point(300, 20));
+			workshopPositions.push(new Point(350, 20));
+			workshopPositions.push(new Point(700, 220));
+			
 			var lineHeight:int = 40;
 			var posY:int = 260;
 			
 			mainEntryPositionLabel = createLegendLabel(posY += lineHeight);
 			mainEntryPositionLabel.graphics.lineStyle(2, 0x000000);
 			mainEntryPositionLabel.graphics.beginFill(0xffffff);
-			mainEntryPositionLabel.graphics.drawRect(0, 1, 25, 25);
+			mainEntryPositionLabel.graphics.drawRect(0, 11, 25, 25);
 			mainEntryPositionLabel.graphics.endFill();
 			
 			otherEntryPositionLabel = createLegendLabel(posY += lineHeight);
 			otherEntryPositionLabel.graphics.lineStyle(2, 0x000000);
 			otherEntryPositionLabel.graphics.beginFill(0xffffff);
-			otherEntryPositionLabel.graphics.drawRect(4, 7, 15, 15);
+			otherEntryPositionLabel.graphics.drawRect(4, 17, 15, 15);
 			otherEntryPositionLabel.graphics.endFill();
 			
 			currentPositionLabel = createLegendLabel(posY += lineHeight);
 			currentPositionLabel.graphics.beginFill(Colors.getColor('red'));
-			currentPositionLabel.graphics.drawCircle(12, 14, 12);
+			currentPositionLabel.graphics.drawCircle(12, 24, 12);
 			currentPositionLabel.graphics.endFill();
 			
 			userSeatPositionLabel = createLegendLabel(posY += lineHeight);
 			userSeatPositionLabel.graphics.beginFill(Colors.getColor('blue'));
-			userSeatPositionLabel.graphics.drawCircle(12, 14, 12);
+			userSeatPositionLabel.graphics.drawCircle(12, 24, 12);
 			userSeatPositionLabel.graphics.endFill();
 			
 			infoPointPositionLabel = createLegendLabel(posY += lineHeight);
 			infoPointPositionLabel.graphics.beginFill(Colors.getColor('orange'));
-			infoPointPositionLabel.graphics.drawCircle(12, 14, 12);
+			infoPointPositionLabel.graphics.drawCircle(12, 24, 12);
 			infoPointPositionLabel.graphics.endFill();
+			
+			workshopsLabel = createLegendLabel(posY += lineHeight);
+			workshopsLabel.graphics.beginFill(Colors.getColor('purple'));
+			workshopsLabel.graphics.drawCircle(12, 24, 12);
+			workshopsLabel.graphics.endFill();
 		}
 		
 		private function createLegendLabel(posY:int):TextLabel {
@@ -181,6 +192,17 @@
 				}
 			}
 
+			// workshopPositions
+			for (i = 0; i < workshopPositions.length; i++) {
+				if ((floorNumber == 3 && i <= 1) || (floorNumber == 0 && i > 1)) {
+					var workshopPosition:Point = workshopPositions[i];
+					story.graphics.lineStyle(2, 0x000000);
+					story.graphics.beginFill(Colors.getColor('purple'));
+					story.graphics.drawCircle(workshopPosition.x - 5, workshopPosition.y - 5, 12);
+					story.graphics.endFill();
+				}
+			}
+
 			return story;
 		}
 
@@ -201,7 +223,7 @@
 				showLegendLabel(currentPositionLabel, 'Aktuelle Position', delayTime += addDelay);
 				showLegendLabel(userSeatPositionLabel, 'Ihr Sitzplatz', delayTime += addDelay);
 				showLegendLabel(infoPointPositionLabel, 'Informationspunkt', delayTime += addDelay);
-				
+				showLegendLabel(workshopsLabel, 'Workshops', delayTime += addDelay);
 			} else if (Main.LANGUAGE == 'EN') {
 				Main.HEADER.setText('Map');
 				Main.HEADER.addHeadline('Legend', 200, 0.8);
@@ -211,7 +233,7 @@
 				showLegendLabel(currentPositionLabel, 'Your current position', delayTime += addDelay);
 				showLegendLabel(userSeatPositionLabel, 'Your seat', delayTime += addDelay);
 				showLegendLabel(infoPointPositionLabel, 'Information point', delayTime += addDelay);
-				
+				showLegendLabel(workshopsLabel, 'Workshops', delayTime += addDelay);
 			}
 			
 			_house = new Sprite();
@@ -230,8 +252,43 @@
 					ease:Back.easeOut
 				});
 			}
+			
+			if (Main.LANGUAGE == 'DE') {
+				addDelay = 0.1;
+				
+				addLabel(Grid.COLUMN_2, 150, 'Workshop-Raum 3.204', delayTime += addDelay);
+				addLine(350, 190, 555, 286, delayTime += addDelay);
+				addLabel(Grid.COLUMN_3, 150, 'Workshop-Raum 3.208', delayTime += addDelay);
+				addLine(535, 190, 591, 275, delayTime += addDelay);
+				addLabel(Grid.COLUMN_6 - 15, 580, 'Workshop-Raum 1.114', delayTime += addDelay);
+				addLine(Grid.COLUMN_6 - 20, 605, 900, 614, delayTime += addDelay);
+			}
 		}
 		
+		private function addLabel(posX:int, posY:int, text:String, delay:Number) {
+			var label:TextLabel = new TextLabel();
+			label.x = posX;
+			label.y = posY;
+			label.shapeWidth = Grid.SPAN_2;
+			label.shapeHeight = 50;
+			label.setText(text);
+			addChild(label);
+			
+			label.alpha = 0;
+			TweenLite.to(label, 1.2, { autoAlpha: 1, delay: delay });
+		}
+		
+		private function addLine(startX:int, startY:int, endX:int, endY:int, delay:Number) {
+			var sprite:Sprite = new Sprite();
+			sprite.graphics.lineStyle(2, 0x000000);
+			sprite.graphics.moveTo(startX, startY);
+			sprite.graphics.lineTo(endX, endY);
+			sprite.graphics.endFill();
+			addChild(sprite);
+			
+			sprite.alpha = 0;
+			TweenLite.to(sprite, 1.2, { autoAlpha: 1, delay: delay });
+		}
 	}
 
 }
