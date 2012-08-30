@@ -10,6 +10,7 @@
 	import views.View;
 	import flash.text.TextFormatAlign;
 	import utils.Grid;
+	import views.ButtonBar;
 
 	public class VirtualKeyboard extends View {
 
@@ -80,20 +81,28 @@
 			keyboardMode = MODE_UPPERCASE;
 			update();
 
-			TweenLite.to(Main.HEADER, 0.4, { y: -KEYBOARD_HEIGHT });
-			TweenLite.to(Main.CONTENT, 0.4, { y: -KEYBOARD_HEIGHT });
-			TweenLite.to(Main.FOOTER, 0.4, { y: -KEYBOARD_HEIGHT });
-			visible = true;
+			var moveUp:int = KEYBOARD_HEIGHT - Grid.BUTTON_BAR_HEIGHT;
+			TweenLite.to(Main.HEADER, 0.8, { y: -moveUp });
+			TweenLite.to(Main.CONTENT, 0.8, { y: -moveUp });
+			TweenLite.to(Main.FOOTER, 0.8, { y: -moveUp });
+			
+			y = Main.STAGE.stageHeight - Grid.BUTTON_BAR_HEIGHT;
+			TweenLite.to(this, 0.8, { y: y - moveUp, autoAlpha: 1 });
+			TweenLite.to(Main.FOOTER.buttons, 0.8, { autoAlpha: 0 });
+			
 			Main.STAGE.focus = activeTextField;
 		}
 
 		public function hide() {
 			Main.STAGE.focus = null;
-			visible = false;
-
-			TweenLite.to(Main.HEADER, 0.4, { y: 0 });
-			TweenLite.to(Main.CONTENT, 0.4, { y: 0 });
-			TweenLite.to(Main.FOOTER, 0.4, { y: 0 });
+			
+			TweenLite.to(Main.HEADER, 0.8, { y: 0 });
+			TweenLite.to(Main.CONTENT, 0.8, { y: 0 });
+			TweenLite.to(Main.FOOTER, 0.8, { y: 0 });
+			
+			TweenLite.to(this, 0.8, { y: Main.STAGE.stageHeight - Grid.BUTTON_BAR_HEIGHT, autoAlpha: 0 });
+			TweenLite.to(Main.FOOTER.buttons, 0.8, { autoAlpha: 1 });
+			
 			activeTextField = null;
 			onEnterFunction = null;
 		}

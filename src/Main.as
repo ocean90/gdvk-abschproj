@@ -49,7 +49,8 @@
 
 			Main.KEYBOARD = new VirtualKeyboard();
 			Main.KEYBOARD.x = Main.STAGE.stageWidth * 0.5 - VirtualKeyboard.KEYBOARD_WIDTH * 0.5;
-			Main.KEYBOARD.y = Main.STAGE.stageHeight - VirtualKeyboard.KEYBOARD_HEIGHT;
+			Main.KEYBOARD.y = Main.STAGE.stageHeight - Grid.BUTTON_BAR_HEIGHT;
+			Main.KEYBOARD.alpha = 0; // für autoAlpha spöter
 			Main.KEYBOARD.visible = false;
 
 			addChild(Main.HEADER);

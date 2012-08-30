@@ -18,6 +18,7 @@
 	public class ButtonBar extends View {
 
 		public var background:MovieClip;
+		public var buttons:Sprite;
 
 		private var de:SmallButton;
 		private var en:SmallButton;
@@ -43,6 +44,8 @@
 			background.y = Main.STAGE.stageHeight - 100;
 			background.x = 0;
 			addChild(background);
+			
+			buttons = new Sprite();
 
 			englishFlag = new EnglishFlag();
 			germanFlag = new GermanFlag();
@@ -57,8 +60,6 @@
 			de.shapeHeight = Grid.BUTTON_BAR_BUTTON_HEIGHT;
 			de.addEventListener(MouseEvent.CLICK, changeLanguage);
 			de.update();
-			addChild(de);
-
 			germanFlag.x = 10;
 			germanFlag.y = (de.shapeHeight - de.defaultShadowSize) * 0.5 - germanFlag.height * 0.5;
 			de.addChild(germanFlag);
@@ -73,7 +74,6 @@
 			en.shapeHeight = Grid.BUTTON_BAR_BUTTON_HEIGHT;
 			en.addEventListener(MouseEvent.CLICK, changeLanguage);
 			en.update();
-			addChild(en);
 			englishFlag.x = 10;
 			englishFlag.y = (en.shapeHeight - en.defaultShadowSize) * 0.5 - englishFlag.height * 0.5;
 			en.addChild(englishFlag);
@@ -87,7 +87,6 @@
 			home.shapeHeight = Grid.BUTTON_BAR_BUTTON_HEIGHT;
 			home.visible = false;
 			home.addEventListener(MouseEvent.CLICK, Main.CONTENT.onHome);
-			addChild(home);
 
 			back = new SmallButton('', 'lightgray');
 			back.textFormat.color = '0x000000';
@@ -97,7 +96,6 @@
 			back.shapeHeight = Grid.BUTTON_BAR_BUTTON_HEIGHT;
 			back.visible = false;
 			back.addEventListener(MouseEvent.CLICK, Main.CONTENT.onBack);
-			addChild(back);
 
 			login = new SmallButton('', 'lightgreen');
 			login.textFormat.color = '0x000000';
@@ -111,7 +109,6 @@
 				Views.CheckIn.submitCallback = null;
 				Main.CONTENT.pushView(Views.CheckIn);
 			});
-			addChild(login);
 
 			logout = new SmallButton('', 'lightred');
 			logout.textFormat.color = '0x000000';
@@ -129,7 +126,6 @@
 				login.visible = true;
 				TweenLite.to(login, 2.0, { autoAlpha: 1.0 });
 			});
-			addChild(logout);
 
 			cancel = new SmallButton('', 'lightred');
 			cancel.textFormat.color = '0x000000';
@@ -139,7 +135,6 @@
 			cancel.shapeHeight = Grid.BUTTON_BAR_BUTTON_HEIGHT;
 			cancel.visible = false;
 			cancel.addEventListener(MouseEvent.CLICK, onCancel);
-			addChild(cancel);
 
 			submit = new SmallButton('', 'lightgreen');
 			submit.textFormat.color = '0x000000';
@@ -149,7 +144,17 @@
 			submit.shapeHeight = Grid.BUTTON_BAR_BUTTON_HEIGHT;
 			submit.visible = false;
 			submit.addEventListener(MouseEvent.CLICK, onSubmit);
-			addChild(submit);
+			
+			// Add buttons
+			buttons.addChild(de);
+			buttons.addChild(en);
+			buttons.addChild(home);
+			buttons.addChild(back);
+			buttons.addChild(login);
+			buttons.addChild(logout);
+			buttons.addChild(cancel);
+			buttons.addChild(submit);
+			addChild(buttons);
 		}
 
 		public function changeLanguage(e:Event) {
