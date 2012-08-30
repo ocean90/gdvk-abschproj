@@ -1,4 +1,4 @@
-﻿package views.user {
+﻿package views.overlays {
 	import flash.events.Event;
 	import flash.display.Loader;
 	import flash.events.MouseEvent;
@@ -6,18 +6,16 @@
 	import flash.text.TextFieldAutoSize;
 	
 	import views.View;
-	import widgets.InputField;
-	import widgets.TextLabel;
 	import utils.Grid;
-	import widgets.SmallButton;
-	import widgets.BigButton;
 	import com.greensock.TweenLite;
 	import views.Views;
+	import widgets.InputField;
+	import widgets.TextLabel;
+	import widgets.SmallButton;
+	import widgets.BigButton;
+	import widgets.PageOverlay;
 
-	/**
-	 * STEP 1 - Check in switch with question "have you already an id?"
-	 */
-	public class CheckInPage extends View {
+	public class CheckInOverlay extends PageOverlay {
 
 		private static var MODE_QUESTION:String = 'id?';
 		private static var MODE_PERSONAL_ID:String = 'yes';
@@ -68,7 +66,15 @@
 			}
 		};
 		
-		public function CheckInPage() {
+		public function CheckInOverlay(background:* = 0xffffff, w:Number = 870,h:Number = 650) {
+			super(background, w, h);
+
+			content.x = -Grid.COLUMN_2 + Grid.COLUMN_PADDING;
+			content.y = -60;
+			createUI();
+		}
+		
+		public function createUI() {
 			
 			question = new TextLabel();
 			question.shapeWidth = Grid.SPAN_4;
@@ -194,21 +200,21 @@
 			});
 			dateOfBirthInput.textField.addEventListener(Event.CHANGE, changeData);
 			
-			addChild(yesButton);
-			addChild(noButton);
-			addChild(question);
+			content.addChild(yesButton);
+			content.addChild(noButton);
+			content.addChild(question);
 			
-			addChild(idLabel);
-			addChild(idInput);
+			content.addChild(idLabel);
+			content.addChild(idInput);
 			
-			addChild(firstnameLabel);
-			addChild(firstnameInput);
-			addChild(lastnameLabel);
-			addChild(lastnameInput);
-			addChild(cityLabel);
-			addChild(cityInput);
-			addChild(dateOfBirthLabel);
-			addChild(dateOfBirthInput);
+			content.addChild(firstnameLabel);
+			content.addChild(firstnameInput);
+			content.addChild(lastnameLabel);
+			content.addChild(lastnameInput);
+			content.addChild(cityLabel);
+			content.addChild(cityInput);
+			content.addChild(dateOfBirthLabel);
+			content.addChild(dateOfBirthInput);
 		}
 
 		private function reset() {
@@ -321,13 +327,11 @@
 			noButton.alpha = 1.0;
 			noButton.visible = true;
 
-			/* auskommentiert für CheckInOverview
 			if (Main.LANGUAGE == 'DE') {
-				Main.HEADER.setText('Check-In');
+				setText('Check-In');
 			} else if (Main.LANGUAGE == 'EN') {
-				Main.HEADER.setText('Check-in');
+				setText('Check-in');
 			}
-			*/
 			
 			if (Main.LANGUAGE == 'DE') {
 				yesButton.setText('Check-In mit\npersönlicher ID');

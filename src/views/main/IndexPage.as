@@ -32,14 +32,14 @@
 			checkin.shapeWidth = Grid.SPAN_2;
 			checkin.shapeHeight = Grid.SPAN_1;
 			checkin.addEventListener(MouseEvent.CLICK, function(e:Event) {
-				Views.CheckIn.cancelCallback = null;
-				Views.CheckIn.submitCallback = function() {
+				var checkIn:CheckInOverlay = new CheckInOverlay();
+				
+				checkIn.cancelCallback = null;
+				checkIn.submitCallback = function() {
 					Main.CONTENT.replaceView(Views.UserData);
 				};
-				/*
-				Main.CONTENT.pushView(Views.CheckIn);
-				*/
-				Main.CONTENT.showOverlay(new CheckInOverlay());
+				
+				Main.CONTENT.showOverlay(checkIn);
 			});
 
 			userdata = new BigButton(Grid.COLUMN_1, 441, 'orange');

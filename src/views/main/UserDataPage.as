@@ -1,4 +1,4 @@
-﻿package views.user {
+﻿package views.main {
 	import views.View;
 	import widgets.TextLabel;
 	import flash.display.Sprite;
