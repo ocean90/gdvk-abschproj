@@ -53,11 +53,19 @@
 		public var submitCallback:Function = null;
 		
 		public static const DEFAULT_CANCEL_CALLBACK = function() {
-			Main.CONTENT.popView();
+			if (Main.CONTENT.overlay) {
+				Main.CONTENT.hideOverlay();
+			} else {
+				Main.CONTENT.popView();
+			}
 		};
 		
 		public static const DEFAULT_SUBMIT_CALLBACK = function() {
-			Main.CONTENT.popView();
+			if (Main.CONTENT.overlay) {
+				Main.CONTENT.hideOverlay();
+			} else {
+				Main.CONTENT.popView();
+			}
 		};
 		
 		public function CheckInPage() {
@@ -67,7 +75,7 @@
 			question.shapeHeight = 100;
 			question.textFormat.size = 30;
 			
-			yesButton = new BigButton(Grid.COLUMN_2, 441, 'yellow');
+			yesButton = new BigButton(Grid.COLUMN_2, 441, 'orange');
 			//yesButton.textFormat.color = '0x000000';
 			yesButton.shapeWidth = Grid.SPAN_2;
 			yesButton.shapeHeight = Grid.SPAN_1;
@@ -81,7 +89,7 @@
 			});
 			yesButton.update();
 			
-			noButton = new BigButton(Grid.COLUMN_4, 441, 'yellow');
+			noButton = new BigButton(Grid.COLUMN_4, 441, 'orange');
 			//noButton.textFormat.color = '0x000000';
 			noButton.shapeWidth = Grid.SPAN_2;
 			noButton.shapeHeight = Grid.SPAN_1;
@@ -96,7 +104,7 @@
 			
 			idLabel = new TextLabel();
 			idLabel.x = Grid.COLUMN_2;
-			idLabel.y = 441;
+			idLabel.y = 400;
 			idLabel.shapeWidth = Grid.SPAN_1;
 			idLabel.shapeHeight = 50;
 //			idLabel.textFormat.align = TextFieldAutoSize.RIGHT;
@@ -105,7 +113,7 @@
 			
 			idInput = new InputField();
 			idInput.x = Grid.COLUMN_3;
-			idInput.y = 441;
+			idInput.y = 400;
 			idInput.shapeWidth = Grid.SPAN_3;
 			idInput.shapeHeight = 50;
 			idInput.update();
@@ -206,8 +214,8 @@
 		private function reset() {
 			Main.KEYBOARD.hide();
 			
-			Main.FOOTER.resetButtonBar();
-			Main.FOOTER.login.visible = false;
+			Main.CONTENT.resetButtonBar();
+//			Main.FOOTER.login.visible = false;
 			Main.FOOTER.logout.visible = false;
 			
 			// Before position could be changed ensure that no tween is running.
@@ -282,7 +290,7 @@
 				}
 			}
 			
-			Main.FOOTER.showCancelButton(Main.LANGUAGE == 'DE' ? 'Abbrechen' : 'Cancel', function(e:Event) {
+			Main.CONTENT.showCancelButton(Main.LANGUAGE == 'DE' ? 'Abbrechen' : 'Cancel', function(e:Event) {
 				// call callback
 				if (cancelCallback != null) {
 					cancelCallback();
@@ -294,7 +302,6 @@
 				cancelCallback = null;
 				submitCallback = null;
 			});
-			Main.FOOTER.cancel.x = Grid.COLUMN_2;
 		}
 
 		public override function update() {
@@ -302,23 +309,25 @@
 			
 			// reset all positions that are changed in onYes or onNo!
 			question.x = Grid.COLUMN_2;
-			question.y = 250;
+			question.y = 200;
 			
 			yesButton.x = Grid.COLUMN_2;
-			yesButton.y = 441;
+			yesButton.y = 350;
 			yesButton.alpha = 1.0;
 			yesButton.visible = true;
 			
 			noButton.x = Grid.COLUMN_4;
-			noButton.y = 441;
+			noButton.y = 350;
 			noButton.alpha = 1.0;
 			noButton.visible = true;
 
+			/* auskommentiert für CheckInOverview
 			if (Main.LANGUAGE == 'DE') {
 				Main.HEADER.setText('Check-In');
 			} else if (Main.LANGUAGE == 'EN') {
 				Main.HEADER.setText('Check-in');
 			}
+			*/
 			
 			if (Main.LANGUAGE == 'DE') {
 				yesButton.setText('Check-In mit\npersönlicher ID');
@@ -416,24 +425,21 @@
 			}
 			
 			if (validData) {
-				Main.FOOTER.cancel.color = 'lightred';
-				Main.FOOTER.cancel.textFormat.color = 0x000000;
+				Main.CONTENT.cancelButton.color = 'red';
+				Main.CONTENT.cancelButton.textFormat.color = 0x000000;
 				
-				Main.FOOTER.submit.color = 'lightgreen';
-				Main.FOOTER.submit.textFormat.color = 0x000000;
+				Main.CONTENT.submitButton.color = 'green';
+				Main.CONTENT.submitButton.textFormat.color = 0x000000;
 			} else {
-				Main.FOOTER.cancel.color = 'lightred';
-				Main.FOOTER.cancel.textFormat.color = 0x000000;
+				Main.CONTENT.cancelButton.color = 'red';
+				Main.CONTENT.cancelButton.textFormat.color = 0x000000;
 				
-				Main.FOOTER.submit.color = 'lightgray';
-				Main.FOOTER.submit.textFormat.color = 0x888888;
+				Main.CONTENT.submitButton.color = 'lightgray';
+				Main.CONTENT.submitButton.textFormat.color = 0x888888;
 			}
 			
-			Main.FOOTER.cancel.x = Grid.COLUMN_2;
-			Main.FOOTER.cancel.update();
-			
-			Main.FOOTER.submit.x = Grid.COLUMN_5;
-			Main.FOOTER.submit.update();
+			Main.CONTENT.cancelButton.update();
+			Main.CONTENT.submitButton.update();
 		}
 		
 		/**
@@ -504,13 +510,13 @@
 			// hack if someone clicks fast on yes and no
 			reset();
 			
-			Main.FOOTER.showCancelButton(Main.LANGUAGE == 'DE' ? 'Zurück' : 'Back', function(e:Event) {
+			Main.CONTENT.showCancelButton(Main.LANGUAGE == 'DE' ? 'Zurück' : 'Back', function(e:Event) {
 				mode = MODE_QUESTION;
 				reset();
 				
 				// fade out - REVERSE
-				TweenLite.to(yesButton, 0.6, { y: yesButton.y + 80, autoAlpha: 1 });
-				TweenLite.to(noButton, 0.6, { y: yesButton.y + 80, autoAlpha: 1 });
+				TweenLite.to(yesButton, 0.6, { autoAlpha: 1 });
+				TweenLite.to(noButton, 0.6, { autoAlpha: 1 });
 				
 				// fade in - REVERSE
 				var fadeInTime:Number = 0.4;
@@ -519,7 +525,7 @@
 				TweenLite.to(idInput, fadeInTime,   { autoAlpha: 0, delay: fadeInDelay });
 			});
 			
-			Main.FOOTER.showSubmitButton(Main.LANGUAGE == 'DE' ? 'Weiter' : 'Next', function(e:Event) {
+			Main.CONTENT.showSubmitButton(Main.LANGUAGE == 'DE' ? 'Weiter' : 'Next', function(e:Event) {
 				if (checkData(e)) {
 					mode = MODE_PERSONAL_DATA;
 					
@@ -533,8 +539,8 @@
 			});
 			
 			// fade out
-			TweenLite.to(yesButton, 0.6, { y: yesButton.y - 80, autoAlpha: 0 });
-			TweenLite.to(noButton, 0.6, { y: yesButton.y - 80, autoAlpha: 0 });
+			TweenLite.to(yesButton, 0.6, { autoAlpha: 0 });
+			TweenLite.to(noButton, 0.6, { autoAlpha: 0 });
 			
 			// fade in
 			var fadeInTime:Number = 2.6;
@@ -551,16 +557,13 @@
 			// hack if someone clicks fast on yes and no
 			reset();
 			
-			Main.FOOTER.showCancelButton(Main.LANGUAGE == 'DE' ? 'Zurück' : 'Back', function(e:Event) {
+			Main.CONTENT.showCancelButton(Main.LANGUAGE == 'DE' ? 'Zurück' : 'Back', function(e:Event) {
 				mode = MODE_QUESTION;
 				reset();
 				
-				// move up - REVERSE
-				TweenLite.to(question, 0.6, { y: question.y + 80 });
-			
 				// face out - REVERSE
-				TweenLite.to(yesButton, 0.6, { y: yesButton.y + 80, autoAlpha: 1 });
-				TweenLite.to(noButton, 0.6, { y: noButton.y + 80, autoAlpha: 1 });
+				TweenLite.to(yesButton, 0.6, { autoAlpha: 1 });
+				TweenLite.to(noButton, 0.6, { autoAlpha: 1 });
 			
 				// fade in - REVERSE
 				var fadeInTime:Number = 0.4;
@@ -575,7 +578,7 @@
 				TweenLite.to(dateOfBirthInput, fadeInTime, { autoAlpha: 0, delay: fadeInDelay });
 			});
 			
-			Main.FOOTER.showSubmitButton(Main.LANGUAGE == 'DE' ? 'Weiter' : 'Next', function(e:Event) {
+			Main.CONTENT.showSubmitButton(Main.LANGUAGE == 'DE' ? 'Weiter' : 'Next', function(e:Event) {
 				if (!checkData(e)) {
 					return;
 				}
@@ -641,12 +644,9 @@
 			dateOfBirthInput.visible = true;
 			dateOfBirthInput.alpha = 0;
 			
-			// move up
-			TweenLite.to(question, 0.6, { y: question.y - 80 });
-			
 			// face out
-			TweenLite.to(yesButton, 0.6, { y: yesButton.y - 80, autoAlpha: 0 });
-			TweenLite.to(noButton, 0.6, { y: noButton.y - 80, autoAlpha: 0 });
+			TweenLite.to(yesButton, 0.6, { autoAlpha: 0 });
+			TweenLite.to(noButton, 0.6, { autoAlpha: 0 });
 			
 			// fade in
 			var fadeInTime:Number = 2.6;

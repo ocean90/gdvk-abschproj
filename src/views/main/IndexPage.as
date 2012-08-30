@@ -13,7 +13,7 @@
 
 	import widgets.BigButton;
 	import widgets.PageOverlay;
-	import views.overlays.LoginOverlay;
+	import views.overlays.CheckInOverlay;
 
 	public class IndexPage extends View {
 
@@ -39,7 +39,7 @@
 				/*
 				Main.CONTENT.pushView(Views.CheckIn);
 				*/
-				Main.CONTENT.showOverlay(new LoginOverlay());
+				Main.CONTENT.showOverlay(new CheckInOverlay());
 			});
 
 			userdata = new BigButton(Grid.COLUMN_1, 441, 'orange');

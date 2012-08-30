@@ -6,11 +6,12 @@
 
 	import com.greensock.TweenLite;
 	import widgets.PageOverlay;
+	import widgets.SmallButton;
 
 	public class UI extends MovieClip {
 
 		private var viewStack:Vector.<View> = new Vector.<View>();
-		private var overlay:View = null;
+		public var overlay:PageOverlay = null;
 
 		public function UI() {
 		}
@@ -61,6 +62,9 @@
 		}
 
 		public function pushView(nextView:View) {
+			if (overlay) {
+				hideOverlay();
+			}
 			Main.KEYBOARD.activateFor(null);
 
 			viewStack.push(nextView);
@@ -81,6 +85,9 @@
 		}
 
 		public function replaceView(newView:View) {
+			if (overlay) {
+				hideOverlay();
+			}
 			Main.KEYBOARD.activateFor(null);
 
 			var oldView:View = viewStack.pop();
@@ -100,6 +107,9 @@
 		}
 
 		public function popView() {
+			if (overlay) {
+				hideOverlay();
+			}
 			Main.KEYBOARD.activateFor(null);
 			if (viewStack.length == 1) {
 				return;
@@ -132,15 +142,81 @@
 			return viewStack.length;
 		}
 		
-		public function showOverlay(overlay:View) {
+		// === OVERLAY FUNCTIONS ===
+		
+		public function showOverlay(overlay:PageOverlay) {
 			this.overlay = overlay;
+			this.overlay.update();
 			addChild(overlay);
 		}
 		
 		public function hideOverlay() {
-			removeChild(this.overlay);
-			this.overlay = null;
+			if (this.overlay) {
+				this.overlay.destroy();
+				removeChild(this.overlay);
+				this.overlay = null;
+				
+				Main.KEYBOARD.activateFor(null);
+				Main.HEADER.reset();
+				Main.FOOTER.resetButtonBar();
+				
+				var view:View = viewStack[viewStack.length - 1];
+				view.update();
+			}
 		}
+		
+		public function resetButtonBar() {
+			if (overlay) {
+				overlay.cancel.visible = false;
+				overlay.submit.visible = false;
+			}
+			Main.FOOTER.resetButtonBar();
+		}
+		
+		/**
+		 * Redirects the cancel callback registration to the overlay or the button bar.
+		 */
+		public function showCancelButton(text:String, callback:Function) {
+			if (overlay) {
+				overlay.showCancelButton(text, callback);
+			} else {
+				Main.FOOTER.showCancelButton(text, callback);
+			}
+		}
+		
+		/**
+		 * Returns the cancel button of the overlay or the buttonbar.
+		 */
+		public function get cancelButton():SmallButton {
+			if (overlay) {
+				return overlay.cancel;
+			} else {
+				return Main.FOOTER.cancel;
+			}
+		}
+
+		/**
+		 * Redirects the submit callback registration to the overlay or the button bar.
+		 */
+		public function showSubmitButton(text:String, callback:Function) {
+			if (overlay) {
+				overlay.showSubmitButton(text, callback);
+			} else {
+				Main.FOOTER.showSubmitButton(text, callback);
+			}
+		}
+		
+		/**
+		 * Returns the cancel button of the overlay or the buttonbar.
+		 */
+		public function get submitButton():SmallButton {
+			if (overlay) {
+				return overlay.submit;
+			} else {
+				return Main.FOOTER.submit;
+			}
+		}
+
 	}
 
 }

@@ -19,6 +19,7 @@
 	import views.Views;
 
 	import widgets.VirtualKeyboard;
+	import widgets.PageOverlay;
 
 	public class Main extends MovieClip {
 
@@ -28,6 +29,7 @@
 
 		public static var HEADER:Header;
 		public static var CONTENT:UI;
+//		public static var OVERLAY:PageOverlay;
 		public static var FOOTER:ButtonBar;
 
 		public static var KEYBOARD:VirtualKeyboard;
@@ -44,19 +46,20 @@
 
 			Main.HEADER = new Header();
 			Main.CONTENT = new UI();
+//			Main.OVERLAY = new PageOverlay();
 			Main.FOOTER = new ButtonBar();
 			Main.FOOTER.update();
 
 			Main.KEYBOARD = new VirtualKeyboard();
 			Main.KEYBOARD.x = Main.STAGE.stageWidth * 0.5 - VirtualKeyboard.KEYBOARD_WIDTH * 0.5;
 			Main.KEYBOARD.y = Main.STAGE.stageHeight - Grid.BUTTON_BAR_HEIGHT;
-			Main.KEYBOARD.alpha = 0; // für autoAlpha spöter
 			Main.KEYBOARD.visible = false;
 
 			addChild(Main.HEADER);
 			addChild(Main.FOOTER);
-			// Content überdeckt Header und Footer für Overlays, aber nicht das Keyboard.
+			// Content und Overlay überdecken Header und Footer, aber nicht das Keyboard.
 			addChild(Main.CONTENT);
+//			addChild(Main.OVERLAY);
 			addChild(Main.KEYBOARD);
 
 			Main.CONTENT.pushHome(Views.Index);

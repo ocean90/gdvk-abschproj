@@ -35,28 +35,28 @@
 				Main.HEADER.setText('Workshops');
 			}
 
-			Main.FOOTER.resetButtonBar();
+			Main.CONTENT.resetButtonBar();
 			Main.FOOTER.animateFooter(Grid.COLUMN_3 - Grid.COLUMN_PADDING);
 
 			// TODO irgendwoher den status nehmen
 			if (TODO) {
-				Main.FOOTER.showCancelButton(Main.LANGUAGE == 'DE' ? 'Von Workshop Abmelden' : 'Unsubscribe from workshop', function(e:Event) {
+				Main.CONTENT.showCancelButton(Main.LANGUAGE == 'DE' ? 'Von Workshop Abmelden' : 'Unsubscribe from workshop', function(e:Event) {
 					trace('abmelden vom workshop');
 					TODO = !TODO;
 					update();
 				});
-				Main.FOOTER.cancel.x = Grid.COLUMN_5;
-				Main.FOOTER.cancel.shapeWidth = Grid.SPAN_2;
-				Main.FOOTER.cancel.update();
+				Main.CONTENT.cancelButton.x = Grid.COLUMN_5;
+				Main.CONTENT.cancelButton.shapeWidth = Grid.SPAN_2;
+				Main.CONTENT.cancelButton.update();
 			} else {
-				Main.FOOTER.showSubmitButton(Main.LANGUAGE == 'DE' ? 'An Workshop Teilnehmen' : 'Subscribe to workshop', function(e:Event) {
+				Main.CONTENT.showSubmitButton(Main.LANGUAGE == 'DE' ? 'An Workshop Teilnehmen' : 'Subscribe to workshop', function(e:Event) {
 					trace('anmelden zum workshop');
 					TODO = !TODO;
 					update();
 				});
-				Main.FOOTER.submit.x = Grid.COLUMN_5;
-				Main.FOOTER.submit.shapeWidth = Grid.SPAN_2;
-				Main.FOOTER.submit.update();
+				Main.CONTENT.submitButton.x = Grid.COLUMN_5;
+				Main.CONTENT.submitButton.shapeWidth = Grid.SPAN_2;
+				Main.CONTENT.submitButton.update();
 			}
 		}
 

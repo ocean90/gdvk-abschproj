@@ -25,14 +25,14 @@
 
 		public var home:SmallButton;
 		public var back:SmallButton;
-		public var login:SmallButton;
+//		public var login:SmallButton;
 		public var logout:SmallButton;
 
-		public var cancel:SmallButton;
+		var cancel:SmallButton;
 		// callback function, argument Event
 		private var cancelCallback:Function;
 
-		public var submit:SmallButton;
+		var submit:SmallButton;
 		// callback function, argument Event
 		private var submitCallback:Function;
 
@@ -97,20 +97,20 @@
 			back.visible = false;
 			back.addEventListener(MouseEvent.CLICK, Main.CONTENT.onBack);
 
-			login = new SmallButton('', 'lightgreen');
-			login.textFormat.color = '0x000000';
-			login.x = Grid.COLUMN_6;
-			login.y = Grid.BUTTON_BAR_Y;
-			login.shapeWidth = Grid.SPAN_1;
-			login.shapeHeight = Grid.BUTTON_BAR_BUTTON_HEIGHT;
-			login.visible = false;
-			login.addEventListener(MouseEvent.CLICK, function(e:Event) {
-				Views.CheckIn.cancelCallback = null;
-				Views.CheckIn.submitCallback = null;
-				Main.CONTENT.pushView(Views.CheckIn);
-			});
+			//login = new SmallButton('', 'green');
+//			login.textFormat.color = '0x000000';
+//			login.x = Grid.COLUMN_6;
+//			login.y = Grid.BUTTON_BAR_Y;
+//			login.shapeWidth = Grid.SPAN_1;
+//			login.shapeHeight = Grid.BUTTON_BAR_BUTTON_HEIGHT;
+//			login.visible = false;
+//			login.addEventListener(MouseEvent.CLICK, function(e:Event) {
+//				Views.CheckIn.cancelCallback = null;
+//				Views.CheckIn.submitCallback = null;
+//				Main.CONTENT.pushView(Views.CheckIn);
+//			});
 
-			logout = new SmallButton('', 'lightred');
+			logout = new SmallButton('', 'red');
 			logout.textFormat.color = '0x000000';
 			logout.x = Grid.COLUMN_6;
 			logout.y = Grid.BUTTON_BAR_Y;
@@ -122,12 +122,12 @@
 				Main.CONTENT.updateView();
 
 				logout.visible = false;
-				login.alpha = 0;
-				login.visible = true;
-				TweenLite.to(login, 2.0, { autoAlpha: 1.0 });
+//				login.alpha = 0;
+//				login.visible = true;
+//				TweenLite.to(login, 2.0, { autoAlpha: 1.0 });
 			});
 
-			cancel = new SmallButton('', 'lightred');
+			cancel = new SmallButton('', 'red');
 			cancel.textFormat.color = '0x000000';
 			cancel.x = Grid.COLUMN_1;
 			cancel.y = Grid.BUTTON_BAR_Y;
@@ -136,7 +136,7 @@
 			cancel.visible = false;
 			cancel.addEventListener(MouseEvent.CLICK, onCancel);
 
-			submit = new SmallButton('', 'lightgreen');
+			submit = new SmallButton('', 'green');
 			submit.textFormat.color = '0x000000';
 			submit.x = Grid.COLUMN_6;
 			submit.y = Grid.BUTTON_BAR_Y;
@@ -150,7 +150,7 @@
 			buttons.addChild(en);
 			buttons.addChild(home);
 			buttons.addChild(back);
-			buttons.addChild(login);
+//			buttons.addChild(login);
 			buttons.addChild(logout);
 			buttons.addChild(cancel);
 			buttons.addChild(submit);
@@ -175,7 +175,7 @@
 			}
 		}
 
-		public function showCancelButton(text:String, callback:Function) {
+		function showCancelButton(text:String, callback:Function) {
 			cancel.x = Grid.COLUMN_1;
 			cancel.shapeWidth = Grid.SPAN_1;
 			cancel.visible = true;
@@ -183,13 +183,13 @@
 			cancelCallback = callback;
 		}
 
-		public function onCancel(e:Event) {
+		function onCancel(e:Event) {
 			if (cancelCallback != null) {
 				cancelCallback(e);
 			}
 		}
 
-		public function showSubmitButton(text:String, callback:Function) {
+		function showSubmitButton(text:String, callback:Function) {
 			submit.x = Grid.COLUMN_6;
 			submit.shapeWidth = Grid.SPAN_1;
 			submit.visible = true;
@@ -197,7 +197,7 @@
 			submitCallback = callback;
 		}
 
-		public function onSubmit(e:Event) {
+		function onSubmit(e:Event) {
 			if (submitCallback != null) {
 				submitCallback(e);
 			}
@@ -209,11 +209,11 @@
 
 			home.setText(Main.LANGUAGE == 'DE' ? 'Hauptmenü' : 'Home');
 			back.setText(Main.LANGUAGE == 'DE' ? 'Zurück' : 'Back');
-			login.setText(Main.LANGUAGE == 'DE' ? 'Anmelden' : 'Login');
+//			login.setText(Main.LANGUAGE == 'DE' ? 'Anmelden' : 'Login');
 			logout.setText(Main.LANGUAGE == 'DE' ? 'Abmelden' : 'Logout');
 		}
 
-		public function resetButtonBar() {
+		function resetButtonBar() {
 			TweenLite.to(background, 0.3, { x: 0, ease:Quint.easeOut });
 
 			if (Main.CONTENT.length <= 1) {
@@ -236,10 +236,10 @@
 			}
 
 			if (Main.USER.isLoggedIn()) {
-				login.visible = false;
+//				login.visible = false;
 				logout.visible = true;
 			} else {
-				login.visible = true;
+//				login.visible = true;
 				logout.visible = false;
 			}
 			cancel.visible = false;
@@ -247,7 +247,7 @@
 		}
 
 		public function animateFooter(posX:int) {
-			login.visible = (posX >= Main.STAGE.stageWidth);
+//			login.visible = (posX >= Main.STAGE.stageWidth);
 			logout.visible = (posX >= Main.STAGE.stageWidth);
 
 			posX = background.width + posX + 30;

@@ -36,6 +36,7 @@
 
 		private var keyboardMode = MODE_UPPERCASE;
 		private var allNormalKeys:Object = [[], [], []];
+		private var keys:Sprite;
 		private var delKey:Sprite;
 		private var enterKey:Sprite;
 		private var spaceKey:Sprite;
@@ -54,7 +55,9 @@
 			textFormat.size = 25;
 			textFormat.align = TextFormatAlign.CENTER;
 
+			keys = new Sprite();
 			createKeys();
+			addChild(keys);
 		}
 
 		public function activateFor(textField:TextField) {
@@ -87,8 +90,15 @@
 			TweenLite.to(Main.FOOTER, 0.8, { y: -moveUp });
 			
 			y = Main.STAGE.stageHeight - Grid.BUTTON_BAR_HEIGHT;
-			TweenLite.to(this, 0.8, { y: y - moveUp, autoAlpha: 1 });
-			TweenLite.to(Main.FOOTER.buttons, 0.8, { autoAlpha: 0 });
+			visible = true;
+			TweenLite.to(this, 0.8, { y: y - moveUp });
+			
+			keys.alpha = 0;
+			TweenLite.to(Main.FOOTER.buttons, 0.2, { autoAlpha: 0 });
+			TweenLite.to(this.keys, 0.4, { autoAlpha: 1 });
+			if (Main.CONTENT.overlay) {
+				TweenLite.to(Main.CONTENT.overlay.darkenButtonBar, 0.4, { autoAlpha: 0 });
+			}
 			
 			Main.STAGE.focus = activeTextField;
 		}
@@ -100,8 +110,15 @@
 			TweenLite.to(Main.CONTENT, 0.8, { y: 0 });
 			TweenLite.to(Main.FOOTER, 0.8, { y: 0 });
 			
-			TweenLite.to(this, 0.8, { y: Main.STAGE.stageHeight - Grid.BUTTON_BAR_HEIGHT, autoAlpha: 0 });
-			TweenLite.to(Main.FOOTER.buttons, 0.8, { autoAlpha: 1 });
+			TweenLite.to(this, 0.8, { y: Main.STAGE.stageHeight - Grid.BUTTON_BAR_HEIGHT, onComplete: function() {
+				visible = false;
+			}});
+			
+			TweenLite.to(this.keys, 0.4, { delay: 0.2, autoAlpha: 0 });
+			TweenLite.to(Main.FOOTER.buttons, 0.4, { delay: 0.8, autoAlpha: 1 });
+			if (Main.CONTENT.overlay) {
+				TweenLite.to(Main.CONTENT.overlay.darkenButtonBar, 0.4, { autoAlpha: 0.8 });
+			}
 			
 			activeTextField = null;
 			onEnterFunction = null;
@@ -219,7 +236,7 @@
 
 			keyBackground.addChild(keyLabel);
 
-			addChild(keyBackground);
+			keys.addChild(keyBackground);
 
 			return keyBackground;
 		}
