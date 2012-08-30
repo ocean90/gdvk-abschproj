@@ -83,7 +83,7 @@
 
 		public override function update() {
 			if (Main.LANGUAGE == 'DE') {
-				Main.HEADER.setText('Jetzt wirds laut!');
+				Main.HEADER.setText('Jetzt wird\'s laut!');
 
 				userdata.setText(Main.USER.isLoggedIn() ? 'Meine Daten' : 'Check-In');
 				plan.setText('Lageplan');
