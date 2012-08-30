@@ -1,18 +1,13 @@
 ﻿package views.overlays {
-	import flash.display.Sprite;
-
-	import utils.Colors;
-
-	import widgets.SmallButton;
-
+	
 	import widgets.PageOverlay;
-
-	import flash.events.Event;
+	import widgets.SmallButton;
 	import flash.events.MouseEvent;
+	import views.Views;
 	import utils.Grid;
-
-	public class HelpOverlay extends PageOverlay {
-		public function HelpOverlay(background:* = 0xffffff, w:Number = 870,h:Number = 700) {
+	
+	public class LoginOverlay extends PageOverlay {
+		public function LoginOverlay(background:* = 0xffffff, w:Number = 870,h:Number = 700) {
 			super(background, w, h);
 
 			var cancel:SmallButton = new SmallButton('','red');
@@ -24,9 +19,10 @@
 				cancel.setText('Cancel');
 			}
 
+			Views.CheckIn.update();
 			cancel.addEventListener(MouseEvent.CLICK, destroy);
 			content.addChild(cancel)
-
+			content.addChild(Views.CheckIn);
 		}
 	}
 }

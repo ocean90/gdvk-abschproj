@@ -6,6 +6,7 @@
 	import flash.geom.Rectangle;
 
 	import utils.Colors;
+	import utils.Grid;
 
 	public class PageOverlay extends Sprite {
 		private var _owidth:Number;
@@ -18,7 +19,7 @@
 		private var contentBox:Sprite;
 		public var content:Sprite
 
-		public function PageOverlay(background:* = 0xffffff, w:Number = 1080,h:Number = 824) {
+		public function PageOverlay(background:* = 0xffffff, w:Number = 870,h:Number = 700) {
 			_owidth = w;
 			_oheight = h;
 			_background = Colors.getColor(background);;
@@ -34,6 +35,8 @@
 			darkenPage();
 			paintContentBox();
 			content = new Sprite();
+			content.x = Grid.COLUMN_PADDING;
+			content.y = Grid.COLUMN_PADDING;
 			contentBox.addChild(content);
 
 			// Don't overflow.
@@ -44,6 +47,7 @@
 		}
 
 		public function destroy(e:Event) {
+			Main.KEYBOARD.activateFor(null);
 			Main.HEADER.reset();
 			Main.FOOTER.resetButtonBar();
 			
@@ -52,8 +56,8 @@
 				_overlay.visible = false;
 				while (_overlay.numChildren) {
 					_overlay.removeChildAt(0);
-					self.parent.removeChild(self);
 				}
+				self.parent.removeChild(self);
 			}});
 		}
 

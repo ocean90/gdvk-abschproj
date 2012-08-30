@@ -13,6 +13,7 @@
 
 	import widgets.BigButton;
 	import widgets.PageOverlay;
+	import views.overlays.LoginOverlay;
 
 	public class IndexPage extends View {
 
@@ -35,7 +36,10 @@
 				Views.CheckIn.submitCallback = function() {
 					Main.CONTENT.replaceView(Views.UserData);
 				};
+				/*
 				Main.CONTENT.pushView(Views.CheckIn);
+				*/
+				Main.CONTENT.addChild(new LoginOverlay());
 			});
 
 			userdata = new BigButton(Grid.COLUMN_1, 441, 'orange');
@@ -68,7 +72,7 @@
 
 			help = new BigButton(Grid.COLUMN_5, 651);
 			help.addEventListener(MouseEvent.CLICK, function(e:Event) {
-				addChild(new HelpOverlay());
+				Main.CONTENT.addChild(new HelpOverlay());
 			});
 
 			update();
