@@ -5,6 +5,9 @@
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
 
+	import com.greensock.TweenLite;
+	import com.greensock.easing.Quint;
+
 	import utils.Grid;
 
 	import views.View;
@@ -36,7 +39,6 @@
 			}
 
 			Main.FOOTER.resetButtonBar();
-			Main.FOOTER.animateFooter(Grid.COLUMN_3 - Grid.COLUMN_PADDING);
 
 			// TODO irgendwoher den status nehmen
 			if (TODO) {
@@ -45,19 +47,25 @@
 					TODO = !TODO;
 					update();
 				});
-				Main.FOOTER.cancel.x = Grid.COLUMN_5;
+				Main.FOOTER.cancel.x = Grid.COLUMN_5 + Grid.SPAN_3;
 				Main.FOOTER.cancel.shapeWidth = Grid.SPAN_2;
 				Main.FOOTER.cancel.update();
+				
+				TweenLite.to(Main.FOOTER.cancel, 0.5, { x: Grid.COLUMN_5, ease:Quint.easeOut });
 			} else {
 				Main.FOOTER.showSubmitButton(Main.LANGUAGE == 'DE' ? 'An Workshop Teilnehmen' : 'Subscribe to workshop', function(e:Event) {
 					trace('anmelden zum workshop');
 					TODO = !TODO;
 					update();
 				});
-				Main.FOOTER.submit.x = Grid.COLUMN_5;
+				Main.FOOTER.submit.x = Grid.COLUMN_5 + Grid.SPAN_2;
 				Main.FOOTER.submit.shapeWidth = Grid.SPAN_2;
 				Main.FOOTER.submit.update();
+				
+				TweenLite.to(Main.FOOTER.submit, 0.5, { x:Grid.COLUMN_5, ease:Quint.easeOut });
 			}
+			
+			TweenLite.to(Main.FOOTER.background, 0.5, { x: -Main.FOOTER.background.width + Grid.COLUMN_5 - Grid.COLUMN_PADDING, ease:Quint.easeOut });
 		}
 
 		public function registerWorkshops() {

@@ -242,16 +242,6 @@
 			cancel.visible = false;
 			submit.visible = false;
 		}
-
-		public function animateFooter(posX:int) {
-//			login.visible = (posX >= Main.STAGE.stageWidth);
-			logout.visible = (posX >= Main.STAGE.stageWidth);
-
-			posX = background.width + posX + 30;
-			posX = Main.STAGE.stageWidth - posX;
-
-			TweenLite.to(background, 0.5, { x: posX, ease:Quint.easeOut });
-		}
 	}
 
 }
