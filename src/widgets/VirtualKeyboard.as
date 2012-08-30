@@ -14,6 +14,7 @@
 	public class VirtualKeyboard extends View {
 
 		public static var KEYBOARD_WIDTH:int = Grid.SPAN_4;
+		public static var KEYBOARD_HEIGHT:int = 315;
 
 		private static var MODE_UPPERCASE:String = 'uppercase';
 		private static var MODE_LOWERCASE:String = 'lowercase';
@@ -79,6 +80,9 @@
 			keyboardMode = MODE_UPPERCASE;
 			update();
 
+			TweenLite.to(Main.HEADER, 0.4, { y: -KEYBOARD_HEIGHT });
+			TweenLite.to(Main.CONTENT, 0.4, { y: -KEYBOARD_HEIGHT });
+			TweenLite.to(Main.FOOTER, 0.4, { y: -KEYBOARD_HEIGHT });
 			visible = true;
 			Main.STAGE.focus = activeTextField;
 		}
@@ -87,6 +91,9 @@
 			Main.STAGE.focus = null;
 			visible = false;
 
+			TweenLite.to(Main.HEADER, 0.4, { y: 0 });
+			TweenLite.to(Main.CONTENT, 0.4, { y: 0 });
+			TweenLite.to(Main.FOOTER, 0.4, { y: 0 });
 			activeTextField = null;
 			onEnterFunction = null;
 		}
@@ -95,7 +102,7 @@
 			var textKey:Sprite;
 
 			var posX = 0;
-			var posY = 0;
+			var posY = 20;
 			for (var i = 0; i < KEY_LINES_LENGTH[0]; i++) {
 				textKey = createKey(posX, posY, KEY_WIDTH, KEY_HEIGHT);
 				textKey.addEventListener(MouseEvent.CLICK, onTextKeyPressed);
@@ -108,7 +115,7 @@
 			delKey.addEventListener(MouseEvent.CLICK, onDelKeyPressed);
 
 			posX = (KEY_WIDTH + KEY_GAP) * 0.5;
-			posY = KEY_HEIGHT + KEY_GAP;
+			posY = 20 + KEY_HEIGHT + KEY_GAP;
 			for (i = 0; i < KEY_LINES_LENGTH[1]; i++) {
 				textKey = createKey(posX, posY, KEY_WIDTH, KEY_HEIGHT);
 				textKey.addEventListener(MouseEvent.CLICK, onTextKeyPressed);
@@ -120,7 +127,7 @@
 			enterKey.addEventListener(MouseEvent.CLICK, onEnterKeyPressed);
 
 			posX = 0;
-			posY = KEY_HEIGHT * 2 + KEY_GAP * 2;
+			posY = 20 + KEY_HEIGHT * 2 + KEY_GAP * 2;
 
 			// TODO icon
 			upperCaseKeyLeft = createKey(posX, posY, KEY_WIDTH, KEY_HEIGHT);
@@ -139,7 +146,7 @@
 			upperCaseKeyRight.addEventListener(MouseEvent.CLICK, onUpKeyPressed);
 
 			posX = 0;
-			posY = KEY_HEIGHT * 3 + KEY_GAP * 3;
+			posY = 20 + KEY_HEIGHT * 3 + KEY_GAP * 3;
 
 			// Number Mode Key
 			numberModeKeyLeft = createKey( posX, posY, KEY_WIDTH * 2.0 + KEY_GAP, KEY_HEIGHT);

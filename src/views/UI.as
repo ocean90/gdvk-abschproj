@@ -5,10 +5,12 @@
 	import flash.events.Event;
 
 	import com.greensock.TweenLite;
+	import widgets.PageOverlay;
 
 	public class UI extends MovieClip {
 
-		var viewStack:Vector.<View> = new Vector.<View>();
+		private var viewStack:Vector.<View> = new Vector.<View>();
+		private var overlay:View = null;
 
 		public function UI() {
 		}
@@ -124,6 +126,20 @@
 			view.alpha = 0;
 			view.update();
 			TweenLite.to(view, 2.0, { autoAlpha: 1 });
+		}
+		
+		public function get length() {
+			return viewStack.length;
+		}
+		
+		public function showOverlay(overlay:View) {
+			this.overlay = overlay;
+			addChild(overlay);
+		}
+		
+		public function hideOverlay() {
+			removeChild(this.overlay);
+			this.overlay = null;
 		}
 	}
 

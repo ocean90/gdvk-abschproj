@@ -39,7 +39,7 @@
 				/*
 				Main.CONTENT.pushView(Views.CheckIn);
 				*/
-				Main.CONTENT.addChild(new LoginOverlay());
+				Main.CONTENT.showOverlay(new LoginOverlay());
 			});
 
 			userdata = new BigButton(Grid.COLUMN_1, 441, 'orange');
@@ -72,7 +72,7 @@
 
 			help = new BigButton(Grid.COLUMN_5, 651);
 			help.addEventListener(MouseEvent.CLICK, function(e:Event) {
-				Main.CONTENT.addChild(new HelpOverlay());
+				Main.CONTENT.showOverlay(new HelpOverlay());
 			});
 
 			update();

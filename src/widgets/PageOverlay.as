@@ -7,8 +7,9 @@
 
 	import utils.Colors;
 	import utils.Grid;
+	import views.View;
 
-	public class PageOverlay extends Sprite {
+	public class PageOverlay extends View {
 		private var _owidth:Number;
 		private var _oheight:Number;
 		private var _background:uint;

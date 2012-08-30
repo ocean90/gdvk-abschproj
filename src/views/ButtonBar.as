@@ -211,13 +211,13 @@
 		public function resetButtonBar() {
 			TweenLite.to(background, 0.3, { x: 0, ease:Quint.easeOut });
 
-			if (Main.CONTENT.viewStack.length <= 1) {
+			if (Main.CONTENT.length <= 1) {
 				// inkl. home bedeutet wir sind auf der starteseite und zeigen die länder auswahl an
 				de.visible = true;
 				en.visible = true;
 				home.visible = false;
 				back.visible = false;
-			} else if (Main.CONTENT.viewStack.length == 2) {
+			} else if (Main.CONTENT.length == 2) {
 				// inkl. home zwei bedeutet wir haben nur eine view und brauchen kein zurück
 				de.visible = false;
 				en.visible = false;

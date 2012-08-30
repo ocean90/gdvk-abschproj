@@ -49,7 +49,7 @@
 
 			Main.KEYBOARD = new VirtualKeyboard();
 			Main.KEYBOARD.x = Main.STAGE.stageWidth * 0.5 - VirtualKeyboard.KEYBOARD_WIDTH * 0.5;
-			Main.KEYBOARD.y = 620;
+			Main.KEYBOARD.y = Main.STAGE.stageHeight - VirtualKeyboard.KEYBOARD_HEIGHT;
 			Main.KEYBOARD.visible = false;
 
 			addChild(Main.HEADER);
