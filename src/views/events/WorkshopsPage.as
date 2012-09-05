@@ -144,6 +144,7 @@
 
 			workshops.push(cover);
 
+			workshops.layout();
 		}
 	}
 }

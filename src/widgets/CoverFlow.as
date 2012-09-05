@@ -94,7 +94,6 @@
 			cover.transform.perspectiveProjection.projectionCenter = new Point(_width / 2, 250 + cover.height / 2);
 			_covers.push(cover);
 			_coversContainer.addChild(cover);
-			layout();
 		}
 
 		public function next(e:Event) {
@@ -176,10 +175,12 @@
 		}
 		
 		private function to(cover:Cover, x:int, y:int, z:int, rotationY:int) {
-			if (cover.y != y || cover.z != z || cover.rotationY != rotationY) {
+			// animation wenn wenige covers (z.b. workshops) oder sich y, zo der rotationX ändert
+			if (_covers.length <= 5 || cover.y != y || cover.z != z || cover.rotationY != rotationY) {
 				TweenLite.to(cover, 0.5, { x: x, y: y, z: z, rotationY: rotationY });
 			} else {
-				// in den meißten fällen wird das cover nur auf der x achse verschoben
+				// in den anderen fällen (z.b. teilnehmer liste) wird das cover
+				// aus performancegründen nur auf der x achse verschoben
 				cover.x = x;
 			}
 		}
