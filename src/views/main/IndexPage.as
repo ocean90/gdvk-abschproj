@@ -60,7 +60,7 @@
 
 			members = new BigButton(Grid.COLUMN_5, 441, 'green');
 			members.addEventListener(MouseEvent.CLICK, function(e:Event) {
-				Main.CONTENT.pushView(Views.Members);
+				Main.CONTENT.pushView(Views.MemberInfo);
 			});
 
 			catering = new BigButton(Grid.COLUMN_1, 651, 'moos')
