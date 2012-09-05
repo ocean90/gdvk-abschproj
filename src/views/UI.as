@@ -74,6 +74,9 @@
 			nextView.update();
 
 			var prevView:View = viewStack[viewStack.length - 2];
+			// This is only to finish the animation from pushHome! This animation was canceled
+			// if the user clicked to fast on one of the buttons.. :-)
+			prevView.alpha = 1;
 
 			nextView.x = 1280;
 			nextView.visible = true;
