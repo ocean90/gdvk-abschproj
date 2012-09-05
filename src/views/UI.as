@@ -32,7 +32,9 @@
 
 			Main.HEADER.reset();
 			Main.FOOTER.resetButtonBar();
-			homeView.update();
+			if (!homeView.onResume()) {
+				homeView.update();
+			}
 			homeView.x = -1280;
 			homeView.visible = true;
 
@@ -125,7 +127,9 @@
 
 			Main.HEADER.reset();
 			Main.FOOTER.resetButtonBar();
-			prevPage.update();
+			if (!prevPage.onResume()) {
+				prevPage.update();
+			}
 			prevPage.x = -1280;
 			prevPage.visible = true;
 

@@ -18,14 +18,19 @@
 	import flash.text.TextFormatAlign;
 	import utils.Colors;
 	import com.greensock.easing.Back;
+	import views.Views;
 
 	public class MemberInfoPage extends View {
 
 		private var recordMarker:TextLabel;
+		
 		private var memberLabel:TextLabel;
 		private var memberMarker:Sprite;
+		private var memberButton:SmallButton;
+		
 		private var checkedInLabel:TextLabel;
 		private var checkedInMarker:Sprite;
+		private var checkedInButton:SmallButton;
 
 		public function MemberInfoPage() {
 			
@@ -51,6 +56,15 @@
 			
 			memberMarker = new Sprite();
 			
+			memberButton = new SmallButton('', 'green'); // green like the index colored button members!
+			memberButton.x = Grid.COLUMN_6;
+			memberButton.y = 295;
+			memberButton.shapeWidth = Grid.SPAN_1;
+			memberButton.shapeHeight = Grid.SPAN_1 * 0.95;
+			memberButton.addEventListener(MouseEvent.CLICK, function(e:Event) {
+				Main.CONTENT.pushView(Views.MemberList);
+			});
+			
 			checkedInLabel = new TextLabel();
 			checkedInLabel.x = Grid.COLUMN_1;
 			checkedInLabel.y = 570;
@@ -59,8 +73,30 @@
 			
 			checkedInMarker = new Sprite();
 			
+			checkedInButton = new SmallButton('', 'orange'); // orange like the index colored button check-in!
+			checkedInButton.x = Grid.COLUMN_6;
+			checkedInButton.y = 595;
+			checkedInButton.shapeWidth = Grid.SPAN_1;
+			checkedInButton.shapeHeight = Grid.SPAN_1 * 0.95;
+			checkedInButton.addEventListener(MouseEvent.CLICK, function(e:Event) {
+				Main.CONTENT.pushView(Views.MemberList);
+			});
+			
 		}
 
+		public override function onResume():Boolean {
+			if (Main.LANGUAGE == 'DE') {
+				Main.HEADER.setText('Teilnehmer');
+				Main.HEADER.addHeadline('Registriert', 200);
+				Main.HEADER.addHeadline('Bereits eingecheckt', 500);
+			} else if (Main.LANGUAGE == 'EN') {
+				Main.HEADER.setText('Members');
+				Main.HEADER.addHeadline('Registered', 200);
+				Main.HEADER.addHeadline('Already checked in', 500);
+			}
+			return true;
+		}
+		
 		public override function update() {
 			while (numChildren > 0) {
 				removeChildAt(0);
@@ -72,8 +108,12 @@
 			
 			addChild(memberLabel);
 			addChild(memberMarker);
+			addChild(memberButton);
+			
 			addChild(checkedInLabel);
 			addChild(checkedInMarker);
+			addChild(checkedInButton);
+			
 			// record marker overlays the other both markers
 			addChild(recordMarker);
 			
@@ -92,10 +132,14 @@
 				memberLabel.alpha = 0;
 				memberLabel.x = -Grid.SPAN_1;
 				memberLabel.setText('Es haben sich ' + memberCount + ' Teilnehmer registriert!');
+				memberButton.alpha = 0;
+				memberButton.setText('Teilnehmerliste\nansehen');
 				
 				checkedInLabel.alpha = 0;
 				checkedInLabel.x = -Grid.SPAN_1;
 				checkedInLabel.setText('Und es sind bereits ' + checkedInCount + ' Teilnehmer eingecheckt!');
+				checkedInButton.alpha = 0;
+				checkedInButton.setText('Checked-In-Liste\nansehen');
 				
 				Main.HEADER.addHeadline('Registriert', 200, delayTime += addDelay);
 				TweenLite.to(memberLabel, 1.2, { x: Grid.COLUMN_1, autoAlpha: 1.0, delay: delayTime += addDelay, ease:Back.easeOut });
@@ -110,10 +154,14 @@
 				memberLabel.alpha = 0;
 				memberLabel.x = -Grid.SPAN_1;
 				memberLabel.setText('There are ' + memberCount + ' members who registered!');
+				memberButton.alpha = 0;
+				memberButton.setText('View member\nlist');
 				
 				checkedInLabel.alpha = 0;
 				checkedInLabel.x = -Grid.SPAN_1;
 				checkedInLabel.setText('And there are already ' + checkedInCount + ' members who checked-in!');
+				checkedInButton.alpha = 0;
+				checkedInButton.setText('View checked-in\nlist');
 				
 				Main.HEADER.addHeadline('Registered', 200, delayTime += addDelay);
 				TweenLite.to(memberLabel, 1.2, { x: Grid.COLUMN_1, autoAlpha: 1.0, delay: delayTime += addDelay, ease:Back.easeOut });
@@ -136,8 +184,9 @@
 			memberMarker.graphics.endFill();
 			
 			TweenLite.to(memberMarker, 0.2, { autoAlpha: 1.0, delay: delayTime, onComplete: function() {
-				TweenLite.to(memberMarker, 8, { x: -200, ease:Quint.easeOut });
-			} });
+				TweenLite.to(memberMarker, 10, { x: -200, ease:Quint.easeOut });
+				TweenLite.to(memberButton, 0.8, { autoAlpha: 1.0, delay: 7 });
+			}});
 			
 			checkedInMarker.x = -Main.STAGE.stageWidth;
 			checkedInMarker.y = 650;
@@ -148,10 +197,12 @@
 			checkedInMarker.graphics.endFill();
 			
 			TweenLite.to(checkedInMarker, 0.2, { autoAlpha: 1.0, delay: delayTime, onComplete: function() {
-				TweenLite.to(checkedInMarker, 4, { x: -200, delay: 1, ease:Quint.easeOut });
-			} });
+				TweenLite.to(checkedInMarker, 6, { x: -200, ease:Quint.easeOut });
+				TweenLite.to(checkedInButton, 0.8, { autoAlpha: 1.0, delay: 7.2 });
+			}});
 			
 			TweenLite.to(recordMarker, 0.8, { autoAlpha: 1.0, delay: delayTime });
+			
 		}
 	}
 }
