@@ -3,12 +3,13 @@
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 
+	import com.greensock.TweenLite;
+
 	import utils.Grid;
 	import utils.Colors;
 
-	import widgets.SmallButton;
-
 	import views.PageOverlay;
+	import widgets.SmallButton;
 	import widgets.TextLabel;
 
 	public class HelpOverlay extends PageOverlay {
@@ -39,18 +40,20 @@
 				Main.CONTENT.hideOverlay();
 			});
 			showSubmitButton((Main.LANGUAGE == 'DE' ? 'Hilfe rufen' : 'Call help'), function() {
+				infoText.alpha = 0;
 				if (Main.LANGUAGE == 'DE') {
-					infoText.setText('Hilfe ist unterwegs!\n' +
-									 'Bitte warten Sie an Ihrem Terminal und schließen Sie dieses Fenster\n' +
+					setText('Hilfe ist unterwegs!');
+					infoText.setText('Bitte warten Sie an Ihrem Terminal und schließen Sie dieses Fenster\n' +
 									 'erst wenn unsere Unterstützung Sie erreicht hat.\n' +
-									 'Sollten Sie keine Hilfe mehr benötigen drücken Sie einfach auf Abbrechen.');
+									 'Sollten Sie keine Hilfe mehr benötigen drücken Sie einfach auf Abbrechen.\n\n');
 				} else {
-					infoText.setText('Help is on the way!\n' +
-									 'Please wait at your terminal and close the window\n' +
+					setText('Help is on the way!');
+					infoText.setText('Please wait at your terminal and close the window\n' +
 									 'when you have reached by our support.\n' +
-									 'If you didn\'t need help anymore please press Cancel.');
+									 'If you didn\'t need help anymore please press Cancel.\n\n');
 				}
-				submit.visible = false;
+				TweenLite.to(infoText, 2.0, { autoAlpha: 1 });
+				TweenLite.to(submit, 0.4, { autoAlpha: 0 });
 			});
 		}
 	}
