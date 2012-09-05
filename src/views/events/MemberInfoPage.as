@@ -21,7 +21,11 @@
 	import views.Views;
 
 	public class MemberInfoPage extends View {
-
+		
+		private var memberCount:int = 743;
+		private var checkedInCount:int = 176;
+		private var markerCount:int = 700;
+		
 		private var recordMarker:TextLabel;
 		
 		private var memberLabel:TextLabel;
@@ -62,6 +66,7 @@
 			memberButton.shapeWidth = Grid.SPAN_1;
 			memberButton.shapeHeight = Grid.SPAN_1 * 0.95;
 			memberButton.addEventListener(MouseEvent.CLICK, function(e:Event) {
+				Views.MemberList.updateConfiguration(Colors.getColor('green'), memberCount);
 				Main.CONTENT.pushView(Views.MemberList);
 			});
 			
@@ -79,6 +84,7 @@
 			checkedInButton.shapeWidth = Grid.SPAN_1;
 			checkedInButton.shapeHeight = Grid.SPAN_1 * 0.95;
 			checkedInButton.addEventListener(MouseEvent.CLICK, function(e:Event) {
+				Views.MemberList.updateConfiguration(Colors.getColor('orange'), checkedInCount);
 				Main.CONTENT.pushView(Views.MemberList);
 			});
 			
@@ -101,10 +107,6 @@
 			while (numChildren > 0) {
 				removeChildAt(0);
 			}
-			
-			var memberCount:int = 743;
-			var checkedInCount:int = 176;
-			var markerCount:int = 700;
 			
 			addChild(memberLabel);
 			addChild(memberMarker);
