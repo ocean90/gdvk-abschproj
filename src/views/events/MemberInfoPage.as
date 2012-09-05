@@ -3,10 +3,11 @@
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	import flash.geom.Rectangle;
+	import flash.text.TextFormatAlign;
 
 	import com.greensock.TweenLite;
 	import com.greensock.easing.Quint;
+	import com.greensock.easing.Back;
 
 	import utils.Grid;
 
@@ -15,9 +16,7 @@
 	import widgets.RoundButton;
 	import widgets.SmallButton;
 	import widgets.TextLabel;
-	import flash.text.TextFormatAlign;
 	import utils.Colors;
-	import com.greensock.easing.Back;
 	import views.Views;
 
 	public class MemberInfoPage extends View {

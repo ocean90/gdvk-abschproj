@@ -9,6 +9,7 @@
 	import com.greensock.easing.Quint;
 
 	import utils.Grid;
+	import utils.Namen;
 
 	import views.View;
 	import views.overlays.SearchOverlay;
@@ -18,7 +19,6 @@
 	import widgets.RoundButton;
 	import widgets.SmallButton;
 	import widgets.TextLabel;
-	import utils.Namen;
 
 	public class MemberListPage extends View {
 		

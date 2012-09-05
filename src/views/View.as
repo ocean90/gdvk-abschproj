@@ -1,10 +1,16 @@
 ﻿package views {
 	import flash.display.Sprite;
+	import flash.geom.Rectangle;
 	
 	/**
 	 * Ausgelagert falls wir doch irgendwas MovieClip oder was anderes anleiten müssen.
 	 */
 	public class View extends Sprite {
+		public function View() {
+			// disable overflow for this view. for the background image we use here height * 2
+			scrollRect = new Rectangle(0, 0, Main.STAGE.stageWidth, Main.STAGE.stageHeight * 2);
+		}
+		
 		/**
 		 * Wird auf allen Views im ViewStack aufgerufen wenn diese im View Stack hinzugefügt werden.
 		 */
