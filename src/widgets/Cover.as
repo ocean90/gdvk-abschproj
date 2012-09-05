@@ -15,15 +15,22 @@
 		private var _shapeWidth:Number;
 		private var _shapeHeight:Number;
 
-		public function Cover(color:String = 'blue', width:Number = 870, height:Number = 600) {
+		public function Cover(color:* = 'blue', width:Number = 870, height:Number = 600) {
 			_color = Colors.getColor(color);
 			_shapeWidth = width;
 			_shapeHeight = height;
-
 			paintCover();
 		}
 
+		public function setColor(color:uint) {
+			if (_color != color) {
+				_color = color;
+				paintCover();
+			}
+		}
+
 		public function paintCover() {
+			graphics.clear();
 			graphics.beginFill(_color);
 			graphics.drawRect(0, 0, _shapeWidth, _shapeHeight);
 			graphics.endFill();

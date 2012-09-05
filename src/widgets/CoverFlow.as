@@ -7,8 +7,12 @@
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	import flash.geom.*;
+	import flash.geom.PerspectiveProjection;
+	import flash.geom.Point;
 	import flash.display.CapsStyle;
+
+	import be.viplib.util.ColorUtil;
+
 	import utils.Grid;
 
 	import widgets.Cover;
@@ -16,6 +20,7 @@
 	public class CoverFlow extends Sprite {
 		private var _width:int;
 		private var _height:int;
+		private var _autoColor:int;
 
 		private	var _covers:Vector.<Cover>;
 
@@ -27,9 +32,10 @@
 		public var prevButton:Sprite;
 
 
-		public function CoverFlow(w:int, h:int) {
+		public function CoverFlow(w:int, h:int, autoColor:int = -1) {
 			_width = w;
 			_height = h;
+			_autoColor = autoColor;
 			_covers = new Vector.<Cover>();
 			_selectedIndex = 0;
 
@@ -132,6 +138,9 @@
 
 				if (i == _selectedIndex) {
 					_coversContainer.setChildIndex(cover, _coversContainer.numChildren-1);
+					if (_autoColor != -1) {
+						cover.setColor(_autoColor);
+					}
 					TweenLite.to(
 						cover,
 						0.5,
@@ -146,36 +155,32 @@
 					);
 				} else if (i < _selectedIndex) {
 					distanceFromCenter = _selectedIndex - i;
-					TweenLite.to(
-						cover,
-						0.5,
-						{
-							x: _width / 2 - cover.width / 2 - distanceFromCenter * 50,
-							y: 250,
-							z: 0,
-							rotationY: -45
-						}
-					);
+					if (_autoColor != -1) {
+						cover.setColor(ColorUtil.darkenColor(_autoColor, Math.min(distanceFromCenter, 3) * 10));
+					}
+					to(cover, _width / 2 - cover.width / 2 - distanceFromCenter * 50, 250, 0, -45);
 					_coversContainer.setChildIndex(cover, _coversContainer.numChildren - (distanceFromCenter + 1));
 				} else if (i > _selectedIndex) {
 					//trace(Math.sin(45 * Math.PI/180), cover.width * Math.sin(45 * Math.PI/180));
 					//trace(Math.cos(45 * Math.PI/180), cover.width * Math.cos(45 * Math.PI/180));
 					//trace(Math.tan(45 * Math.PI/180), cover.width * Math.tan(45 * Math.PI/180));
 					distanceFromCenter = i - _selectedIndex;
-					TweenLite.to(
-						cover,
-						0.5,
-						{
-							x: cover.width * 0.53 + distanceFromCenter * 50,
-							y: 250,
-							z: cover.width * 0.70,
-							rotationY: 45
-						}
-					);
+					if (_autoColor != -1) {
+						cover.setColor(ColorUtil.darkenColor(_autoColor, Math.min(distanceFromCenter, 4) * 10));
+					}
+					to(cover, cover.width * 0.53 + distanceFromCenter * 50, 250, cover.width * 0.70, 45);
 					_coversContainer.setChildIndex(cover, _coversContainer.numChildren - (distanceFromCenter + 1));
 				}
 			}
 			updateNavigation();
+		}
+		
+		private function to(cover:Cover, x:int, y:int, z:int, rotationY:int) {
+			if (cover.y != y || cover.z != z || cover.rotationY != rotationY) {
+				TweenLite.to(cover, 0.5, { x: x, y: y, z: z, rotationY: rotationY });
+			} else {
+				cover.x = x;
+			}
 		}
 
 		// Workaround fo blurry texts if z-axes is set.

@@ -11,19 +11,20 @@
 	import utils.Grid;
 
 	import views.View;
+	import views.overlays.SearchOverlay;
 
 	import widgets.Cover;
 	import widgets.CoverFlow;
 	import widgets.RoundButton;
 	import widgets.SmallButton;
-	import views.overlays.SearchOverlay;
+	import widgets.TextLabel;
 
 	public class MembersPage extends View {
 
 		private var members:CoverFlow;
 
 		public function MembersPage() {
-			members = new CoverFlow(Main.STAGE.stageWidth, Main.STAGE.stageHeight);
+			members = new CoverFlow(Main.STAGE.stageWidth, Main.STAGE.stageHeight, 0xcccccc);
 			addChild(members);
 
 			registerMembers();
@@ -75,27 +76,58 @@
 		}
 
 		public function registerMembers() {
-			var infos:Array;
 			var cover:Cover;
-
+			var posY:int;
+			
 			for (var i = 1; i <= 16; i++) {
-				cover = new Cover('green');
-				cover.setImage(new Noten());
-				cover.setTitle('Seite ' + i);
-				cover.setDesc('TODO');
-				cover.setAuthor('TODO');
-
-				infos = [];
-				infos["a"] = "123";
-				infos["b"] = "123";
-				infos["c"] = "123";
-				infos["d"] = "123";
-				cover.setInfos(infos);
-
-				cover.setFreePlaces(50); // @TODO dynamisch
-	
+				cover = new Cover();
+				posY = 0;
+				
+				addLine(cover, 'Nachname', 'Vorname', 'Stadt', 'Firma', posY += 5);
+				posY += 10;
+				
+				for (var line = 0; line < 18; line++) {
+					addLine(cover, 'Hallo ' + line, 'City', '', '', posY += 30);
+				}
+				
 				members.push(cover);
 			}
 		}
+		
+		private function addLine(cover:Cover, lastname:String, firstname:String, city:String, company:String, posY:int) {
+			var lastnameLabel:TextLabel = new TextLabel();
+			lastnameLabel.x = Grid.COLUMN_1;
+			lastnameLabel.y = posY;
+			lastnameLabel.shapeWidth = Grid.SPAN_1;
+			lastnameLabel.shapeHeight = 50;
+			lastnameLabel.setText(lastname);
+			
+			var firstnameLabel:TextLabel = new TextLabel();
+			firstnameLabel.x = Grid.COLUMN_2;
+			firstnameLabel.y = posY;
+			firstnameLabel.shapeWidth = Grid.SPAN_1;
+			firstnameLabel.shapeHeight = 50;
+			firstnameLabel.setText(firstname);
+			
+			var cityLabel:TextLabel = new TextLabel();
+			cityLabel.x = Grid.COLUMN_3;
+			cityLabel.y = posY;
+			cityLabel.shapeWidth = Grid.SPAN_1;
+			cityLabel.shapeHeight = 50;
+			cityLabel.setText(city);
+			
+			var companyLabel:TextLabel = new TextLabel();
+			companyLabel.x = Grid.COLUMN_4;
+			companyLabel.y = posY;
+			companyLabel.shapeWidth = Grid.SPAN_1;
+			companyLabel.shapeHeight = 50;
+			companyLabel.setText(company);
+			
+			cover.addChild(lastnameLabel);
+			cover.addChild(firstnameLabel);
+			cover.addChild(cityLabel);
+			cover.addChild(companyLabel);
+		}
+		
 	}
 }
