@@ -59,6 +59,9 @@
 			});
 
 			members = new BigButton(Grid.COLUMN_5, 441, 'green');
+			members.addEventListener(MouseEvent.CLICK, function(e:Event) {
+				Main.CONTENT.pushView(Views.Members);
+			});
 
 			catering = new BigButton(Grid.COLUMN_1, 651, 'moos')
 

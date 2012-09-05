@@ -47,7 +47,7 @@
 					TODO = !TODO;
 					update();
 				});
-				Main.FOOTER.cancel.x = Grid.COLUMN_5 + Grid.SPAN_3;
+				Main.FOOTER.cancel.x = Grid.COLUMN_5 + Grid.SPAN_2;
 				Main.FOOTER.cancel.shapeWidth = Grid.SPAN_2;
 				Main.FOOTER.cancel.update();
 				
