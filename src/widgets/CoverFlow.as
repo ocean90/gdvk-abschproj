@@ -179,6 +179,7 @@
 			if (cover.y != y || cover.z != z || cover.rotationY != rotationY) {
 				TweenLite.to(cover, 0.5, { x: x, y: y, z: z, rotationY: rotationY });
 			} else {
+				// in den meißten fällen wird das cover nur auf der x achse verschoben
 				cover.x = x;
 			}
 		}
