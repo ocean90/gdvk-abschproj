@@ -12,6 +12,7 @@
 	import widgets.SmallButton;
 	import widgets.InverseText;
 	import com.greensock.easing.Quint;
+	import views.overlays.BarcodeOverlay;
 	
 	public class UserDataPage extends View {
 
@@ -21,6 +22,19 @@
 			// constructor code
 		}
 
+		public override function onResume():Boolean {
+			if (Main.LANGUAGE == 'DE') {
+				Main.HEADER.setText('Meine Daten');
+				Main.HEADER.addHeadline('Fakten für den Weltrekord', 200);
+				Main.HEADER.addHeadline('Persönliche Daten', 400);
+			} else if (Main.LANGUAGE == 'EN') {
+				Main.HEADER.setText('My data');
+				Main.HEADER.addHeadline('Facts for the worldrecord', 200);
+				Main.HEADER.addHeadline('Personal data', 400);
+			}
+			return true;
+		}
+		
 		public override function update() {
 			while (numChildren > 0) {
 				removeChildAt(0);
@@ -175,7 +189,7 @@
 		}
 		
 		public function onPrintBarcode(e:Event) {
-			// TODO
+			Main.CONTENT.showOverlay(new BarcodeOverlay());
 		}
 	}
 	

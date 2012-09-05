@@ -171,7 +171,9 @@
 				Main.FOOTER.resetButtonBar();
 				
 				var view:View = viewStack[viewStack.length - 1];
-				view.update();
+				if (!view.onResume()) {
+					view.update();
+				}
 			}
 		}
 	}

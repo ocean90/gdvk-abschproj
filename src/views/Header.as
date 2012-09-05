@@ -80,7 +80,7 @@
 			}});
 		}
 		
-		public function addHeadline(text:String, posY:int, delay:Number = 0) {
+		public function addHeadline(text:String, posY:int, delay:Number = -1) {
 			var headline:InverseText = new InverseText();
 			headline.x = -leftOverlapping;
 			headline.y = posY;
@@ -92,13 +92,14 @@
 			headline.shapeHeight = 50;
 			headline.update();
 			
-			// einblenden
-			headline.x = -headline.shapeWidth;
-			
 			otherHeadlines.push(headline);
 			addChild(headline);
 			
-			TweenLite.to(headline, 0.8, { x: -leftOverlapping, delay: delay, ease:Back.easeOut });
+			// einblenden
+			if (delay != -1) {
+				headline.x = -headline.shapeWidth;
+				TweenLite.to(headline, 0.8, { x: -leftOverlapping, delay: delay, ease:Back.easeOut });
+			}
 		}
 	}
 }
