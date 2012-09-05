@@ -7,7 +7,7 @@
 
 	import views.events.WorkshopsPage;
 	import views.events.TimetablePage;
-	import views.events.MembersPage;
+	import views.events.MemberListPage;
 
 	public class Views {
 
@@ -17,7 +17,7 @@
 
 		public static var Workshops:View = new WorkshopsPage();
 		public static var Timetable:View = new TimetablePage();
-		public static var Members:View = new MembersPage();
+		public static var MemberList:View = new MemberListPage();
 	}
 
 }

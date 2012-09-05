@@ -19,11 +19,11 @@
 	import widgets.SmallButton;
 	import widgets.TextLabel;
 
-	public class MembersPage extends View {
+	public class MemberListPage extends View {
 
 		private var members:CoverFlow;
 
-		public function MembersPage() {
+		public function MemberListPage() {
 			members = new CoverFlow(Main.STAGE.stageWidth, Main.STAGE.stageHeight, 0xcccccc);
 			addChild(members);
 
