@@ -329,7 +329,7 @@
 			if (keyboardMode != MODE_NUMBERS) {
 				keyboardMode = MODE_NUMBERS;
 			} else {
-				keyboardMode = MODE_UPPERCASE;
+				keyboardMode = MODE_LOWERCASE;
 			}
 			update();
 			Main.STAGE.focus = activeTextField;
