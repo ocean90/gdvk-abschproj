@@ -43,8 +43,8 @@
 				}
 			});
 
-			plan = new BigButton(Grid.COLUMN_3, 231, 'red');
-			plan.addEventListener(MouseEvent.CLICK, function(e:Event) {
+			map = new BigButton(Grid.COLUMN_3, 231, 'red');
+			map.addEventListener(MouseEvent.CLICK, function(e:Event) {
 				Main.CONTENT.pushView(Views.Map);
 			});
 
@@ -75,7 +75,7 @@
 			update();
 
 			addChild(userdata);
-			addChild(plan);
+			addChild(map);
 			addChild(timetable);
 			addChild(workshops);
 			addChild(members);
@@ -89,7 +89,7 @@
 				Main.HEADER.setText('Jetzt wird\'s laut!');
 
 				userdata.setText(Main.USER.isLoggedIn() ? 'Meine Daten' : 'Check-In');
-				plan.setText('Lageplan');
+				map.setText('Lageplan');
 				timetable.setText('Zeitplan');
 				workshops.setText('Workshops');
 				members.setText('Teilnehmer');
@@ -100,7 +100,7 @@
 				Main.HEADER.setText('Now it gets loud!');
 
 				userdata.setText(Main.USER.isLoggedIn() ? 'My data' : 'Check-in');
-				plan.setText('Map');
+				map.setText('Map');
 				timetable.setText('Timetable');
 				workshops.setText('Workshops');
 				members.setText('Members');
