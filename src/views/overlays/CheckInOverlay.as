@@ -59,6 +59,7 @@
 			question.shapeWidth = Grid.SPAN_4;
 			question.shapeHeight = 100;
 			question.textFormat.size = 30;
+			question.textFormat.leading = 15;
 			
 			yesButton = new BigButton(Grid.COLUMN_2, 441, 'orange');
 			yesButton.shapeWidth = Grid.SPAN_2;
@@ -77,6 +78,7 @@
 			noButton.shapeWidth = Grid.SPAN_2;
 			noButton.shapeHeight = Grid.SPAN_1;
 			noButton.addEventListener(MouseEvent.CLICK, function(e:Event) {
+				idInput.textField.text = '';
 				firstnameInput.textField.text = '';
 				lastnameInput.textField.text = '';
 				cityInput.textField.text = '';
@@ -256,13 +258,13 @@
 			} else if (mode == MODE_PERSONAL_DATA) {
 				if (idInput.textField.text.length == 0) {
 					if (Main.LANGUAGE == 'DE') {
-						question.setText('Wir benötigen für den Weltrekord folgende Daten von Ihnen:');
+						question.setText('Wir benötigen für den Weltrekordversuch folgende Daten\nvon allen Teilnehmern:');
 					} else if (Main.LANGUAGE == 'EN') {
 						question.setText('Please fill these required data for the world record:');
 					}
 				} else {
 					if (Main.LANGUAGE == 'DE') {
-						question.setText('Bitte überprüfen Sie die korrektheit Ihrer Daten:');
+						question.setText('Bitte überprüfen Sie die Korrektheit Ihrer Daten:');
 					} else if (Main.LANGUAGE == 'EN') {
 						question.setText('Please check if your data are correct:');
 					}
@@ -555,42 +557,42 @@
 			});
 			
 			firstnameLabel.x = Grid.COLUMN_2;
-			firstnameLabel.y = 300;
+			firstnameLabel.y = 320;
 			firstnameLabel.visible = true;
 			firstnameLabel.alpha = 0;
 			
 			firstnameInput.x = Grid.COLUMN_3;
-			firstnameInput.y = 300;
+			firstnameInput.y = 320;
 			firstnameInput.visible = true;
 			firstnameInput.alpha = 0;
 			
 			lastnameLabel.x = Grid.COLUMN_2;
-			lastnameLabel.y = 370;
+			lastnameLabel.y = 390;
 			lastnameLabel.visible = true;
 			lastnameLabel.alpha = 0;
 			
 			lastnameInput.x = Grid.COLUMN_3;
-			lastnameInput.y = 370;
+			lastnameInput.y = 390;
 			lastnameInput.visible = true;
 			lastnameInput.alpha = 0;
 			
 			cityLabel.x = Grid.COLUMN_2;
-			cityLabel.y = 440;
+			cityLabel.y = 460;
 			cityLabel.visible = true;
 			cityLabel.alpha = 0;
 			
 			cityInput.x = Grid.COLUMN_3;
-			cityInput.y = 440;
+			cityInput.y = 460;
 			cityInput.visible = true;
 			cityInput.alpha = 0;
 			
 			dateOfBirthLabel.x = Grid.COLUMN_2;
-			dateOfBirthLabel.y = 510;
+			dateOfBirthLabel.y = 530;
 			dateOfBirthLabel.visible = true;
 			dateOfBirthLabel.alpha = 0;
 
 			dateOfBirthInput.x = Grid.COLUMN_3;
-			dateOfBirthInput.y = 510;
+			dateOfBirthInput.y = 530;
 			dateOfBirthInput.visible = true;
 			dateOfBirthInput.alpha = 0;
 			

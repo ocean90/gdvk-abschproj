@@ -31,7 +31,7 @@
 				infoText.setText('Wenn Sie hilfe an ihrem aktuellen Ort brauchen drücken Sie bitte auf "Hilfe rufen".\n' +
 								 'Wir werden anschließend einen freundlichen Helfer zu Ihnen schicken!\n\n\n');
 			} else {
-				infoText.setText('If you need help in their current location, feel free to press "Call help".\n' +
+				infoText.setText('If you need help in your current location, feel free to press "Call help".\n' +
 								 'We will then send a friendly helper to you!\n\n\n');
 			}
 			addChild(infoText);
