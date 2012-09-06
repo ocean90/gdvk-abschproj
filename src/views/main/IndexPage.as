@@ -44,6 +44,7 @@
 			});
 
 			map = new BigButton(Grid.COLUMN_3, 231, 'red');
+			map.setIcon(new Location());
 			map.addEventListener(MouseEvent.CLICK, function(e:Event) {
 				Main.CONTENT.pushView(Views.Map);
 			});

@@ -1,10 +1,13 @@
 ﻿package widgets {
 
+	import fl.motion.Color;
+
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.display.Stage;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.geom.ColorTransform;
 	import flash.geom.Rectangle;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
@@ -95,6 +98,16 @@
 			graphics.beginFill(Colors.getColor(this.color));
 			graphics.drawRoundRect(0, 0, this.shapeWidth, this.shapeHeight - this.defaultShadowSize, 10);
 			graphics.endFill();
+		}
+
+		public function setIcon(icon:MovieClip) {
+			var newColorTransform:ColorTransform = icon.transform.colorTransform;
+			newColorTransform.color = Colors.getDarkColor(this.color);
+			icon.transform.colorTransform = newColorTransform;
+			icon.width = 100;
+			icon.height = 200;
+			icon.x = 10;
+			addChild(icon);
 		}
 	}
 
