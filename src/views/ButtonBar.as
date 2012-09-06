@@ -118,7 +118,7 @@
 			logout.visible = false;
 			logout.addEventListener(MouseEvent.CLICK, function(e:Event) {
 				Main.USER.logout();
-				Main.CONTENT.updateView();
+				Main.CONTENT.onHome(e);
 
 				logout.visible = false;
 //				login.alpha = 0;
