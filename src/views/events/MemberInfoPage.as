@@ -185,8 +185,8 @@
 			memberMarker.graphics.endFill();
 			
 			TweenLite.to(memberMarker, 0.2, { autoAlpha: 1.0, delay: delayTime, onComplete: function() {
-				TweenLite.to(memberMarker, 10, { x: -200, ease:Quint.easeOut });
-				TweenLite.to(memberButton, 0.8, { autoAlpha: 1.0, delay: 7 });
+				TweenLite.to(memberMarker, 4, { x: -200, ease:Quint.easeOut });
+				TweenLite.to(memberButton, 0.8, { autoAlpha: 1.0, delay: 3.0 });
 			}});
 			
 			checkedInMarker.x = -Main.STAGE.stageWidth;
@@ -198,8 +198,8 @@
 			checkedInMarker.graphics.endFill();
 			
 			TweenLite.to(checkedInMarker, 0.2, { autoAlpha: 1.0, delay: delayTime, onComplete: function() {
-				TweenLite.to(checkedInMarker, 6, { x: -200, ease:Quint.easeOut });
-				TweenLite.to(checkedInButton, 0.8, { autoAlpha: 1.0, delay: 7.2 });
+				TweenLite.to(checkedInMarker, 4, { x: -200, ease:Quint.easeOut });
+				TweenLite.to(checkedInButton, 0.8, { autoAlpha: 1.0, delay: 3.2 });
 			}});
 			
 			TweenLite.to(recordMarker, 0.8, { autoAlpha: 1.0, delay: delayTime });
