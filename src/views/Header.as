@@ -52,7 +52,9 @@
 				var headline:InverseText = otherHeadlines.pop();
 				
 				TweenLite.to(headline, 0.4, { x: -leftOverlapping - headline.shapeWidth, onComplete: function() {
-					removeChild(headline);
+					if (headline.parent != null) {
+						headline.parent.removeChild(headline);
+					}
 				}});
 			}
 		}
