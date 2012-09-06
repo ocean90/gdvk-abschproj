@@ -18,7 +18,7 @@
 	public class IndexPage extends View {
 
 		private var userdata:BigButton;
-		private var plan:BigButton;
+		private var map:BigButton;
 		private var timetable:BigButton;
 		private var workshops:BigButton;
 		private var members:BigButton;
