@@ -20,7 +20,7 @@
 	import views.Views;
 
 	import views.main.IndexPage;
-	
+
 	import widgets.VirtualKeyboard;
 
 	public class Main extends MovieClip {

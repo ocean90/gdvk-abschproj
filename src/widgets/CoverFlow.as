@@ -14,6 +14,7 @@
 	import be.viplib.util.ColorUtil;
 
 	import utils.Grid;
+	import utils.Colors;
 
 	import widgets.Cover;
 
@@ -62,11 +63,16 @@
 			prevButton.x = 15;
 			prevButton.y = 250;
 			var prevButtonTriangle:Shape = new Shape();
-			prevButtonTriangle.graphics.lineStyle(10,0x000000, 1.0, false, "normal", CapsStyle.SQUARE);
+			prevButtonTriangle.graphics.lineStyle(20, Colors.getDarkColor('lightgray'), 1.0, false, "normal", CapsStyle.SQUARE);
+			prevButtonTriangle.graphics.moveTo(15, prevButton.height/2 + 6);
+			prevButtonTriangle.graphics.lineTo(prevButton.width - 5, prevButton.height/2 - 80 + 6);
+			prevButtonTriangle.graphics.moveTo(15, prevButton.height/2 + 6);
+			prevButtonTriangle.graphics.lineTo(prevButton.width - 5, prevButton.height/2 + 80 + 6);
+			prevButtonTriangle.graphics.lineStyle(20, Colors.getColor('lightgray'), 1.0, false, "normal", CapsStyle.SQUARE);
 			prevButtonTriangle.graphics.moveTo(15, prevButton.height/2);
-			prevButtonTriangle.graphics.lineTo(prevButton.width - 5, prevButton.height/2 - 70);
+			prevButtonTriangle.graphics.lineTo(prevButton.width - 5, prevButton.height/2 - 80);
 			prevButtonTriangle.graphics.moveTo(15, prevButton.height/2);
-			prevButtonTriangle.graphics.lineTo(prevButton.width - 5, prevButton.height/2 + 70);
+			prevButtonTriangle.graphics.lineTo(prevButton.width - 5, prevButton.height/2 + 80);
 			prevButton.addChild(prevButtonTriangle)
 			prevButton.addEventListener(MouseEvent.CLICK, prev);
 
@@ -79,10 +85,15 @@
 			nextButton.x = 1280-100-15;
 			nextButton.y = 250;
 			var nextButtonTriangle:Shape = new Shape();
-			nextButtonTriangle.graphics.lineStyle(10,0x000000, 1.0, false, "normal", CapsStyle.SQUARE);
-			nextButtonTriangle.graphics.moveTo(5, nextButton.height/2 -70);
+			nextButtonTriangle.graphics.lineStyle(20, Colors.getDarkColor('lightgray'), 1.0, false, "normal", CapsStyle.SQUARE);
+			nextButtonTriangle.graphics.moveTo(5, nextButton.height/2 - 80 + 6);
+			nextButtonTriangle.graphics.lineTo(nextButton.width - 15, nextButton.height/2 + 6);
+			nextButtonTriangle.graphics.moveTo(5, nextButton.height/2 + 80 + 6);
+			nextButtonTriangle.graphics.lineTo(nextButton.width - 15, nextButton.height/2 + 6);
+			nextButtonTriangle.graphics.lineStyle(20, Colors.getColor('lightgray'), 1.0, false, "normal", CapsStyle.SQUARE);
+			nextButtonTriangle.graphics.moveTo(5, nextButton.height/2 - 80);
 			nextButtonTriangle.graphics.lineTo(nextButton.width - 15, nextButton.height/2);
-			nextButtonTriangle.graphics.moveTo(5, nextButton.height/2 + 70);
+			nextButtonTriangle.graphics.moveTo(5, nextButton.height/2 + 80);
 			nextButtonTriangle.graphics.lineTo(nextButton.width - 15, nextButton.height/2);
 			nextButton.addChild(nextButtonTriangle);
 			nextButton.addEventListener(MouseEvent.CLICK, next);
@@ -173,7 +184,7 @@
 			}
 			updateNavigation();
 		}
-		
+
 		private function to(cover:Cover, x:int, y:int, z:int, rotationY:int) {
 			// animation wenn wenige covers (z.b. workshops) oder sich y, zo der rotationX ändert
 			if (_covers.length <= 5 || cover.y != y || cover.z != z || cover.rotationY != rotationY) {
