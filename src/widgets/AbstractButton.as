@@ -26,6 +26,7 @@
 
 		public var defaultShadowSize:int = 6;
 		public var pushedShadowSize:int = 2;
+		public var maxIconSizeWidth:int = 100;
 
 		public function AbstractButton() {
 			this.buttonMode = true;
@@ -100,14 +101,34 @@
 			graphics.endFill();
 		}
 
-		public function setIcon(icon:MovieClip) {
+		public function setIcon(icon:MovieClip, posX:Number = 0, posY:Number = 0) {
+			// Reduce the icon size if it's too big
+			resizeIcon(icon, maxIconSizeWidth);
+
+			// Recolor the image. Gets the color of the 3D effect
 			var newColorTransform:ColorTransform = icon.transform.colorTransform;
 			newColorTransform.color = Colors.getDarkColor(this.color);
 			icon.transform.colorTransform = newColorTransform;
-			icon.width = 100;
-			icon.height = 200;
-			icon.x = 10;
+
+			// Change the position. Can be also negative. Overflow is disabled
+			icon.x = posX;
+			icon.y = posY;
+
+			// Add the icon to the button
 			addChild(icon);
+
+			// Set icon behind the text
+			setChildIndex(icon, numChildren - 2);
+		}
+
+		// http://circlecube.com/2009/01/how-to-as3-resize-a-movieclip-and-constrain-proportions-actionscript-tutorial/
+		private function resizeIcon(mc:MovieClip, maxW:Number, maxH:Number=0, constrainProportions:Boolean=true):void{
+			maxH = maxH == 0 ? maxW : maxH;
+			mc.width = maxW;
+			mc.height = maxH;
+			if (constrainProportions) {
+				mc.scaleX < mc.scaleY ? mc.scaleY = mc.scaleX : mc.scaleX = mc.scaleY;
+			}
 		}
 	}
 

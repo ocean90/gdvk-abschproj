@@ -30,6 +30,8 @@
 			userdata = new BigButton(Grid.COLUMN_1, 231, 'orange');
 			userdata.shapeWidth = Grid.SPAN_2;
 			userdata.shapeHeight = Grid.SPAN_2;
+			userdata.maxIconSizeWidth = 284;
+			userdata.setIcon(new CheckinIcon(), -20, -60);
 			userdata.addEventListener(MouseEvent.CLICK, function(e:Event) {
 				if (Main.USER.isLoggedIn()) {
 					Main.CONTENT.pushView(Views.UserData);
@@ -44,31 +46,38 @@
 			});
 
 			map = new BigButton(Grid.COLUMN_3, 231, 'red');
-			map.setIcon(new Location());
+			map.setIcon(new LocationIcon(), -20, -60);
 			map.addEventListener(MouseEvent.CLICK, function(e:Event) {
 				Main.CONTENT.pushView(Views.Map);
 			});
 
 			timetable = new BigButton(Grid.COLUMN_5, 231, 'blue');
+			timetable.setIcon(new TimetableIcon(), -20, -70);
 			timetable.addEventListener(MouseEvent.CLICK, function(e:Event) {
 				Main.CONTENT.pushView(Views.Timetable);
 			});
 
 			workshops = new BigButton(Grid.COLUMN_3, 441, 'purple');
+			workshops.setIcon(new WorkshopsIcon(), -20, -70);
 			workshops.addEventListener(MouseEvent.CLICK, function(e:Event) {
 				Main.CONTENT.pushView(Views.Workshops);
 			});
 
 			members = new BigButton(Grid.COLUMN_5, 441, 'green');
+			members.maxIconSizeWidth = 200;
+			members.setIcon(new MembersIcon(), -20, -10);
 			members.addEventListener(MouseEvent.CLICK, function(e:Event) {
 				Main.CONTENT.pushView(Views.MemberInfo);
 			});
 
 			catering = new BigButton(Grid.COLUMN_1, 651, 'moos')
+			catering.setIcon(new CateringIcon(), -20, -10)
 
 			infrastructure = new BigButton(Grid.COLUMN_3, 651, 'brown');
+			infrastructure.setIcon(new InfrastructureIcon(), -20, -60)
 
 			help = new BigButton(Grid.COLUMN_5, 651);
+			help.setIcon(new HelpIcon(), -40, -30)
 			help.addEventListener(MouseEvent.CLICK, function(e:Event) {
 				Main.CONTENT.showOverlay(new HelpOverlay());
 			});
