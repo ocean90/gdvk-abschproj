@@ -1,17 +1,18 @@
 ﻿package views {
 	import com.greensock.TweenLite;
+	import com.greensock.easing.Back;
 
 	import flash.display.Sprite;
 	import flash.events.Event;
-	import flash.geom.Rectangle;
-	import flash.filters.DropShadowFilter;
 	import flash.events.MouseEvent;
-
-	import com.greensock.easing.Back;
+	import flash.filters.DropShadowFilter;
+	import flash.geom.Rectangle;
 
 	import utils.Colors;
 	import utils.Grid;
+
 	import views.View;
+
 	import widgets.InverseText;
 	import widgets.SmallButton;
 	import widgets.VirtualKeyboard;
@@ -45,9 +46,13 @@
 		private var submitCallback:Function;
 
 		public function PageOverlay(background:* = 0xffffff, w:Number = 870,h:Number = 700) {
+			init(background, w, h);
+		}
+
+		public function init(background:*, w:Number, h:Number) {
 			_owidth = w;
 			_oheight = h;
-			_background = Colors.getColor(background);;
+			_background = Colors.getColor(background);
 
 			_overlay = new Sprite();
 			_overlay.visible = false;
@@ -100,8 +105,8 @@
 			TweenLite.to(_overlay, 0.5, { alpha: 1});
 		}
 
-		public function destroy() {
-			TweenLite.to(_overlay, 0.3, { alpha: 0, onComplete: function() {
+		public function destroy(delay:Number = 0.3) {
+			TweenLite.to(_overlay, delay, { alpha: 0, onComplete: function() {
 				_overlay.visible = false;
 				while (_overlay.numChildren) {
 					_overlay.removeChildAt(0);
@@ -132,8 +137,8 @@
 			var x:int, y:int;
 			contentBox = new Sprite();
 			// Vereinfacht da dies auch in VirtualKeyboard gesetzt wird!
-			contentBox.x = Main.STAGE.width * 0.5 - this.width * 0.5;
-			contentBox.y = Main.STAGE.height * 0.5 - this.height * 0.5;
+			contentBox.x = Grid.STAGE_WIDTH * 0.5 - this.width * 0.5;
+			contentBox.y = Grid.STAGE_HEIGHT * 0.5 - this.height * 0.5;
 			contentBox.graphics.clear();
 			contentBox.graphics.beginFill(_background);
 			contentBox.graphics.drawRect(0, 0, _owidth, _oheight);

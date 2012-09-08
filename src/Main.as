@@ -15,10 +15,10 @@
 
 	import views.ButtonBar;
 	import views.Header;
-	import views.UI;
 	import views.PageOverlay;
+	import views.UI;
+	import views.Screensaver;
 	import views.Views;
-
 	import views.main.IndexPage;
 
 	import widgets.VirtualKeyboard;
@@ -35,6 +35,10 @@
 		public static var FOOTER:ButtonBar;
 
 		public static var KEYBOARD:VirtualKeyboard;
+
+		public static var DEBUG:Debug;
+
+		public static var SCREENSAVER:Screensaver;
 
 		public static var USER:User = new User();
 
@@ -64,9 +68,10 @@
 //			addChild(Main.OVERLAY);
 			addChild(Main.KEYBOARD);
 
-			Main.CONTENT.pushHome(Views.Index);
+			Main.DEBUG = new Debug();
+			addChild(Main.DEBUG);
 
-			addChild(new Debug());
+			Main.SCREENSAVER = new Screensaver( 0xffffff, Grid.STAGE_WIDTH - 50, Grid.STAGE_HEIGHT - 50);
 		}
 	}
 
