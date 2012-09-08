@@ -53,7 +53,7 @@
 			background.y = Main.STAGE.stageHeight - 100;
 			background.x = 0;
 			addChild(background);
-			
+
 			buttons = new Sprite();
 
 			englishFlag = new EnglishFlag();
@@ -150,7 +150,7 @@
 			submit.shapeHeight = Grid.BUTTON_BAR_BUTTON_HEIGHT;
 			submit.visible = false;
 			submit.addEventListener(MouseEvent.CLICK, onSubmit);
-			
+
 			// Add buttons
 			buttons.addChild(de);
 			buttons.addChild(en);
@@ -163,7 +163,7 @@
 			addChild(buttons);
 		}
 
-		public function changeLanguage(e:Event) {
+		public function changeLanguage(e:Event):void {
 			if (e.currentTarget == de && Main.LANGUAGE != 'DE') {
 				trace('Switch UI to german');
 				Main.LANGUAGE = 'DE';
@@ -181,7 +181,7 @@
 			}
 		}
 
-		public function showCancelButton(text:String, callback:Function) {
+		public function showCancelButton(text:String, callback:Function):void {
 			cancel.x = Grid.COLUMN_1;
 			cancel.shapeWidth = Grid.SPAN_1;
 			cancel.visible = true;
@@ -189,13 +189,13 @@
 			cancelCallback = callback;
 		}
 
-		function onCancel(e:Event) {
+		function onCancel(e:Event):void {
 			if (cancelCallback != null) {
 				cancelCallback(e);
 			}
 		}
 
-		public function showSubmitButton(text:String, callback:Function) {
+		public function showSubmitButton(text:String, callback:Function):void {
 			submit.x = Grid.COLUMN_6;
 			submit.shapeWidth = Grid.SPAN_1;
 			submit.visible = true;
@@ -203,13 +203,13 @@
 			submitCallback = callback;
 		}
 
-		function onSubmit(e:Event) {
+		function onSubmit(e:Event):void {
 			if (submitCallback != null) {
 				submitCallback(e);
 			}
 		}
 
-		public override function update() {
+		public override function update():void {
 			de.update();
 			en.update();
 
@@ -219,7 +219,7 @@
 			logout.setText(Main.LANGUAGE == 'DE' ? 'Abmelden' : 'Logout');
 		}
 
-		public function resetButtonBar() {
+		public function resetButtonBar():void {
 			TweenLite.to(background, 0.3, { x: 0, ease:Quint.easeOut });
 
 			if (Main.CONTENT.length <= 1) {

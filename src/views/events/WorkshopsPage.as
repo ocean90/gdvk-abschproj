@@ -16,6 +16,10 @@
 	import widgets.RoundButton;
 	import widgets.SmallButton;
 
+	/**
+	 * Zeigt die Workshops in Form einer Cover Flow an
+	 * Pro Cover für ein Workshop.
+	 */
 	public class WorkshopsPage extends View {
 
 		private var workshops:CoverFlow;
@@ -30,7 +34,7 @@
 		// TODO
 		private var TODO:Boolean = false;
 
-		public override function update() {
+		public override function update():void {
 			if (Main.LANGUAGE == 'DE') {
 				Main.HEADER.setText('Workshops');
 			} else if (Main.LANGUAGE == 'EN') {
@@ -49,7 +53,7 @@
 				Main.FOOTER.cancel.x = Grid.COLUMN_5 + Grid.SPAN_2;
 				Main.FOOTER.cancel.shapeWidth = Grid.SPAN_2;
 				Main.FOOTER.cancel.update();
-				
+
 				TweenLite.to(Main.FOOTER.cancel, 0.5, { x: Grid.COLUMN_5, ease:Quint.easeOut });
 			} else {
 				Main.FOOTER.showSubmitButton(Main.LANGUAGE == 'DE' ? 'An Workshop Teilnehmen' : 'Subscribe to workshop', function(e:Event) {
@@ -60,14 +64,14 @@
 				Main.FOOTER.submit.x = Grid.COLUMN_5 + Grid.SPAN_2;
 				Main.FOOTER.submit.shapeWidth = Grid.SPAN_2;
 				Main.FOOTER.submit.update();
-				
+
 				TweenLite.to(Main.FOOTER.submit, 0.5, { x:Grid.COLUMN_5, ease:Quint.easeOut });
 			}
-			
+
 			TweenLite.to(Main.FOOTER.background, 0.5, { x: -Main.FOOTER.background.width + Grid.COLUMN_5 - Grid.COLUMN_PADDING, ease:Quint.easeOut });
 		}
 
-		public function registerWorkshops() {
+		public function registerWorkshops():void {
 			var infos:Array;
 			var cover:Cover;
 

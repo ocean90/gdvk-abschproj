@@ -10,6 +10,14 @@
 	import utils.Colors;
 	import utils.Grid;
 
+	/**
+	 * Die Klasse dient zum Anlegen eines Covers für
+	 * die Cover Flow Anzeige.
+	 * Ausgelegt für Workshop Anzeige mit Setter-Methoden:
+	 * "setTitle", "setImage", "setAuthor", "setDesc", "setInfos"
+	 *
+	 * @TODO: Workshop spezifische Methoden in Unterklasse aussortieren.
+	 */
 	public class Cover extends Sprite {
 		private var _color:uint;
 		private var _shapeWidth:Number;
@@ -22,21 +30,21 @@
 			paintCover();
 		}
 
-		public function setColor(color:uint) {
+		public function setColor(color:uint):void {
 			if (_color != color) {
 				_color = color;
 				paintCover();
 			}
 		}
 
-		public function paintCover() {
+		public function paintCover():void {
 			graphics.clear();
 			graphics.beginFill(_color);
 			graphics.drawRect(0, 0, _shapeWidth, _shapeHeight);
 			graphics.endFill();
 		}
 
-		public function setImage(image:MovieClip) {
+		public function setImage(image:MovieClip):void {
 			image.x = 30;
 			image.y = 25
 			image.width = 390;
@@ -49,7 +57,7 @@
 			addChild(overlay);
 		}
 
-		public function setTitle(title:String) {
+		public function setTitle(title:String):void {
 			var textFormat:TextFormat = new TextFormat();
 			textFormat.color = '0xffffff';
 			textFormat.font = 'Myriad Pro';
@@ -67,7 +75,7 @@
 			addChild(textField);
 		}
 
-		public function setDesc(desc:String) {
+		public function setDesc(desc:String):void {
 			var textFormat:TextFormat = new TextFormat();
 			textFormat.color = '0x000000';
 			textFormat.font = 'Georgia';
@@ -88,7 +96,7 @@
 			addChild(textField);
 		}
 
-		public function setAuthor(author:String) {
+		public function setAuthor(author:String):void {
 			var textFormat:TextFormat = new TextFormat();
 			textFormat.color = '0xffffff';
 			textFormat.font = 'Myriad Pro';
@@ -106,7 +114,7 @@
 			addChild(textField);
 		}
 
-		public function setInfos(data:Array) {
+		public function setInfos(data:Array):void {
 			var textFormat:TextFormat = new TextFormat();
 			textFormat.color = '0xffffff';
 			textFormat.font = 'Myriad Pro';
@@ -138,7 +146,7 @@
 
 		}
 
-		public function setFreePlaces(places:int) {
+		public function setFreePlaces(places:int):void {
 			var textFormat:TextFormat = new TextFormat();
 			textFormat.color = '0xffffff';
 			textFormat.font = 'Myriad Pro';

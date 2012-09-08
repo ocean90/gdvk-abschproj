@@ -15,7 +15,7 @@ package utils {
 			Main.STAGE.addEventListener(KeyboardEvent.KEY_DOWN, toggleDebug);
 		}
 
-		private function toggleDebug(e:KeyboardEvent) {
+		private function toggleDebug(e:KeyboardEvent):void {
 			var key:uint = e.keyCode;
 
 			switch (key) {

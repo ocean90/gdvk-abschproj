@@ -16,6 +16,14 @@
 	import utils.Colors;
 	import utils.Grid;
 
+	/**
+	 * Abstrakte Klasse. Dient als Oberklasse zum Erstellen von
+	 * 3D Buttons.
+	 * Wenn gewünscht kann ein Button mit einem Icon untersützt werden,
+	 * siehe dazu die Methode "setIcon".
+	 *
+	 * Unterklassen: "BigButton" und "SmallButton"
+	 */
 	public class AbstractButton extends Sprite {
 		public var textFormat:TextFormat;
 		public var textField:TextField;
@@ -46,12 +54,12 @@
 			this.addEventListener(MouseEvent.MOUSE_OUT, mouseUp);
 		}
 
-		public function setText(text:String) {
+		public function setText(text:String):void {
 			textField.text = text;
 			this.update();
 		}
 
-		public function update() {
+		public function update():void {
 			textField.setTextFormat(textFormat);
 
 			textField.width = this.shapeWidth;
@@ -64,7 +72,7 @@
 			mouseUp(null);
 		}
 
-		protected function mouseDown(e:Event) {
+		protected function mouseDown(e:Event):void {
 			// hack from http://stackoverflow.com/questions/1568181/flash-vertical-text-alignment-in-middle
 			// center button vertical
 			textField.y = (this.shapeHeight - this.defaultShadowSize) * 0.5 - textField.textHeight * 0.5
@@ -83,7 +91,7 @@
 			graphics.endFill();
 		}
 
-		protected function mouseUp(e:Event) {
+		protected function mouseUp(e:Event):void {
 			// hack from http://stackoverflow.com/questions/1568181/flash-vertical-text-alignment-in-middle
 			// center button vertical
 			textField.y =  (this.shapeHeight - this.defaultShadowSize) * 0.5 - textField.textHeight * 0.5;
@@ -101,7 +109,7 @@
 			graphics.endFill();
 		}
 
-		public function setIcon(icon:MovieClip, posX:Number = 0, posY:Number = 0) {
+		public function setIcon(icon:MovieClip, posX:Number = 0, posY:Number = 0):void {
 			// Reduce the icon size if it's too big
 			resizeIcon(icon, maxIconSizeWidth);
 

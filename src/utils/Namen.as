@@ -1,19 +1,19 @@
 ﻿package utils {
-	
+
 	public class Namen {
-		
+
 		public static function getLastname(percent:Number) {
 			return lastnames[Math.floor(percent * lastnames.length)];
 		}
-		
+
 		public static function getRandomLastname() {
 			return lastnames[getRandom(lastnames.length)];
 		}
-		
+
 		public static function getRandomFirstname() {
 			return firstnames[getRandom(firstnames.length)];
 		}
-		
+
 		public static function getRandomCity() {
 			if (getRandom(100) < 10) {
 				return cities[getRandom(cities.length)];
@@ -21,7 +21,7 @@
 				return '';
 			}
 		}
-		
+
 		public static function getRandomCompany() {
 			if (getRandom(100) < 10) {
 				return companies[getRandom(companies.length)];
@@ -29,24 +29,24 @@
 				return '';
 			}
 		}
-		
+
 		private static function getRandom(to:int) {
 			return Math.floor(Math.random() * to);
 		}
-		
+
 		// Selbst "ausgedacht".
 		private static var cities:Array = [
 			'Gummersbach', 'Köln', 'Bonn', 'Koblenz', 'Düsseldürf', 'New York', 'Manchaster'
 		];
 		// Selbst "ausgedacht".
 		private static var companies:Array = [
-			'FH Köln', 'IT hier und da', 'Audi', 'Ferchau', 'Sparkasse Gummeresbach'
+			'FH Köln', 'IT hier und da', 'Audi', 'Ferchau', 'Sparkasse'
 		];
-		
+
 		// Vornamen bestehen aus:
 		// * Top 100 von http://de.wiktionary.org/wiki/Wiktionary:Deutsch/Liste_der_h%C3%A4ufigsten_m%C3%A4nnlichen_Vornamen_Deutschlands
 		// * Top 100 von http://de.wiktionary.org/wiki/Wiktionary:Deutsch/Liste_der_h%C3%A4ufigsten_weiblichen_Vornamen_Deutschlands
-		
+
 		private static var firstnames:Array = [
 			'Albert',
 			'Alexander',
@@ -245,7 +245,7 @@
 			'Willi',
 			'Wolfgang',
 		];
-		
+
 		// Nachnamen bestehen aus:
 		// * Top 100 von http://de.wikipedia.org/wiki/Liste_der_h%C3%A4ufigsten_Familiennamen_in_Deutschland
 
@@ -352,5 +352,5 @@
 			'Zimmermann'
 		];
 	}
-	
+
 }

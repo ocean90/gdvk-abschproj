@@ -38,7 +38,7 @@
 			return true;
 		}
 
-		public override function update() {
+		public override function update():void {
 			while (numChildren > 0) {
 				removeChildAt(0);
 			}
@@ -137,7 +137,7 @@
 			}
 		}
 
-		private function addPersonalData(labelText:String, valueText:String, posY:int, delay:Number = 0) {
+		private function addPersonalData(labelText:String, valueText:String, posY:int, delay:Number = 0):void {
 			var label:TextLabel = new TextLabel();
 			label.x = Grid.COLUMN_1;
 			label.y = posY;
@@ -162,7 +162,7 @@
 			TweenLite.to(line, 0.8, { x: 0, autoAlpha: 1.0, delay: delay, ease:Back.easeOut });
 		}
 
-		private function addRecordData(labelText:String, valueText:String, posY:int, delay:Number = 0) {
+		private function addRecordData(labelText:String, valueText:String, posY:int, delay:Number = 0):void {
 			var label:TextLabel = new TextLabel();
 			label.x = Grid.COLUMN_3;
 			label.y = posY;
@@ -187,7 +187,7 @@
 			TweenLite.to(line, 0.8, { x: 0, autoAlpha: 1.0, delay: delay, ease:Back.easeOut });
 		}
 
-		private function addHelperImage(posY:int, delay:Number = 0) {
+		private function addHelperImage(posY:int, delay:Number = 0):void {
 			var helper:MovieClip = new BetreuerImage();
 			helper.x = Grid.COLUMN_3;
 			helper.y = posY;
@@ -198,7 +198,7 @@
 			TweenLite.to(helper, 0.8, { x: Grid.COLUMN_3, autoAlpha: 1.0, delay: delay, ease:Back.easeOut });
 		}
 
-		private function createBarcodeText(labelText:String, posY:int, delay:Number) {
+		private function createBarcodeText(labelText:String, posY:int, delay:Number):void {
 			var label:TextLabel = new TextLabel();
 			label.x = Grid.COLUMN_5;
 			label.y = posY;
@@ -212,7 +212,7 @@
 			TweenLite.to(label, 0.8, { x: Grid.COLUMN_5, autoAlpha: 1.0, delay: delay, ease:Quint.easeOut });
 		}
 
-		private function addRightHeadline(text:String, posX:int, posY:int, delay:Number = 0) {
+		private function addRightHeadline(text:String, posX:int, posY:int, delay:Number = 0):void {
 			var headline:InverseText = new InverseText();
 			headline.x = posX;
 			headline.y = posY;
@@ -232,7 +232,7 @@
 			TweenLite.to(headline, 0.8, { x: posX - Grid.COLUMN_PADDING, alpha: 1.0, delay: delay, ease:Quint.easeOut });
 		}
 
-		public function onPrintBarcode(e:Event) {
+		public function onPrintBarcode(e:Event):void {
 			Main.CONTENT.showOverlay(new BarcodeOverlay());
 		}
 	}

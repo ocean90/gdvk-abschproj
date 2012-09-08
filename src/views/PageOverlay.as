@@ -105,7 +105,7 @@
 			TweenLite.to(_overlay, 0.5, { alpha: 1});
 		}
 
-		public function destroy(delay:Number = 0.3) {
+		public function destroy(delay:Number = 0.3):void {
 			TweenLite.to(_overlay, delay, { alpha: 0, onComplete: function() {
 				_overlay.visible = false;
 				while (_overlay.numChildren) {
@@ -115,7 +115,7 @@
 			Main.CONTENT.hideOverlay();
 		}
 
-		public function darkenPage() {
+		public function darkenPage():void {
 			darkenContent = new Sprite();
 			darkenContent.graphics.beginFill(0x000000);
 			darkenContent.graphics.drawRect(0, 0, Main.STAGE.width, Main.STAGE.height - Grid.BUTTON_BAR_HEIGHT);
@@ -133,7 +133,7 @@
 			_overlay.addChild(darkenButtonBar);
 		}
 
-		public function paintContentBox() {
+		public function paintContentBox():void {
 			var x:int, y:int;
 			contentBox = new Sprite();
 			// Vereinfacht da dies auch in VirtualKeyboard gesetzt wird!
@@ -153,7 +153,7 @@
 			_overlay.addChild(contentBox);
 		}
 
-		public function setText(text:String) {
+		public function setText(text:String):void {
 			if (text == bigHeader.textField.text) {
 				return;
 			}
@@ -176,7 +176,7 @@
 			}});
 		}
 
-		public function showCancelButton(text:String, callback:Function) {
+		public function showCancelButton(text:String, callback:Function):void {
 			cancel.x = Grid.COLUMN_2 - Grid.COLUMN_2 + Grid.COLUMN_PADDING;
 			cancel.shapeWidth = Grid.SPAN_1;
 			cancel.visible = true;
@@ -184,13 +184,13 @@
 			cancelCallback = callback;
 		}
 
-		public function onCancel(e:Event) {
+		public function onCancel(e:Event):void {
 			if (cancelCallback != null) {
 				cancelCallback(e);
 			}
 		}
 
-		public function showSubmitButton(text:String, callback:Function) {
+		public function showSubmitButton(text:String, callback:Function):void {
 			submit.x = Grid.COLUMN_5 - Grid.COLUMN_2 + Grid.COLUMN_PADDING;
 			submit.shapeWidth = Grid.SPAN_1;
 			submit.visible = true;
@@ -198,7 +198,7 @@
 			submitCallback = callback;
 		}
 
-		public function onSubmit(e:Event) {
+		public function onSubmit(e:Event):void {
 			if (submitCallback != null) {
 				submitCallback(e);
 			}

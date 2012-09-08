@@ -16,11 +16,14 @@
 	import widgets.TextLabel;
 
 	/**
-	 * Barcode Druck Dialog der angezeigt wird wenn man auf der Benutzer-Daten-Seite
-	 * auf "Barcode drucken" drückt.
-	 * Entgegen der anderen Overlays bietet dieses Overlay keine Option zum beenden an.
-	 * Es zeigt dem Benutzer an das jetzt etwas passiert und er in den Druckausgabe-
-	 * Schacht schauen muss. Das Fenster verschwindet dann automatisch wieder!
+	 * Implementierung eines Screensavers mit welchem die Anwendung startet.
+	 * Unterklasse der PageOverlay Klasse, zerstört allerdings das Objekt zunächst
+	 * direkt wieder. Ein Neues wird durch den init() Aufruf erstellt.
+	 *
+	 * Der Screensaver kann durch Klick auf den Screen ausgeblendet werden.
+	 *
+	 * Nach X Minuten Inaktivität wird der Screensaver wieder angezeigt und die
+	 * aktuelle Session gelöscht.
 	 */
 	public class Screensaver extends PageOverlay {
 
@@ -56,7 +59,7 @@
 			show(null);
 		}
 
-		private function show(e:Event) {
+		private function show(e:Event):void {
 			// Screensaver is already shown
 			if (added)
 				return;
@@ -78,12 +81,12 @@
 			contentBox.addEventListener(MouseEvent.CLICK, resetScreen);
 		}
 
-		private function restartTimer(e:Event) {
+		private function restartTimer(e:Event):void {
 			timer.stop();
 			timer.start();
 		}
 
-		private function resetScreen(e:Event) {
+		private function resetScreen(e:Event):void {
 			// Remove overlay
 			destroy();
 

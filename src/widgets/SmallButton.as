@@ -3,6 +3,10 @@
 	import utils.Colors;
 	import utils.Grid;
 
+	/**
+	 * Implementiert einen kleinen Button, Breite entspricht einer
+	 * Spalte. Text kann direkt per Aufruf definiert werden.
+	 */
 	public class SmallButton extends AbstractButton {
 		public function SmallButton(text:String, color:String = 'blue') {
 			this.color = color;

@@ -13,26 +13,26 @@
 	import widgets.TextLabel;
 	import widgets.InputField;
 	import flash.text.TextField;
-	
+
 	/**
 	 * Für die Teilnehmer-Liste ein Suchdialog.
 	 */
 	public class SearchOverlay extends PageOverlay {
-		
+
 		private var searchLabel:TextLabel;
 		private var searchInput:InputField;
 
 		// Function was called if the user clicked on search!
 		public var searchCallback:Function = null;
-		
+
 		public function SearchOverlay(background:* = 0xffffff, w:Number = 870,h:Number = 500) {
 			super(background, w, h);
-			
+
 			content.x = -Grid.COLUMN_2 + Grid.COLUMN_PADDING;
 			content.y = -60;
-			
+
 			setText(Main.LANGUAGE == 'DE' ? 'Suchen' : 'Search');
-			
+
 			searchLabel = new TextLabel();
 			searchLabel.x = Grid.COLUMN_2;
 			searchLabel.y = 300;
@@ -41,7 +41,7 @@
 //			searchLabel.textFormat.align = TextFieldAutoSize.RIGHT;
 			searchLabel.setText((Main.LANGUAGE == 'DE' ? 'Name oder Ort:' : 'Name or city:'));
 			searchLabel.addEventListener(MouseEvent.CLICK, focus);
-			
+
 			searchInput = new InputField();
 			searchInput.x = Grid.COLUMN_3;
 			searchInput.y = 300;
@@ -50,40 +50,40 @@
 			searchInput.update();
 			searchInput.addEventListener(MouseEvent.CLICK, focus);
 			searchInput.textField.addEventListener(Event.CHANGE, changeData);
-			
+
 			content.addChild(searchLabel);
 			content.addChild(searchInput);
 		}
-		
-		public override function update() {
+
+		public override function update():void {
 			Main.FOOTER.resetButtonBar();
 			Main.KEYBOARD.hide();
-			
+
 			showCancelButton((Main.LANGUAGE == 'DE' ? 'Abbrechen' : 'Cancel'), cancelSearch);
 			showSubmitButton((Main.LANGUAGE == 'DE' ? 'Suchen' : 'Search'), searchNow);
-			
+
 			changeData(null);
 			focus(null);
 		}
 
-		public function cancelSearch(e:Event) {
+		public function cancelSearch(e:Event):void {
 			Main.CONTENT.hideOverlay();
 		}
 
-		public function searchNow(e:Event) {
+		public function searchNow(e:Event):void {
 			if (searchInput.textField.length == 0) {
 				focus(null);
 				return;
 			}
-			
+
 			if (searchCallback != null) {
 				searchCallback();
 			}
-			
+
 			Main.CONTENT.hideOverlay();
 		}
 
-		public function changeData(e:Event) {
+		public function changeData(e:Event):void {
 			if (searchInput.textField.length == 0) {
 				submit.color = 'lightgray';
 				submit.textFormat.color = '0x888888';
@@ -95,7 +95,7 @@
 			}
 		}
 
-		public function focus(e:Event) {
+		public function focus(e:Event):void {
 			Main.KEYBOARD.activateFor(searchInput.textField);
 			Main.KEYBOARD.setOnEnterFunction(function(activeTextField:TextField) {
 				searchNow(e);

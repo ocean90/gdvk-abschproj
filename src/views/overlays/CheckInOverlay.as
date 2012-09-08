@@ -63,7 +63,7 @@
 			createUI();
 		}
 
-		public function createUI() {
+		public function createUI():void {
 
 			question = new TextLabel();
 			question.shapeWidth = Grid.SPAN_4;
@@ -206,7 +206,7 @@
 			content.addChild(dateOfBirthInput);
 		}
 
-		private function reset() {
+		private function reset():void {
 			Main.KEYBOARD.hide();
 
 			// Before position could be changed ensure that no tween is running.
@@ -250,7 +250,7 @@
 			updateQuestion();
 		}
 
-		public function updateQuestion() {
+		public function updateQuestion():void {
 			if (mode == MODE_QUESTION) {
 				if (Main.LANGUAGE == 'DE') {
 					question.setText('Hast Du dich bereits auf unserer Webseite registriert\n' +
@@ -286,7 +286,7 @@
 			});
 		}
 
-		public override function update() {
+		public override function update():void {
 			reset();
 
 			// reset all positions that are changed in onYes or onNo!
@@ -354,28 +354,28 @@
 			updateQuestion();
 		}
 
-		public function focusId(e:Event) {
+		public function focusId(e:Event):void {
 			Main.KEYBOARD.activateFor(idInput.textField);
 			Main.KEYBOARD.setOnEnterFunction(onEnter);
 			Main.KEYBOARD.onNumberKeyPressed(e);
 		}
 
-		public function focusFirstname(e:Event) {
+		public function focusFirstname(e:Event):void {
 			Main.KEYBOARD.activateFor(firstnameInput.textField);
 			Main.KEYBOARD.setOnEnterFunction(onEnter);
 		}
 
-		public function focusLastname(e:Event) {
+		public function focusLastname(e:Event):void {
 			Main.KEYBOARD.activateFor(lastnameInput.textField);
 			Main.KEYBOARD.setOnEnterFunction(onEnter);
 		}
 
-		public function focusCity(e:Event) {
+		public function focusCity(e:Event):void {
 			Main.KEYBOARD.activateFor(cityInput.textField);
 			Main.KEYBOARD.setOnEnterFunction(onEnter);
 		}
 
-		public function focusDateOfBirth(e:Event) {
+		public function focusDateOfBirth(e:Event):void {
 			Main.KEYBOARD.activateFor(dateOfBirthInput.textField);
 			Main.KEYBOARD.setOnEnterFunction(onEnter);
 			Main.KEYBOARD.onNumberKeyPressed(e);
@@ -384,7 +384,7 @@
 		/**
 		 * Diese Change-Methode wird bei allen CHANGE events aufgerufen.
 		 */
-		public function changeData(e:Event) {
+		public function changeData(e:Event):void {
 			// Wird unten auf false gesetzt wenn die Daten nicht vollständig wären.
 			var validData:Boolean = true;
 
@@ -472,7 +472,7 @@
 			return false;
 		}
 
-		public function onYes(e:Event) {
+		public function onYes(e:Event):void {
 			mode = MODE_PERSONAL_ID;
 			// hack if someone clicks fast on yes and no
 			reset();
@@ -519,7 +519,7 @@
 			focusId(e);
 		}
 
-		public function onNo(e:Event) {
+		public function onNo(e:Event:void) {
 			mode = MODE_PERSONAL_DATA;
 			// hack if someone clicks fast on yes and no
 			reset();

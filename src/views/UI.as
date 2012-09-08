@@ -27,7 +27,7 @@
 		 * Kann von überall aufgerufen werden wenn die Startseite aufgerufen werden soll.
 		 * Z.b. aus der ButtonBar "Hauptseite" oder nach dem Login.
 		 */
-		public function onHome(e:Event) {
+		public function onHome(e:Event):void {
 			Main.KEYBOARD.activateFor(null);
 			if (viewStack.length == 1) {
 				return;
@@ -54,14 +54,14 @@
 			TweenLite.to(homeView, 0.8, { x: 0 });
 		}
 
-		public function onBack(e:Event) {
+		public function onBack(e:Event):void {
 			popView();
 		}
 
 		/**
 		 * Prüft aktuell NICHT ob dies wirklich die erste View ist!
 		 */
-		public function pushHome(home:View) {
+		public function pushHome(home:View):void {
 			viewStack.push(home);
 			Main.HEADER.reset();
 			Main.FOOTER.resetButtonBar();
@@ -78,7 +78,7 @@
 		 * Fügt eine neue View auf den Stack hinzu. Animation: Von rechts kommt die neue
 		 * View und die alte verlässt den Screen gleichzeitig nach links.
 		 */
-		public function pushView(nextView:View) {
+		public function pushView(nextView:View):void {
 			if (overlay) {
 				hideOverlay();
 			}
@@ -111,7 +111,7 @@
 		 * Aktuell ist diese Funktion aber nicht mehr in Verwendung seit der Login ein Overlay
 		 * ist.
 		 */
-		public function replaceView(newView:View) {
+		public function replaceView(newView:View):void {
 			if (overlay) {
 				hideOverlay();
 			}
@@ -137,7 +137,7 @@
 		 * Entfernt die oberste View vom Stack. Es muss jedoch immer min. eine View
 		 * auf dem Stack bleiben. Animation entgegen der von pushView.
 		 */
-		public function popView() {
+		public function popView():void {
 			if (overlay) {
 				hideOverlay();
 			}
@@ -169,7 +169,7 @@
 		 * die Aktualisierung durch ein schneller Fade-out Fade-in!
 		 * Aktuelle Verwendung wenn die Sprach geändert wird.
 		 */
-		public function updateView() {
+		public function updateView():void {
 			var view:View = viewStack[viewStack.length - 1];
 			view.alpha = 0;
 			view.update();
@@ -179,7 +179,7 @@
 		/**
 		 * Wird über UI.length von der ButtonBar verwendet um die passenden Buttons anzuzeigen.
 		 */
-		public function get length() {
+		public function get length():uint {
 			return viewStack.length;
 		}
 
@@ -188,7 +188,7 @@
 		/**
 		 * Öffnet den übergebenen Overlay.
 		 */
-		public function showOverlay(overlay:PageOverlay) {
+		public function showOverlay(overlay:PageOverlay):void {
 			this.overlay = overlay;
 			this.overlay.update();
 			addChild(overlay);
@@ -197,7 +197,7 @@
 		/**
 		 * Schließt einen Overlay wenn aktuell einer geöffnet ist.
 		 */
-		public function hideOverlay() {
+		public function hideOverlay():void {
 			if (this.overlay) {
 				var old:PageOverlay = this.overlay;
 				this.overlay = null;

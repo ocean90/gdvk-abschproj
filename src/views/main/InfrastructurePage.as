@@ -73,7 +73,7 @@
 			addChild(firsthelp);
 		}
 
-		public override function update() {
+		public override function update():void {
 			if (Main.LANGUAGE == 'DE') {
 				Main.HEADER.setText('Infrastruktur');
 

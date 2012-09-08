@@ -3,6 +3,10 @@
 	import utils.Colors;
 	import utils.Grid;
 
+	/**
+	 * Implementiert einen großen Button, heißt die Höhe entspricht einer
+	 * Spalte und die Breite zwei Spalten.
+	 */
 	public class BigButton extends AbstractButton {
 		public function BigButton(posX:int = 0, posY:int = 0, color:String = 'blue') {
 			this.color = color;

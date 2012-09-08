@@ -68,7 +68,7 @@
 			addChild(keys);
 		}
 
-		public function activateFor(textField:TextField) {
+		public function activateFor(textField:TextField):void {
 			activeTextField = textField;
 			if (activeTextField != null && activeTextField.visible) {
 				show();
@@ -84,11 +84,11 @@
 		/**
 		 * set callback function with only one single TextField argument.
 		 */
-		public function setOnEnterFunction(callback:Function) {
+		public function setOnEnterFunction(callback:Function):void {
 			this.onEnterFunction = callback;
 		}
 
-		public function show() {
+		public function show():void {
 			keyboardMode = MODE_UPPERCASE;
 			update();
 
@@ -96,48 +96,48 @@
 			TweenLite.to(Main.HEADER, 0.8, { y: -moveUp });
 			TweenLite.to(Main.CONTENT, 0.8, { y: -moveUp });
 			TweenLite.to(Main.FOOTER, 0.8, { y: -moveUp });
-			
+
 			if (!visible) {
 				y = Main.STAGE.stageHeight - Grid.BUTTON_BAR_HEIGHT;
 				visible = true;
 			}
 			TweenLite.to(this, 0.8, { y: Main.STAGE.stageHeight - Grid.BUTTON_BAR_HEIGHT - moveUp });
-			
+
 			TweenLite.to(Main.FOOTER.buttons, 0.2, { autoAlpha: 0 });
 			TweenLite.to(this.keys, 0.4, { autoAlpha: 1 });
-			
+
 			if (Main.CONTENT.overlay) {
 				TweenLite.to(Main.CONTENT.overlay.darkenButtonBar, 0.4, { autoAlpha: 0 });
 				TweenLite.to(Main.CONTENT.overlay.contentBox, 0.8, { y: Main.STAGE.height * 0.5 - Main.CONTENT.overlay.height * 0.5 + 60 });
 			}
-			
+
 			Main.STAGE.focus = activeTextField;
 		}
 
-		public function hide() {
+		public function hide():void {
 			Main.STAGE.focus = null;
-			
+
 			TweenLite.to(Main.HEADER, 0.8, { y: 0 });
 			TweenLite.to(Main.CONTENT, 0.8, { y: 0 });
 			TweenLite.to(Main.FOOTER, 0.8, { y: 0 });
-			
+
 			TweenLite.to(this, 0.8, { y: Main.STAGE.stageHeight - Grid.BUTTON_BAR_HEIGHT, onComplete: function() {
 				visible = false;
 			}});
-			
+
 			TweenLite.to(this.keys, 0.4, { delay: 0.2, autoAlpha: 0 });
 			TweenLite.to(Main.FOOTER.buttons, 0.4, { delay: 0.8, autoAlpha: 1 });
-			
+
 			if (Main.CONTENT.overlay) {
 				TweenLite.to(Main.CONTENT.overlay.darkenButtonBar, 0.4, { autoAlpha: 0.8 });
 				TweenLite.to(Main.CONTENT.overlay.contentBox, 0.8, { y: Main.STAGE.height * 0.5 - Main.CONTENT.overlay.height * 0.5 });
 			}
-			
+
 			activeTextField = null;
 			onEnterFunction = null;
 		}
 
-		public function createKeys() {
+		public function createKeys():void {
 			var textKey:Sprite;
 
 			var posX = 0;
@@ -202,11 +202,11 @@
 			numberModeKeyRight.addEventListener(MouseEvent.CLICK, onNumberKeyPressed);
 		}
 
-		public override function update() {
+		public override function update():void {
 			updateKeys();
 		}
 
-		private function updateKeys() {
+		private function updateKeys():void {
 			//trace('setKeyboardText', KEY_LINES[keyboardMode]);
 			for (var line = 0; line < allNormalKeys.length; line++) {
 				for (var keyInLine = 0; keyInLine < allNormalKeys[line].length; keyInLine++) {
@@ -261,21 +261,21 @@
 			return keyLabel;
 		}
 
-		public function onTextKeyPressed(e:Event) {
+		public function onTextKeyPressed(e:Event):void {
 			var keyBackground:Sprite = ((Sprite) (e.currentTarget));
 			var keyLabel:TextField = ((TextField) (keyBackground.getChildAt(0)));
 			replaceSelectedText(keyLabel.text);
 		}
 
-		public function onSpaceKeyPressed(e:Event) {
+		public function onSpaceKeyPressed(e:Event):void {
 			replaceSelectedText(' ');
 		}
 
-		public function fakeKey(text:String) {
+		public function fakeKey(text:String):void {
 			replaceSelectedText(text);
 		}
 
-		private function replaceSelectedText(text:String) {
+		private function replaceSelectedText(text:String:void) {
 			if (activeTextField) {
 				if (activeTextField.selectionBeginIndex == activeTextField.selectionEndIndex) {
 					// Hack: Only required that the textfield visibility jumps to the end of the textfield
@@ -297,7 +297,7 @@
 			Main.STAGE.focus = activeTextField;
 		}
 
-		public function onDelKeyPressed(e:Event) {
+		public function onDelKeyPressed(e:Event):void {
 			if (activeTextField && activeTextField.length > 0) {
 				if (activeTextField.selectionBeginIndex == activeTextField.selectionEndIndex) {
 					// remove the char before the caret
@@ -313,7 +313,7 @@
 			Main.STAGE.focus = activeTextField;
 		}
 
-		public function onEnterKeyPressed(e:Event) {
+		public function onEnterKeyPressed(e:Event):void {
 			keyboardMode = MODE_UPPERCASE;
 			update();
 			if (this.onEnterFunction != null) {
@@ -323,7 +323,7 @@
 			}
 		}
 
-		public function onUpKeyPressed(e:Event) {
+		public function onUpKeyPressed(e:Event):void {
 			if (keyboardMode != MODE_UPPERCASE) {
 				keyboardMode = MODE_UPPERCASE;
 			} else {
@@ -333,7 +333,7 @@
 			Main.STAGE.focus = activeTextField;
 		}
 
-		public function onNumberKeyPressed(e:Event) {
+		public function onNumberKeyPressed(e:Event):void {
 			if (keyboardMode != MODE_NUMBERS) {
 				keyboardMode = MODE_NUMBERS;
 			} else {

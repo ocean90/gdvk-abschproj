@@ -3,34 +3,34 @@
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	import flash.display.Sprite;
-	
+
 	public class TextLabel extends Sprite {
 
 		public var textFormat:TextFormat;
 		public var textField:TextField;
-		
+
 		public var shapeWidth:int;
 		public var shapeHeight:int;
-		
+
 		public function TextLabel() {
 			textFormat = new TextFormat();
 			textFormat.color = '0x000000';
 			textFormat.font = 'Myriad Pro';
 			textFormat.size = 20;
 			// hier kein leading. das verschiebt einzeiler komisch
-			
+
 			textField = new TextField();
 			textField.mouseEnabled = false;
-			
+
 			addChild(textField);
 		}
 
-		public function setText(text:String) {
+		public function setText(text:String):void {
 			textField.text = text;
 			this.update();
 		}
-		
-		public function update() {
+
+		public function update():void {
 			textField.setTextFormat(textFormat);
 			if (shapeWidth && shapeHeight) {
 				textField.width = shapeWidth;
@@ -45,5 +45,5 @@
 			}
 		}
 	}
-	
+
 }

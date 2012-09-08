@@ -29,21 +29,21 @@
 				'lightgreen':     ColorUtil.brightenColor(0x69A733, 40), // inner color same as green, for now*/
 		};
 
-		public static function getColor(color:*) {
+		public static function getColor(color:*):uint {
 			if ( 'string' == typeof color )
 				return _colors[color];
 			else
 				return color;
 		}
 
-		public static function getDarkColor(color:*) {
+		public static function getDarkColor(color:*):uint {
 			if ( 'string' == typeof color )
 				return ColorUtil.darkenColor(_colors[color], 20);
 			else
 				return ColorUtil.darkenColor(color, 20);
 		}
 
-		public static function getLightColor(color:*) {
+		public static function getLightColor(color:*):uint {
 			if ( 'string' == typeof color )
 				return ColorUtil.brightenColor(_colors[color], 20);
 			else

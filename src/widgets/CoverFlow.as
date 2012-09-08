@@ -1,4 +1,6 @@
 ﻿package widgets {
+	import be.viplib.util.ColorUtil;
+
 	import com.greensock.TweenLite;
 
 	import flash.display.Bitmap;
@@ -10,13 +12,19 @@
 	import flash.geom.PerspectiveProjection;
 	import flash.geom.Point;
 
-	import be.viplib.util.ColorUtil;
-
-	import utils.Grid;
 	import utils.Colors;
+	import utils.Grid;
 
 	import widgets.Cover;
 
+	/**
+	 * Erzeugt das von Apple bekannte Cover Flow.
+	 * Einzelne Covers werden über die Klasse "Cover" angelegt.
+	 * Die Covers werden in der Klasse als Vektor gespeichert.
+	 * Beim Hinzufügen eines Covers wird die Position in der x, y
+	 * und z-Achse berechnet.
+	 * Zeigt außerdem die Navigationsbuttons an.
+	 */
 	public class CoverFlow extends Sprite {
 		private var _width:int;
 		private var _height:int;
@@ -51,7 +59,7 @@
 
 		}
 
-		public function createButtons() {
+		public function createButtons():void {
 			var transparent:BitmapData = new BitmapData(100,600,true,0xffffff);
 
 			// Linker Button
@@ -99,7 +107,7 @@
 			nextButton.addEventListener(MouseEvent.CLICK, next);
 		}
 
-		public function push(cover:Cover) {
+		public function push(cover:Cover):void {
 			// center the perspective center!
 			cover.transform.perspectiveProjection = new PerspectiveProjection()
 			cover.transform.perspectiveProjection.projectionCenter = new Point(_width / 2, 250 + cover.height / 2);
@@ -107,7 +115,7 @@
 			_coversContainer.addChild(cover);
 		}
 
-		public function next(e:Event) {
+		public function next(e:Event):* {
 			_selectedIndex++;
 			if (_selectedIndex > _covers.length - 1) {
 				_selectedIndex = _covers.length - 1;
@@ -116,7 +124,7 @@
 			layout();
 		}
 
-		public function prev(e:Event) {
+		public function prev(e:Event):* {
 			_selectedIndex--;
 			if (_selectedIndex < 0) {
 				_selectedIndex = 0;
@@ -125,7 +133,7 @@
 			layout();
 		}
 
-		public function updateNavigation() {
+		public function updateNavigation():void {
 			_coversContainer.setChildIndex(nextButton, _coversContainer.numChildren -1);
 			_coversContainer.setChildIndex(prevButton, _coversContainer.numChildren -1);
 
@@ -139,7 +147,7 @@
 			}
 		}
 
-		public function layout() {
+		public function layout():void {
 			var len:uint = _covers.length;
 			var cover:Cover;
 			var distanceFromCenter:int;
@@ -185,7 +193,7 @@
 			updateNavigation();
 		}
 
-		private function to(cover:Cover, x:int, y:int, z:int, rotationY:int) {
+		private function to(cover:Cover, x:int, y:int, z:int, rotationY:int):void {
 			// animation wenn wenige covers (z.b. workshops) oder sich y, zo der rotationX ändert
 			if (_covers.length <= 5 || cover.y != y || cover.z != z || cover.rotationY != rotationY) {
 				TweenLite.to(cover, 0.5, { x: x, y: y, z: z, rotationY: rotationY });
@@ -198,7 +206,7 @@
 
 		// Workaround fo blurry texts if z-axes is set.
 		// http://forums.greensock.com/topic/2239-blurry-movieclip-with-3d-axis/
-		private function _fixBlurry(cover:Cover) {
+		private function _fixBlurry(cover:Cover):void {
 			var currentX = cover.x;
 			var currentY = cover.y;
 			cover.transform.matrix3D = null;

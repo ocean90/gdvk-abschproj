@@ -13,11 +13,7 @@
 	import widgets.TextLabel;
 
 	/**
-	 * Barcode Druck Dialog der angezeigt wird wenn man auf der Benutzer-Daten-Seite
-	 * auf "Barcode drucken" drückt.
-	 * Entgegen der anderen Overlays bietet dieses Overlay keine Option zum beenden an.
-	 * Es zeigt dem Benutzer an das jetzt etwas passiert und er in den Druckausgabe-
-	 * Schacht schauen muss. Das Fenster verschwindet dann automatisch wieder!
+	 * Reparatur Dialog.
 	 */
 	public class RepairOverlay extends PageOverlay {
 
@@ -35,9 +31,9 @@
 			infoText.textFormat.leading = 20;
 
 			if (Main.LANGUAGE == 'DE') {
-				infoText.setText('Als Teilnehmer hast Du Zugriff auf das WLAN-Netzwerk der Fachhochschule Köln.\nNetzwerkname und Passwort lauten:');
+				infoText.setText('Lorem Ipsum');
 			} else {
-				infoText.setText('As a member you get access to the wireless network.\nName of the network and password are:');
+				infoText.setText('Lorem Ipsum');
 			}
 			addChild(infoText);
 

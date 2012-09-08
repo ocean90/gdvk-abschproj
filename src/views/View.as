@@ -1,7 +1,7 @@
 ﻿package views {
 	import flash.display.Sprite;
 	import flash.geom.Rectangle;
-	
+
 	/**
 	 * Ausgelagert falls wir doch irgendwas MovieClip oder was anderes anleiten müssen.
 	 */
@@ -10,11 +10,11 @@
 			// disable overflow for this view. for the background image we use here height * 2
 			scrollRect = new Rectangle(0, 0, Main.STAGE.stageWidth, Main.STAGE.stageHeight * 2);
 		}
-		
+
 		/**
 		 * Wird auf allen Views im ViewStack aufgerufen wenn diese im View Stack hinzugefügt werden.
 		 */
-		public function update() {}
+		public function update():void {}
 		/**
 		 * Wird auf allen Views aufgerufen wenn die View von vorher wieder angezeigt wird.
 		 * Wird für die Zurück funktion z.b. auf der MemberInfoPage verwendet um die Header
@@ -26,5 +26,5 @@
 		public function onResume():Boolean {
 			return false;
 		}
-	}	
+	}
 }
