@@ -9,7 +9,6 @@
 	import flash.events.MouseEvent;
 	import flash.geom.PerspectiveProjection;
 	import flash.geom.Point;
-	import flash.display.CapsStyle;
 
 	import be.viplib.util.ColorUtil;
 
@@ -63,17 +62,17 @@
 			prevButton.x = 25;
 			prevButton.y = 250;
 			var prevButtonTriangle:Shape = new Shape();
-			prevButtonTriangle.graphics.lineStyle(40, Colors.getDarkColor('lightgray'), 1.0, false, "normal", CapsStyle.ROUND);
+			prevButtonTriangle.graphics.lineStyle(40, Colors.getDarkColor('lightgray'));
 			prevButtonTriangle.graphics.moveTo(15, prevButton.height/2 + 6);
 			prevButtonTriangle.graphics.lineTo(prevButton.width - 5, prevButton.height/2 - 80 + 6);
 			prevButtonTriangle.graphics.moveTo(15, prevButton.height/2 + 6);
 			prevButtonTriangle.graphics.lineTo(prevButton.width - 5, prevButton.height/2 + 80 + 6);
-			prevButtonTriangle.graphics.lineStyle(40, Colors.getColor('lightgray'), 1.0, false, "normal", CapsStyle.ROUND);
+			prevButtonTriangle.graphics.lineStyle(40, Colors.getColor('lightgray'));
 			prevButtonTriangle.graphics.moveTo(15, prevButton.height/2);
 			prevButtonTriangle.graphics.lineTo(prevButton.width - 5, prevButton.height/2 - 80);
 			prevButtonTriangle.graphics.moveTo(15, prevButton.height/2);
 			prevButtonTriangle.graphics.lineTo(prevButton.width - 5, prevButton.height/2 + 80);
-			
+
 			prevButton.addChild(prevButtonTriangle)
 			prevButton.addEventListener(MouseEvent.CLICK, prev);
 
@@ -86,12 +85,12 @@
 			nextButton.x = 1280-100-25;
 			nextButton.y = 250;
 			var nextButtonTriangle:Shape = new Shape();
-			nextButtonTriangle.graphics.lineStyle(40, Colors.getDarkColor('lightgray'), 1.0, false, "normal", CapsStyle.ROUND);
+			nextButtonTriangle.graphics.lineStyle(40, Colors.getDarkColor('lightgray'));
 			nextButtonTriangle.graphics.moveTo(5, nextButton.height/2 - 80 + 6);
 			nextButtonTriangle.graphics.lineTo(nextButton.width - 15, nextButton.height/2 + 6);
 			nextButtonTriangle.graphics.moveTo(5, nextButton.height/2 + 80 + 6);
 			nextButtonTriangle.graphics.lineTo(nextButton.width - 15, nextButton.height/2 + 6);
-			nextButtonTriangle.graphics.lineStyle(40, Colors.getColor('lightgray'), 1.0, false, "normal", CapsStyle.ROUND);
+			nextButtonTriangle.graphics.lineStyle(40, Colors.getColor('lightgray'));
 			nextButtonTriangle.graphics.moveTo(5, nextButton.height/2 - 80);
 			nextButtonTriangle.graphics.lineTo(nextButton.width - 15, nextButton.height/2);
 			nextButtonTriangle.graphics.moveTo(5, nextButton.height/2 + 80);
