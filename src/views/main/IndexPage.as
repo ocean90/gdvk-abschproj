@@ -8,8 +8,6 @@
 
 	import views.View;
 	import views.Views;
-	import views.events.TimetablePage;
-	import views.events.WorkshopsPage;
 	import views.overlays.HelpOverlay;
 	import views.overlays.CheckInOverlay;
 
@@ -75,6 +73,9 @@
 
 			infrastructure = new BigButton(Grid.COLUMN_3, 651, 'brown');
 			infrastructure.setIcon(new InfrastructureIcon(), -20, -60)
+			infrastructure.addEventListener(MouseEvent.CLICK, function(e:Event) {
+				Main.CONTENT.pushView(Views.Infrastructure);
+			});
 
 			help = new BigButton(Grid.COLUMN_5, 651);
 			help.setIcon(new HelpIcon(), -40, -30)
