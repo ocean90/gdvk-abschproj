@@ -20,6 +20,9 @@
 	import views.Screensaver;
 	import views.Views;
 	import views.main.IndexPage;
+	
+	import flash.display.StageAlign;
+	import flash.display.StageScaleMode;
 
 	import widgets.VirtualKeyboard;
 
@@ -47,7 +50,9 @@
 
 			// Don't overflow.
 			this.scrollRect = new Rectangle(0, 0, Grid.STAGE_WIDTH, Grid.STAGE_HEIGHT);
-
+			stage.scaleMode = StageScaleMode.NO_SCALE;
+			stage.align = StageAlign.TOP_LEFT;
+			
 			Main.STAGE = stage;
 
 			Main.HEADER = new Header();
