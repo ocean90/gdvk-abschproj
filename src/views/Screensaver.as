@@ -24,7 +24,7 @@
 	 */
 	public class Screensaver extends PageOverlay {
 
-		private var timer:Timer = new Timer(10000); // 10 seconds
+		private var timer:Timer = new Timer(1000 * 60 * 5); // 5 minutes
 
 		private var added:Boolean;
 
