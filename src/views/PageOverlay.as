@@ -140,9 +140,9 @@
 			contentBox.graphics.endFill();
 
 			var shadow:DropShadowFilter = new DropShadowFilter();
-			shadow.distance = 10;
 			shadow.angle = 0;
-			shadow.blurX = shadow.blurY = 100.0;
+			shadow.blurX = shadow.blurY = 100;
+			shadow.alpha = 0.8;
 			contentBox.filters = [shadow];
 
 			_overlay.addChild(contentBox);
