@@ -15,6 +15,15 @@
 
 	import widgets.SmallButton;
 
+	/**
+	 * Verantwortlich für die ButtonBar am unterem Rand der Bildschirms. Verwaltet:
+	 * - die Sprach-Auswahl-Button (nur sichtbar auf der Start-Seite)
+	 * - den Home-Button   (nur sichtbar wenn min. 1 Seite  auf dem View-Stack liegt)
+	 * - den Zurück-Button (nur sichtbar wenn min. 2 Seiten auf dem View-Stack liegen)
+	 * - Die Cancel/Submit-Buttons (nur auf Anfrage Sichtbar! Andere Buttons werden ggf. ausgeblendet.)
+	 * - Den Login-Button gibt es nicht mehr.
+	 * - Den Logout-Button wenn der Benutzer eingeloggt ist.
+	 */
 	public class ButtonBar extends View {
 
 		public var background:MovieClip;

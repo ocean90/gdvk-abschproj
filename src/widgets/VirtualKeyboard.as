@@ -12,6 +12,14 @@
 	import utils.Grid;
 	import views.ButtonBar;
 
+	/**
+	 * Die On-Screen-Tastatur verfügt über drei Modi (Eingabe Klein-/Großbuchstaben und Zahlen)
+	 * die auch visuell dem Benutzer angezeigt werden. (Insb. auch unterschied Klein/Großbuchst.)
+	 * Sie switcht automatisch nach einem Großbuchstaben auf Kleinbuchstaben. Ein Caps-Lock ist
+	 * aktuell nicht eingebaut.
+	 * Die Tastatur funktioniert mit normalen flash TextFields wodurch das Scollen in Textfeldern
+	 * automatisch klappte und man auch mit einer echten Tastatur tippen kann!
+	 */
 	public class VirtualKeyboard extends View {
 
 		public static var KEYBOARD_WIDTH:int = Grid.SPAN_4;

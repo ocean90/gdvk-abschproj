@@ -13,7 +13,10 @@
 	import widgets.TextLabel;
 	import widgets.InputField;
 	import flash.text.TextField;
-
+	
+	/**
+	 * Für die Teilnehmer-Liste ein Suchdialog.
+	 */
 	public class SearchOverlay extends PageOverlay {
 		
 		private var searchLabel:TextLabel;

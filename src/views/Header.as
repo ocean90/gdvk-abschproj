@@ -4,47 +4,30 @@
 	import com.greensock.TweenLite;
 	import com.greensock.easing.Back;
 	
+	/**
+	 * Verwaltungsklasse für den Header. Sorgt für die nötigen Bounceanimationen.
+	 * Verwendung über setText (für die eine Zentrale große) und addHeadline für kleinere
+	 * im Content-Bereich.
+	 */
 	public class Header extends View {
 
 		private var leftOverlapping:int = 200;
 
-		private var bigHeader:InverseText;
-		private var smallHeader1:InverseText;
-		private var smallHeader2:InverseText;
+		private var headline:InverseText;
 		
 		private var otherHeadlines:Array = new Array();
 		
 		public function Header() {
-			bigHeader = new InverseText();
-			bigHeader.x = -leftOverlapping;
-			bigHeader.y = 38;
-			bigHeader.textFormat.size = 50;
-			bigHeader.textField.x = Grid.COLUMN_1 + leftOverlapping;
-			bigHeader.shapeWidth = 200;
-			bigHeader.shapeHeight = 100;
-			bigHeader.setText('BigHeader');
-			bigHeader.visible = false;
-			addChild(bigHeader);
-			
-			smallHeader1 = new InverseText();
-			smallHeader1.x = -leftOverlapping;
-			smallHeader1.y = 38;
-			smallHeader1.textField.x = Grid.COLUMN_1 + leftOverlapping;
-			smallHeader1.shapeWidth = 200;
-			smallHeader1.shapeHeight = 50;
-			smallHeader1.setText('SmallHeader1');
-			smallHeader1.visible = false;
-			addChild(smallHeader1);
-			
-			smallHeader2 = new InverseText();
-			smallHeader2.x = -leftOverlapping + Grid.COLUMN_1 * 2;
-			smallHeader2.y = 88;
-			smallHeader2.textField.x = Grid.COLUMN_1 + leftOverlapping;
-			smallHeader2.shapeWidth = 200;
-			smallHeader2.shapeHeight = 50;
-			smallHeader2.setText('SmallHeader2');
-			smallHeader2.visible = false;
-			addChild(smallHeader2);
+			headline = new InverseText();
+			headline.x = -leftOverlapping;
+			headline.y = 38;
+			headline.textFormat.size = 50;
+			headline.textField.x = Grid.COLUMN_1 + leftOverlapping;
+			headline.shapeWidth = 200;
+			headline.shapeHeight = 100;
+			headline.setText('');
+			headline.visible = false;
+			addChild(headline);
 		}
 
 		public function reset() {
@@ -60,25 +43,25 @@
 		}
 
 		public function setText(text:String) {
-			if (text == bigHeader.textField.text) {
+			if (text == headline.textField.text) {
 				return;
 			}
 			
 			// ausblenden
-			TweenLite.to(bigHeader, 0.4, { x: -leftOverlapping - bigHeader.shapeWidth, onComplete: function() {
+			TweenLite.to(headline, 0.4, { x: -leftOverlapping - headline.shapeWidth, onComplete: function() {
 				// updaten
-				bigHeader.setText(text);
+				headline.setText(text);
 				if (text == null) {
 					return;
 				}
 				
-				bigHeader.shapeWidth = bigHeader.textField.textWidth + 50 + leftOverlapping;
-				bigHeader.update();
+				headline.shapeWidth = headline.textField.textWidth + 50 + leftOverlapping;
+				headline.update();
 				
 				// einblenden
-				bigHeader.x = -bigHeader.shapeWidth;
-				bigHeader.visible = true;
-				TweenLite.to(bigHeader, 0.8, { x: -leftOverlapping, ease:Back.easeOut });
+				headline.x = -headline.shapeWidth;
+				headline.visible = true;
+				TweenLite.to(headline, 0.8, { x: -leftOverlapping, ease:Back.easeOut });
 			}});
 		}
 		

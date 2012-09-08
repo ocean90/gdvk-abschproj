@@ -12,6 +12,13 @@
 	import widgets.SmallButton;
 	import widgets.TextLabel;
 
+	/**
+	 * Eine eigene Funktion als Overlay implementiert. Der "Ich brauche Hilfe" Dialog.
+	 * Schritt 1: Nochmal Info anzeigen und die Option anbieten wirklich hilfe zu rufen.
+	 * Dies soll verhindern das Hilfe geschickt wird nur weil der Benutzer z.b. auf der
+	 * Startseite "aus Spaß" oder "ausversehen" auf den Hilfe-Button gedrückt hat.
+	 * Schritt 2: Information das jetzt wirklich Hilfe Unterwegs ist.
+	 */
 	public class HelpOverlay extends PageOverlay {
 		
 		var infoText:TextLabel;

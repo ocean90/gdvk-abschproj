@@ -15,6 +15,10 @@
 	import widgets.SmallButton;
 	import widgets.VirtualKeyboard;
 
+	/**
+	 * Oberklasse von allen Overlays und kümmert sich um die Verdunklung der normalen View,
+	 * das Zeichnen des Weißen Box für den Content sowie die zugehörigen Animationen.
+	 */
 	public class PageOverlay extends View {
 		
 		private var _owidth:Number;
@@ -23,7 +27,7 @@
 
 		private var _overlay:Sprite;
 		private var darkenContent:Sprite;
-		public var darkenButtonBar:Sprite; // ja das ist ein hack, egal..
+		public var darkenButtonBar:Sprite; // ja das public ist ein hack für die ButtonBar.
 		
 		public var contentBox:Sprite;
 		public var content:Sprite

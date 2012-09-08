@@ -9,6 +9,12 @@
 	import views.PageOverlay;
 	import widgets.SmallButton;
 
+	/**
+	 * Diese Klasse spiegelt die Content Bereich der Oberfläche wieder und kümmert sich
+	 * um die View animationen wenn eine Seite ausgetauscht wird. So erscheinen neue
+	 * Seiten die per pushView hinzugefügt werden automatisch von Rechts und alte von
+	 * Links wenn Views über popView aufgeräumt werden.
+	 */
 	public class UI extends MovieClip {
 
 		private var viewStack:Vector.<View> = new Vector.<View>();
@@ -17,6 +23,10 @@
 		public function UI() {
 		}
 
+		/**
+		 * Kann von überall aufgerufen werden wenn die Startseite aufgerufen werden soll.
+		 * Z.b. aus der ButtonBar "Hauptseite" oder nach dem Login.
+		 */
 		public function onHome(e:Event) {
 			Main.KEYBOARD.activateFor(null);
 			if (viewStack.length == 1) {
@@ -64,6 +74,10 @@
 			TweenLite.to(home, 2.0, { delay: 0.5, autoAlpha: 1 });
 		}
 
+		/**
+		 * Fügt eine neue View auf den Stack hinzu. Animaation: Von rechts kommt die neue
+		 * View und die alte verlässt den Screen gleichzeitig nach links.
+		 */
 		public function pushView(nextView:View) {
 			if (overlay) {
 				hideOverlay();
@@ -90,6 +104,13 @@
 			TweenLite.to(nextView, 0.8, { x: 0 });
 		}
 
+		/**
+		 * Ersetzt die aktuelle View durch eine neue. Dies wurde z.b. verwendet als der Login
+		 * noch eine normale Seite war und die neue "User Daten" Seite nicht auf den Stack
+		 * kommen sollte. (Sonst wäre man ja über Zurück zum Login gekommen.)
+		 * Aktuell ist diese Funktion aber nicht mehr in Verwendung seit der Login ein Overlay
+		 * ist.
+		 */
 		public function replaceView(newView:View) {
 			if (overlay) {
 				hideOverlay();
@@ -112,6 +133,10 @@
 			TweenLite.to(newView, 0.8, { x: 0 });
 		}
 
+		/**
+		 * Entfernt die oberste View vom Stack. Es muss jedoch immer min. eine View
+		 * auf dem Stack bleiben. Animation entgegen der von pushView.
+		 */
 		public function popView() {
 			if (overlay) {
 				hideOverlay();
@@ -139,6 +164,11 @@
 			TweenLite.to(prevPage, 0.8, { x: 0 });
 		}
 
+		/**
+		 * Ruft die View#update Methode auf der aktullen View auf und Animiert
+		 * die Aktualisierung durch ein schneller Fade-out Fade-in!
+		 * Aktuelle Verwendung wenn die Sprach geändert wird.
+		 */
 		public function updateView() {
 			var view:View = viewStack[viewStack.length - 1];
 			view.alpha = 0;
@@ -146,18 +176,27 @@
 			TweenLite.to(view, 2.0, { autoAlpha: 1 });
 		}
 		
+		/**
+		 * Wird über UI.length von der ButtonBar verwendet um die passenden Buttons anzuzeigen.
+		 */
 		public function get length() {
 			return viewStack.length;
 		}
 		
 		// === OVERLAY FUNCTIONS ===
 		
+		/**
+		 * Öffnet den übergebenen Overlay.
+		 */
 		public function showOverlay(overlay:PageOverlay) {
 			this.overlay = overlay;
 			this.overlay.update();
 			addChild(overlay);
 		}
 		
+		/**
+		 * Schließt einen Overlay wenn aktuell einer geöffnet ist.
+		 */
 		public function hideOverlay() {
 			if (this.overlay) {
 				var old:PageOverlay = this.overlay;

@@ -15,6 +15,16 @@
 	import widgets.SmallButton;
 	import widgets.BigButton;
 
+	/**
+	 * Der Check-In Dialog bietet optionen zum Anmelden mit und ohne persönliche ID.
+	 * Im ersten Fall müssen die Daten noch geprüft werden.
+	 * Im zweiten müssen die Daten vollständig eingegeben werden.
+	 * Unterstützt wird fehlerhafte eingabe (aktuell entspricht dies leeren Feldern)
+	 * sowie eine visuelle Unterstützung dadurch das der Weiter-Button erst bei
+	 * validaten Daten grün wird.
+	 * Geburtsdatum autovervollständigt den Punkt und die Tastatur wird beim
+	 * persönliche ID automatisch auf Zahlenmodus umgestellt.
+	 */
 	public class CheckInOverlay extends PageOverlay {
 
 		private static var MODE_QUESTION:String = 'id?';

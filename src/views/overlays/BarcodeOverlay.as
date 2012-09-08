@@ -12,6 +12,13 @@
 	import widgets.SmallButton;
 	import widgets.TextLabel;
 
+	/**
+	 * Barcode Druck Dialog der angezeigt wird wenn man auf der Benutzer-Daten-Seite
+	 * auf "Barcode drucken" drückt.
+	 * Entgegen der anderen Overlays bietet dieses Overlay keine Option zum beenden an.
+	 * Es zeigt dem Benutzer an das jetzt etwas passiert und er in den Druckausgabe-
+	 * Schacht schauen muss. Das Fenster verschwindet dann automatisch wieder!
+	 */
 	public class BarcodeOverlay extends PageOverlay {
 		
 		var infoText:TextLabel;
