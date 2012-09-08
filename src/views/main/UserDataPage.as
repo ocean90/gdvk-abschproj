@@ -70,7 +70,7 @@
 				
 				addHelperImage(525, delayTime += addDelay);
 				addRightHeadline('Ihr Betreuer', Grid.COLUMN_3, 500, delayTime += addDelay);
-				addRecordData('Herr Schmitz', '', 800, delayTime += addDelay);
+				addRecordData('Pierre Favre', '', 800, delayTime += addDelay);
 				
 				delayTime += 0.3;
 				addRightHeadline('Barcode', Grid.COLUMN_5, 200, delayTime += addDelay);
@@ -113,7 +113,7 @@
 				
 				addHelperImage(525, delayTime += addDelay);
 				addRightHeadline('Your advisor', Grid.COLUMN_3, 500, delayTime += addDelay);
-				addRecordData('Herr Schmitz', '', 800, delayTime += addDelay);
+				addRecordData('Pierre Favre', '', 800, delayTime += addDelay);
 				
 				delayTime += 0.3;
 				addRightHeadline('Barcode', Grid.COLUMN_5, 200, delayTime += addDelay);
@@ -189,7 +189,7 @@
 		}
 		
 		private function addHelperImage(posY:int, delay:Number = 0) {
-			var helper:MovieClip = new Noten();
+			var helper:MovieClip = new PierreFavre();
 			helper.x = Grid.COLUMN_3;
 			helper.y = posY;
 			
