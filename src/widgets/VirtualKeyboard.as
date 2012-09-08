@@ -275,7 +275,7 @@
 			replaceSelectedText(text);
 		}
 
-		private function replaceSelectedText(text:String:void) {
+		private function replaceSelectedText(text:String):void {
 			if (activeTextField) {
 				if (activeTextField.selectionBeginIndex == activeTextField.selectionEndIndex) {
 					// Hack: Only required that the textfield visibility jumps to the end of the textfield

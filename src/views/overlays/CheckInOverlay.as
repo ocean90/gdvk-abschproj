@@ -519,7 +519,7 @@
 			focusId(e);
 		}
 
-		public function onNo(e:Event:void) {
+		public function onNo(e:Event):void {
 			mode = MODE_PERSONAL_DATA;
 			// hack if someone clicks fast on yes and no
 			reset();

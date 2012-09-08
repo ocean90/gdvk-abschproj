@@ -95,7 +95,7 @@
 			addChild(help);
 		}
 
-		public override function update() {
+		public override function update():void {
 			if (Main.LANGUAGE == 'DE') {
 				Main.HEADER.setText('Jetzt wird\'s laut!');
 
