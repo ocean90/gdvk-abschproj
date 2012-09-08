@@ -92,7 +92,7 @@
 				barcodeButton.alpha = 0;
 				barcodeButton.x = Grid.COLUMN_6 + Grid.COLUMN_2;
 				addChild(barcodeButton);
-				TweenLite.to(barcodeButton, 0.8, { x: Grid.COLUMN_5, autoAlpha: 1.0, delay: delayTime += addDelay, ease:Back.easeOut });
+				TweenLite.to(barcodeButton, 0.8, { x: Grid.COLUMN_5, autoAlpha: 1.0, delay: delayTime += addDelay, ease:Quint.easeOut });
 				
 			} else if (Main.LANGUAGE == 'EN') {
 				Main.HEADER.setText('My data');
@@ -125,7 +125,7 @@
 				createBarcodeText('Please print now and here your barcode:', posY += lineHeight, delayTime += addDelay);
 				
 				barcodeButton = new BigButton(Grid.COLUMN_5, 500, 'green');
-				barcodeButton.shapeWidth = Grid.SPAN_5;
+				barcodeButton.shapeWidth = Grid.SPAN_2;
 				barcodeButton.shapeHeight = Grid.SPAN_1;
 				barcodeButton.addEventListener(MouseEvent.CLICK, onPrintBarcode);
 				barcodeButton.setIcon(new TimetableIcon(), -20, -70);
