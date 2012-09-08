@@ -4,6 +4,7 @@
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.geom.Rectangle;
+	import flash.filters.DropShadowFilter;
 	import flash.events.MouseEvent;
 
 	import com.greensock.easing.Back;
@@ -20,7 +21,7 @@
 	 * das Zeichnen des Weißen Box für den Content sowie die zugehörigen Animationen.
 	 */
 	public class PageOverlay extends View {
-		
+
 		private var _owidth:Number;
 		private var _oheight:Number;
 		private var _background:uint;
@@ -28,13 +29,13 @@
 		private var _overlay:Sprite;
 		private var darkenContent:Sprite;
 		public var darkenButtonBar:Sprite; // ja das public ist ein hack für die ButtonBar.
-		
+
 		public var contentBox:Sprite;
 		public var content:Sprite
 
 		private var leftOverlapping:int = 200;
 		private var bigHeader:InverseText;
-		
+
 		public var cancel:SmallButton;
 		// callback function, argument Event
 		private var cancelCallback:Function;
@@ -47,7 +48,7 @@
 			_owidth = w;
 			_oheight = h;
 			_background = Colors.getColor(background);;
-			
+
 			_overlay = new Sprite();
 			_overlay.visible = false;
 			_overlay.alpha = 0;
@@ -56,11 +57,11 @@
 
 			darkenPage();
 			paintContentBox();
-			
+
 			content = new Sprite();
 			content.x = Grid.COLUMN_PADDING;
 			content.y = Grid.COLUMN_PADDING;
-			
+
 			bigHeader = new InverseText();
 			bigHeader.x = -leftOverlapping;
 			bigHeader.y = 38;
@@ -70,7 +71,7 @@
 			bigHeader.shapeHeight = 80;
 			bigHeader.setText('BigHeader');
 			bigHeader.visible = false;
-			
+
 			cancel = new SmallButton('', 'red');
 			cancel.x = Grid.COLUMN_PADDING;
 			cancel.y = this.height - Grid.BUTTON_BAR_BUTTON_HEIGHT - Grid.COLUMN_PADDING;
@@ -86,7 +87,7 @@
 			submit.shapeHeight = Grid.BUTTON_BAR_BUTTON_HEIGHT;
 			submit.visible = false;
 			submit.addEventListener(MouseEvent.CLICK, onSubmit);
-			
+
 			contentBox.addChild(content);
 			contentBox.addChild(bigHeader);
 			contentBox.addChild(cancel);
@@ -117,7 +118,7 @@
 			darkenContent.alpha = 0.8;
 
 			_overlay.addChild(darkenContent);
-			
+
 			darkenButtonBar = new Sprite();
 			darkenButtonBar.graphics.beginFill(0x000000);
 			darkenButtonBar.graphics.drawRect(0, Main.STAGE.height - Grid.BUTTON_BAR_HEIGHT, Main.STAGE.width, VirtualKeyboard.KEYBOARD_HEIGHT);
@@ -138,6 +139,12 @@
 			contentBox.graphics.drawRect(0, 0, _owidth, _oheight);
 			contentBox.graphics.endFill();
 
+			var shadow:DropShadowFilter = new DropShadowFilter();
+			shadow.distance = 10;
+			shadow.angle = 0;
+			shadow.blurX = shadow.blurY = 100.0;
+			contentBox.filters = [shadow];
+
 			_overlay.addChild(contentBox);
 		}
 
@@ -145,7 +152,7 @@
 			if (text == bigHeader.textField.text) {
 				return;
 			}
-			
+
 			// ausblenden
 			TweenLite.to(bigHeader, 0.4, { x: -leftOverlapping - bigHeader.shapeWidth, onComplete: function() {
 				// updaten
@@ -153,17 +160,17 @@
 				if (text == null) {
 					return;
 				}
-				
+
 				bigHeader.shapeWidth = bigHeader.textField.textWidth + 50 + leftOverlapping;
 				bigHeader.update();
-				
+
 				// einblenden
 				bigHeader.x = -bigHeader.shapeWidth;
 				bigHeader.visible = true;
 				TweenLite.to(bigHeader, 0.8, { x: -leftOverlapping, ease:Back.easeOut });
 			}});
 		}
-		
+
 		public function showCancelButton(text:String, callback:Function) {
 			cancel.x = Grid.COLUMN_2 - Grid.COLUMN_2 + Grid.COLUMN_PADDING;
 			cancel.shapeWidth = Grid.SPAN_1;
