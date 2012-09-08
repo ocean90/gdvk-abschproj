@@ -5,7 +5,7 @@
 	import flash.events.Event;
 
 	import com.greensock.TweenLite;
-	
+
 	import views.PageOverlay;
 	import widgets.SmallButton;
 
@@ -75,7 +75,7 @@
 		}
 
 		/**
-		 * Fügt eine neue View auf den Stack hinzu. Animaation: Von rechts kommt die neue
+		 * Fügt eine neue View auf den Stack hinzu. Animation: Von rechts kommt die neue
 		 * View und die alte verlässt den Screen gleichzeitig nach links.
 		 */
 		public function pushView(nextView:View) {
@@ -175,16 +175,16 @@
 			view.update();
 			TweenLite.to(view, 2.0, { autoAlpha: 1 });
 		}
-		
+
 		/**
 		 * Wird über UI.length von der ButtonBar verwendet um die passenden Buttons anzuzeigen.
 		 */
 		public function get length() {
 			return viewStack.length;
 		}
-		
+
 		// === OVERLAY FUNCTIONS ===
-		
+
 		/**
 		 * Öffnet den übergebenen Overlay.
 		 */
@@ -193,7 +193,7 @@
 			this.overlay.update();
 			addChild(overlay);
 		}
-		
+
 		/**
 		 * Schließt einen Overlay wenn aktuell einer geöffnet ist.
 		 */
@@ -201,14 +201,14 @@
 			if (this.overlay) {
 				var old:PageOverlay = this.overlay;
 				this.overlay = null;
-				
+
 				old.destroy();
 				removeChild(old);
-				
+
 				Main.KEYBOARD.activateFor(null);
 				Main.HEADER.reset();
 				Main.FOOTER.resetButtonBar();
-				
+
 				var view:View = viewStack[viewStack.length - 1];
 				if (!view.onResume()) {
 					view.update();
