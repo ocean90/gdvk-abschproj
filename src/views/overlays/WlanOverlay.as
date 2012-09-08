@@ -1,23 +1,20 @@
 ﻿package views.overlays {
+	import com.greensock.TweenLite;
+
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 
-	import com.greensock.TweenLite;
-
-	import utils.Grid;
 	import utils.Colors;
+	import utils.Grid;
 
 	import views.PageOverlay;
+
 	import widgets.SmallButton;
 	import widgets.TextLabel;
 
 	/**
-	 * Barcode Druck Dialog der angezeigt wird wenn man auf der Benutzer-Daten-Seite
-	 * auf "Barcode drucken" drückt.
-	 * Entgegen der anderen Overlays bietet dieses Overlay keine Option zum beenden an.
-	 * Es zeigt dem Benutzer an das jetzt etwas passiert und er in den Druckausgabe-
-	 * Schacht schauen muss. Das Fenster verschwindet dann automatisch wieder!
+	 * WLAN Dialog der Name und Passwort des Netzwerkes anzeigt.
 	 */
 	public class WlanOverlay extends PageOverlay {
 
@@ -41,7 +38,45 @@
 			}
 			addChild(infoText);
 
-			showCancelButton((Main.LANGUAGE == 'DE' ? 'Abbrechen' : 'Cancel'), function() {
+			var nameBox:Sprite = new Sprite();
+			nameBox.graphics.beginFill(Colors.getColor('lightgray'));
+			nameBox.graphics.drawRect(0, 0, Grid.SPAN_4, 80);
+			nameBox.graphics.endFill();
+
+			var name:TextLabel = new TextLabel();
+			name.setText('WLAN-FH-WORLDRECORD');
+			name.shapeWidth = Grid.SPAN_4;
+			name.shapeHeight = 80;
+			name.textFormat.size = 50;
+			name.textFormat.letterSpacing = 10;
+			name.textFormat.align = 'center';
+			name.update();
+
+			nameBox.addChild(name);
+			nameBox.x = Grid.COLUMN_2;
+			nameBox.y = 450;
+			addChild(nameBox);
+
+			var pwBox:Sprite = new Sprite();
+			pwBox.graphics.beginFill(Colors.getColor('lightgray'));
+			pwBox.graphics.drawRect(0, 0, Grid.SPAN_4, 80);
+			pwBox.graphics.endFill();
+
+			var pw:TextLabel = new TextLabel();
+			pw.setText('1234567890abcdef');
+			pw.shapeWidth = Grid.SPAN_4;
+			pw.shapeHeight = 80;
+			pw.textFormat.size = 50;
+			pw.textFormat.letterSpacing = 10;
+			pw.textFormat.align = 'center';
+			pw.update();
+
+			pwBox.addChild(pw);
+			pwBox.x = Grid.COLUMN_2;
+			pwBox.y = 600;
+			addChild(pwBox);
+
+			showCancelButton((Main.LANGUAGE == 'DE' ? 'Zurück' : 'Back'), function() {
 				Main.CONTENT.hideOverlay();
 			});
 		}
