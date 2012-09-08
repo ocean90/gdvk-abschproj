@@ -77,7 +77,7 @@
 				Main.CONTENT.pushView(Views.Infrastructure);
 			});
 
-			help = new BigButton(Grid.COLUMN_5, 651);
+			help = new BigButton(Grid.COLUMN_5, 651, 'cyan');
 			help.setIcon(new HelpIcon(), -40, -30)
 			help.addEventListener(MouseEvent.CLICK, function(e:Event) {
 				Main.CONTENT.showOverlay(new HelpOverlay());
