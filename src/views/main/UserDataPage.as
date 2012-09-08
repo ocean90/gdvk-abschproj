@@ -30,12 +30,10 @@
 		public override function onResume():Boolean {
 			if (Main.LANGUAGE == 'DE') {
 				Main.HEADER.setText('Meine Daten');
-				Main.HEADER.addHeadline('Fakten für den Weltrekord', 200);
-				Main.HEADER.addHeadline('Persönliche Daten', 400);
+				Main.HEADER.addHeadline('Persönliche Daten', 200);
 			} else if (Main.LANGUAGE == 'EN') {
 				Main.HEADER.setText('My data');
-				Main.HEADER.addHeadline('Facts for the worldrecord', 200);
-				Main.HEADER.addHeadline('Personal data', 400);
+				Main.HEADER.addHeadline('Personal data', 200);
 			}
 			return true;
 		}
@@ -63,7 +61,7 @@
 				addPersonalData('Geburtsdatum:', Main.USER.getData('dateOfBirth'), posY += lineHeight, delayTime += addDelay);
 
 				delayTime += 0.3;
-				addRightHeadline('Ihre Teilnahme', Grid.COLUMN_3, 200, delayTime += addDelay);
+				addRightHeadline('Deine Teilnahme', Grid.COLUMN_3, 200, delayTime += addDelay);
 				posY = 220;
 				addRecordData('Dein Platz', 'Flur 2. Etage', posY += lineHeight, delayTime += addDelay);
 				addRecordData('', 'Sitz 2.106', posY += lineHeight, delayTime += addDelay);
