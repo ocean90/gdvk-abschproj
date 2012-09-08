@@ -489,7 +489,7 @@
 					firstnameInput.textField.text = 'Martin';
 					lastnameInput.textField.text = 'Mustermann';
 					cityInput.textField.text = 'Gummersbach';
-					dateOfBirthInput.textField.text = '03.05.1976';
+					dateOfBirthInput.textField.text = (Main.LANGUAGE == 'DE' ? '13.05.1976' : '05-13-1976');
 					
 					onNo(e);
 				}
