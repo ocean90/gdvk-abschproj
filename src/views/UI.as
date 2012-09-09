@@ -17,61 +17,74 @@
 	 */
 	public class UI extends MovieClip {
 
+		private var home:View;
 		private var viewStack:Vector.<View> = new Vector.<View>();
 		public var overlay:PageOverlay = null;
 
-		public function UI() {
+		public function UI(home:View) {
+			this.home = home;
 		}
 
 		/**
 		 * Kann von überall aufgerufen werden wenn die Startseite aufgerufen werden soll.
 		 * Z.b. aus der ButtonBar "Hauptseite" oder nach dem Login.
 		 */
-		public function onHome(e:Event):void {
+		public function showHome():void {
 			Main.KEYBOARD.activateFor(null);
-			if (viewStack.length == 1) {
+			if (viewStack.length == 0) {
+				// Push a new home instance to the viewstack!
+				viewStack.push(home);
+				Main.HEADER.reset();
+				Main.FOOTER.resetButtonBar();
+				home.update();
+
+				home.x = 0;
+				home.alpha = 0;
+				home.visible = true;
+				addChild(home);
+	
+				TweenLite.to(home, 2.0, { delay: 0.5, autoAlpha: 1 });
+			} else if (viewStack.length == 1) {
+				// Nothing todo.
+			} else {
+				// get current view and remove all others
+				var prevView:View = viewStack.pop();
+				while (viewStack.length > 1) {
+					viewStack.pop();
+				}
+				var homeView:View = viewStack[viewStack.length - 1];
+	
+				Main.HEADER.reset();
+				Main.FOOTER.resetButtonBar();
+				if (!homeView.onResume()) {
+					homeView.update();
+				}
+				homeView.x = -1280;
+				homeView.visible = true;
+	
+				TweenLite.to(prevView, 0.8, { x: 1280, onComplete: function() {
+					prevView.visible = false;
+				}});
+				TweenLite.to(homeView, 0.8, { x: 0 });
+			}
+		}
+
+		public function clear():void {
+			if (viewStack.length == 0) {
 				return;
 			}
-
+			
 			// get current view and remove all others
 			var prevView:View = viewStack.pop();
 			while (viewStack.length > 1) {
 				viewStack.pop();
 			}
-			var homeView:View = viewStack[viewStack.length - 1];
-
+			
 			Main.HEADER.reset();
+			Main.HEADER.setText(null);
 			Main.FOOTER.resetButtonBar();
-			if (!homeView.onResume()) {
-				homeView.update();
-			}
-			homeView.x = -1280;
-			homeView.visible = true;
-
-			TweenLite.to(prevView, 0.8, { x: 1280, onComplete: function() {
-				prevView.visible = false;
-			}});
-			TweenLite.to(homeView, 0.8, { x: 0 });
-		}
-
-		public function onBack(e:Event):void {
-			popView();
-		}
-
-		/**
-		 * Prüft aktuell NICHT ob dies wirklich die erste View ist!
-		 */
-		public function pushHome(home:View):void {
-			viewStack.push(home);
-			Main.HEADER.reset();
-			Main.FOOTER.resetButtonBar();
-			home.update();
-
-			home.alpha = 0;
-			home.visible = true;
-			addChild(home);
-
-			TweenLite.to(home, 2.0, { delay: 0.5, autoAlpha: 1 });
+			
+			TweenLite.to(prevView, 0.8, { autoAlpha: 0 });
 		}
 
 		/**

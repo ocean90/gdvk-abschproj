@@ -46,6 +46,11 @@
 			if (text == headline.textField.text) {
 				return;
 			}
+			if (text == null || text == '') {
+				// nur ausblenden
+				TweenLite.to(headline, 0.4, { x: -leftOverlapping - headline.shapeWidth });
+				return;
+			}
 
 			// ausblenden
 			TweenLite.to(headline, 0.4, { x: -leftOverlapping - headline.shapeWidth, onComplete: function() {

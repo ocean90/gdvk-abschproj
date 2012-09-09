@@ -95,7 +95,9 @@
 			home.shapeWidth = Grid.SPAN_1;
 			home.shapeHeight = Grid.BUTTON_BAR_BUTTON_HEIGHT;
 			home.visible = false;
-			home.addEventListener(MouseEvent.CLICK, Main.CONTENT.onHome);
+			home.addEventListener(MouseEvent.CLICK, function(e:Event) {
+				Main.CONTENT.showHome();
+			});
 
 			back = new SmallButton('', 'lightgray');
 			back.textFormat.color = '0x000000';
@@ -104,7 +106,9 @@
 			back.shapeWidth = Grid.SPAN_1;
 			back.shapeHeight = Grid.BUTTON_BAR_BUTTON_HEIGHT;
 			back.visible = false;
-			back.addEventListener(MouseEvent.CLICK, Main.CONTENT.onBack);
+			back.addEventListener(MouseEvent.CLICK, function(e:Event) {
+				Main.CONTENT.popView();
+			});
 
 			//login = new SmallButton('', 'green');
 //			login.textFormat.color = '0x000000';
@@ -126,8 +130,7 @@
 			logout.shapeHeight = Grid.BUTTON_BAR_BUTTON_HEIGHT;
 			logout.visible = false;
 			logout.addEventListener(MouseEvent.CLICK, function(e:Event) {
-				Main.USER.logout();
-				Main.CONTENT.onHome(e);
+				Main.SCREENSAVER.show(e);
 
 				logout.visible = false;
 //				login.alpha = 0;
@@ -165,17 +168,11 @@
 
 		public function changeLanguage(e:Event):void {
 			if (e.currentTarget == de && Main.LANGUAGE != 'DE') {
-				trace('Switch UI to german');
 				Main.LANGUAGE = 'DE';
-				de.color = 'languageButtonActive';
-				en.color = 'languageButtonInactive';
 				update();
 				Main.CONTENT.updateView();
 			} else if (e.currentTarget == en && Main.LANGUAGE != 'EN') {
-				trace('Switch UI to english');
 				Main.LANGUAGE = 'EN';
-				de.color = 'languageButtonInactive';
-				en.color = 'languageButtonActive';
 				update();
 				Main.CONTENT.updateView();
 			}
@@ -210,6 +207,14 @@
 		}
 
 		public override function update():void {
+			if (Main.LANGUAGE == 'DE') {
+				de.color = 'languageButtonActive';
+				en.color = 'languageButtonInactive';
+			} else if (Main.LANGUAGE == 'EN') {
+				de.color = 'languageButtonInactive';
+				en.color = 'languageButtonActive';
+			}
+
 			de.update();
 			en.update();
 

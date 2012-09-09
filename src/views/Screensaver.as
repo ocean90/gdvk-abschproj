@@ -59,7 +59,7 @@
 			show(null);
 		}
 
-		private function show(e:Event):void {
+		public function show(e:Event):void {
 			// Screensaver is already shown
 			if (added)
 				return;
@@ -76,6 +76,9 @@
 			logo.y = __height * 0.5 - logo.height * 0.5
 			contentBox.addChild(logo);
 
+			// reset screen when screensaver is shown
+			Main.resetEnvironment();
+			
 			// Click on the screen to destroy the screensaver
 			contentBox.buttonMode = true;
 			contentBox.addEventListener(MouseEvent.CLICK, resetScreen);
@@ -87,14 +90,13 @@
 		}
 
 		private function resetScreen(e:Event):void {
+			// reset screen. Normally this should already happen when screensaver is shown
+			Main.resetEnvironment();
+			Main.CONTENT.showHome();
+			
 			// Remove overlay
-			destroy();
-
-			// Open Index page
-			Main.CONTENT.pushHome(Views.Index);
-
-			// No screensaver
 			added = false;
+			destroy();
 		}
 	}
 }

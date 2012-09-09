@@ -36,7 +36,6 @@
 				} else {
 					var checkIn:CheckInOverlay = new CheckInOverlay();
 					checkIn.afterFinishCallback = function(e:Event) {
-						trace('check in done. load userdata now.');
 						Main.CONTENT.pushView(Views.UserData);
 					};
 					Main.CONTENT.showOverlay(checkIn);
@@ -82,8 +81,6 @@
 			help.addEventListener(MouseEvent.CLICK, function(e:Event) {
 				Main.CONTENT.showOverlay(new HelpOverlay());
 			});
-
-			update();
 
 			addChild(userdata);
 			addChild(map);

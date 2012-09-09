@@ -4,8 +4,9 @@
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFormat;
 
-	import com.greensock.easing.Quint;
 	import com.greensock.TweenLite;
+	import com.greensock.easing.Back;
+	import com.greensock.easing.Quint;
 
 	import utils.Grid;
 	import utils.Colors;
@@ -13,7 +14,6 @@
 	import views.View;
 	import views.Views;
 	import widgets.InverseText;
-	import com.greensock.easing.Back;
 
 	public class TimetablePage extends View {
 		var table:Array;

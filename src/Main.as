@@ -56,7 +56,7 @@
 			Main.STAGE = stage;
 
 			Main.HEADER = new Header();
-			Main.CONTENT = new UI();
+			Main.CONTENT = new UI(Views.Index);
 //			Main.OVERLAY = new PageOverlay();
 			Main.FOOTER = new ButtonBar();
 			Main.FOOTER.update();
@@ -76,7 +76,14 @@
 			Main.DEBUG = new Debug();
 			addChild(Main.DEBUG);
 
-			Main.SCREENSAVER = new Screensaver( 0xffffff, Grid.STAGE_WIDTH - 50, Grid.STAGE_HEIGHT - 50);
+			Main.SCREENSAVER = new Screensaver(0xffffff, Grid.STAGE_WIDTH - 50, Grid.STAGE_HEIGHT - 50);
+		}
+		
+		public static function resetEnvironment():void {
+			Main.LANGUAGE = 'DE';
+			Main.USER.logout();
+			Main.CONTENT.clear();
+			Main.FOOTER.update();
 		}
 	}
 

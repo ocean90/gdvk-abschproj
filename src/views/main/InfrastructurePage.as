@@ -65,7 +65,6 @@
 				Main.CONTENT.showOverlay(new HelpOverlay());
 			});
 			*/
-			update();
 
 			addChild(map);
 			addChild(wlan);

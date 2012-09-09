@@ -9,15 +9,21 @@
 		}
 		
 		public function login(data:Object) {
-			trace('login', data);
-			loggedIn = true;
-			this.data = data;
+			if (!loggedIn) {
+				loggedIn = true;
+				this.data = data;
+				trace('Login successful:', getData('firstname'), getData('lastname'));
+			} else {
+				trace('Login canceled! - Already logged in:', getData('firstname'), getData('lastname'));
+			}
 		}
 		
 		public function logout() {
-			trace('logout');
-			loggedIn = false;
-			this.data = null;
+			if (loggedIn) {
+				trace('Logged out successful:', getData('firstname'), getData('lastname'));
+				loggedIn = false;
+				this.data = null;
+			}
 		}
 		
 		public function getData(key:String) {
