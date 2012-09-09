@@ -1,4 +1,4 @@
-package utils {
+﻿package utils {
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 
@@ -19,9 +19,24 @@ package utils {
 			var key:uint = e.keyCode;
 
 			switch (key) {
-				case Keyboard.D :
+				case Keyboard.D:
 					Main.STAGE.setChildIndex(gridOverlay, Main.STAGE.numChildren - 1);
 					gridOverlay.visible = ! gridOverlay.visible;
+					break;
+				case Keyboard.L:
+					if (Main.LANGUAGE != 'DE') {
+						trace('Switch UI to german');
+						Main.LANGUAGE = 'DE';
+						Main.HEADER.reset();
+						Main.FOOTER.update();
+						Main.CONTENT.updateView();
+					} else if (Main.LANGUAGE != 'EN') {
+						trace('Switch UI to english');
+						Main.LANGUAGE = 'EN';
+						Main.HEADER.reset();
+						Main.FOOTER.update();
+						Main.CONTENT.updateView();
+					}
 					break;
 			}
 		}
