@@ -64,7 +64,7 @@
 			memberButton.shapeWidth = Grid.SPAN_1;
 			memberButton.shapeHeight = Grid.SPAN_1 * 0.95;
 			memberButton.addEventListener(MouseEvent.CLICK, function(e:Event) {
-				Views.MemberList.updateConfiguration(Colors.getColor('green'), memberCount);
+				Views.MemberList.updateConfiguration(Colors.getColor('green'), Colors.getColor('white'), memberCount);
 				Main.CONTENT.pushView(Views.MemberList);
 			});
 
@@ -82,7 +82,7 @@
 			checkedInButton.shapeWidth = Grid.SPAN_1;
 			checkedInButton.shapeHeight = Grid.SPAN_1 * 0.95;
 			checkedInButton.addEventListener(MouseEvent.CLICK, function(e:Event) {
-				Views.MemberList.updateConfiguration(Colors.getColor('orange'), checkedInCount);
+				Views.MemberList.updateConfiguration(Colors.getColor('orange'), Colors.getColor('black'), checkedInCount);
 				Main.CONTENT.pushView(Views.MemberList);
 			});
 

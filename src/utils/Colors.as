@@ -5,15 +5,14 @@
 	public class Colors {
 		private static var _colors:Object = {
 				// Logo colors
-				'black':      0x000000,
-				'blue':       0x4668ab,
-				'cyan':       0x36a1bc,
-				'red':        0xe64428,
-				'purple':     0xab438f,
-				'green':      0x2c9a2d,
-				'moos':       0x9bc126,
-				'lightgreen': 0x7bb442,
-				'orange':     0xf8b739,
+				'black':     0x000000,
+				'blue':      0x4668ab,
+				'cyan':      0x36a1bc,
+				'red':       0xe64428,
+				'purple':    0xab438f,
+				'green':     0x2c9a2d,
+				'moos':      0x9bc126,
+				'orange':    0xf8b739,
 
 				// MI Styleguid
 				'lightblue': 0x77aabb,
@@ -24,9 +23,8 @@
 				'languageButtonActive':   0xdddddd,
 				'languageButtonInactive': 0xbbbbbb,
 
+				'white':     0xffffff,
 				'lightgray': 0xdddddd
-				/*'lightred':       ColorUtil.brightenColor(0xDB2D1F, 40), // inner color same as red, for now
-				'lightgreen':     ColorUtil.brightenColor(0x69A733, 40), // inner color same as green, for now*/
 		};
 
 		public static function getColor(color:*):uint {

@@ -40,7 +40,7 @@
 		];
 		// Selbst "ausgedacht".
 		private static var companies:Array = [
-			'FH Köln', 'IT hier und da', 'Audi', 'Ferchau', 'Sparkasse'
+			'FH Köln', 'IT Service GmbH', 'Audi', 'Ferchau', 'Sparkasse Gummer...'
 		];
 
 		// Vornamen bestehen aus:
