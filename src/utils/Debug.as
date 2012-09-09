@@ -12,7 +12,7 @@
 			gridOverlay = new GridOverlay();
 			gridOverlay.visible = false;
 			Main.STAGE.addChild(gridOverlay);
-			Main.STAGE.addEventListener(KeyboardEvent.KEY_UP, toggleDebug);
+			Main.STAGE.addEventListener(KeyboardEvent.KEY_DOWN, toggleDebug);
 		}
 
 		private function toggleDebug(e:KeyboardEvent):void {
