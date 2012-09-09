@@ -50,7 +50,7 @@
 
 		public function ButtonBar() {
 			background = new ButtonBarBackground();
-			background.y = Main.STAGE.stageHeight - 100;
+			background.y = Grid.STAGE_HEIGHT - 100;
 			background.x = 0;
 			addChild(background);
 
