@@ -48,6 +48,7 @@
 			}
 			if (text == null || text == '') {
 				// nur ausblenden
+				headline.setText('');
 				TweenLite.to(headline, 0.4, { x: -leftOverlapping - headline.shapeWidth });
 				return;
 			}

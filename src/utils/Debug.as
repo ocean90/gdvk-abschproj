@@ -23,6 +23,9 @@
 					Main.STAGE.setChildIndex(gridOverlay, Main.STAGE.numChildren - 1);
 					gridOverlay.visible = ! gridOverlay.visible;
 					break;
+				case Keyboard.S:
+					Main.SCREENSAVER.show(e);
+					break;
 				case Keyboard.L:
 					if (Main.LANGUAGE != 'DE') {
 						trace('Switch UI to german');
