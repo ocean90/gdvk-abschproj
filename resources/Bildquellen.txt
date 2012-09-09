@@ -1,7 +1,7 @@
 Bildquellen:
 
 english_32.png, german_32.png:
-	http://icondrawer.com/free.php (abgerufen am 9.11.12)
+	http://icondrawer.com/free.php (abgerufen am 9.9.12)
 
 Button Icons/SVG/*.svg:
-	http://fortawesome.github.com/Font-Awesome/ (abgerufen am 9.11.12)
+	http://fortawesome.github.com/Font-Awesome/ (abgerufen am 9.9.12)
