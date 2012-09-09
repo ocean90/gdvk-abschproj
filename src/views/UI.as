@@ -39,8 +39,8 @@
 				home.update();
 
 				home.x = 0;
-				home.alpha = 0;
 				home.visible = true;
+				home.alpha = 0;
 				addChild(home);
 	
 				TweenLite.to(home, 2.0, { delay: 0.5, autoAlpha: 1 });
@@ -61,7 +61,8 @@
 				}
 				homeView.x = -1280;
 				homeView.visible = true;
-	
+				homeView.alpha = 1;
+
 				TweenLite.to(prevView, 0.8, { x: 1280, onComplete: function() {
 					prevView.visible = false;
 				}});
@@ -109,6 +110,7 @@
 
 			nextView.x = 1280;
 			nextView.visible = true;
+			nextView.alpha = 1;
 			addChild(nextView);
 
 			TweenLite.to(prevView, 0.8, { x: -1280, onComplete: function() {
@@ -138,6 +140,7 @@
 
 			newView.x = 1280;
 			newView.visible = true;
+			newView.alpha = 1;
 			addChild(newView);
 
 			TweenLite.to(oldView, 0.8, { x: -1280, onComplete: function() {
@@ -170,6 +173,7 @@
 			}
 			prevPage.x = -1280;
 			prevPage.visible = true;
+			prevPage.alpha = 1;
 
 			TweenLite.to(lastPage, 0.8, { x: 1280, onComplete: function() {
 				lastPage.visible = false;
