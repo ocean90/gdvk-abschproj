@@ -66,8 +66,8 @@
 				addRecordData('Dein Platz', 'Flur 2. Etage', posY += lineHeight, delayTime += addDelay);
 				addRecordData('', 'Sitz 2.106', posY += lineHeight, delayTime += addDelay);
 
-				addHelperImage(575, delayTime += addDelay);
 				addRightHeadline('Dein Betreuer', Grid.COLUMN_3, 500, delayTime += addDelay);
+				addHelperImage(575, delayTime += addDelay);
 				addRecordData('Dominik Schilling', '', 850, delayTime += addDelay);
 
 				delayTime += 0.3;
@@ -110,9 +110,9 @@
 				addRecordData('Your place', 'Corridor 2nd floor', posY += lineHeight, delayTime += addDelay);
 				addRecordData('', 'Seat 2.106', posY += lineHeight, delayTime += addDelay);
 
-				addHelperImage(525, delayTime += addDelay);
-				addRightHeadline('Your advisor', Grid.COLUMN_3, 500, delayTime += addDelay);
-				addRecordData('Pierre Favre', '', 800, delayTime += addDelay);
+				addRightHeadline('Your advisor', Grid.COLUMN_3, 575, delayTime += addDelay);
+				addHelperImage(575, delayTime += addDelay);
+				addRecordData('Dominik Schilling', '', 850, delayTime += addDelay);
 
 				delayTime += 0.3;
 				addRightHeadline('Barcode', Grid.COLUMN_5, 200, delayTime += addDelay);
