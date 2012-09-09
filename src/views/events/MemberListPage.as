@@ -16,7 +16,6 @@
 
 	import widgets.Cover;
 	import widgets.CoverFlow;
-	import widgets.RoundButton;
 	import widgets.SmallButton;
 	import widgets.TextLabel;
 

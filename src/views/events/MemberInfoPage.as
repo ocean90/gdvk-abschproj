@@ -13,7 +13,6 @@
 
 	import views.View;
 
-	import widgets.RoundButton;
 	import widgets.SmallButton;
 	import widgets.TextLabel;
 	import utils.Colors;
