@@ -31,7 +31,7 @@
 			map = new BigButton(Grid.COLUMN_3, 231, 'red');
 			map.setIcon(new LocationIcon(), -20, -50);
 			map.addEventListener(MouseEvent.CLICK, function(e:Event) {
-				Main.CONTENT.pushView(Views.Timetable);
+				Main.CONTENT.pushView(Views.Map);
 			});
 
 			repair = new BigButton(Grid.COLUMN_5, 231, 'cyan');
