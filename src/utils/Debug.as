@@ -12,13 +12,15 @@
 			gridOverlay = new GridOverlay();
 			gridOverlay.visible = false;
 			Main.STAGE.addChild(gridOverlay);
-			Main.STAGE.addEventListener(KeyboardEvent.KEY_DOWN, toggleDebug);
+			Main.STAGE.addEventListener(KeyboardEvent.KEY_UP, toggleDebug);
 		}
 
 		private function toggleDebug(e:KeyboardEvent):void {
-			var key:uint = e.keyCode;
+			if (!e.ctrlKey && !e.altKey) {
+				return;
+			}
 
-			switch (key) {
+			switch (e.keyCode) {
 				case Keyboard.D:
 					Main.STAGE.setChildIndex(gridOverlay, Main.STAGE.numChildren - 1);
 					gridOverlay.visible = ! gridOverlay.visible;
