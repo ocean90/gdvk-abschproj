@@ -115,7 +115,11 @@
 
 			// Recolor the image. Gets the color of the 3D effect
 			var newColorTransform:ColorTransform = icon.transform.colorTransform;
-			newColorTransform.color = Colors.getDarkColor(this.color);
+			if (this.color == 'brown') {
+				newColorTransform.color = Colors.getLightColor(this.color);
+			} else {
+				newColorTransform.color = Colors.getDarkColor(this.color);
+			}
 			icon.transform.colorTransform = newColorTransform;
 
 			// Change the position. Can be also negative. Overflow is disabled
