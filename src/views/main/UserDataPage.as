@@ -110,7 +110,7 @@
 				addRecordData('Your place', 'Corridor 2nd floor', posY += lineHeight, delayTime += addDelay);
 				addRecordData('', 'Seat 2.106', posY += lineHeight, delayTime += addDelay);
 
-				addRightHeadline('Your advisor', Grid.COLUMN_3, 575, delayTime += addDelay);
+				addRightHeadline('Your advisor', Grid.COLUMN_3, 500, delayTime += addDelay);
 				addHelperImage(575, delayTime += addDelay);
 				addRecordData('Dominik Schilling', '', 850, delayTime += addDelay);
 
