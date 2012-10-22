@@ -96,7 +96,7 @@
 			if (_coverflow != null) {
 				removeChild(_coverflow);
 			}
-			_coverflow = new CoverFlow(Main.STAGE.stageWidth, Main.STAGE.stageHeight, _backgroundColor);
+			_coverflow = new CoverFlow(Grid.STAGE_WIDTH, Grid.STAGE_HEIGHT, _backgroundColor);
 
 			var cover:Cover;
 			var posY:int;
